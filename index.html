@@ -8,7 +8,9 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F8F9FA;
+            background-image: url('/Users/aarushtiwari/VS Studio/Math Comp Site/bgimage.jpg');
+            background-repeat: repeat;
+            background-size: 200px;
             margin: 0;
             padding: 0;
             font-weight: bold;
@@ -17,6 +19,10 @@
             color: #333333;
             font-size: 125px;
             font-weight: bold;
+        }
+        h3{
+            margin-left: 200px;
+            margin-right: 200px;
         }
         .logo{
             text-align: center;
@@ -27,22 +33,57 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 15px 50px;
             background-color: #d1f2d1;
-            font-size: 18px;
-            font-weight: bold;
-            color: #333333;
+            border-bottom: 1px solid #d1f2d1;
+            color: #000000;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
         .nav-links {
-            font-size: 14px;
-            font-weight: normal;
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 10px;
         }
-        .nav-links span {
-            margin-left: 20px;
-            cursor: pointer;
+        .nav-links li {
+            margin: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            background-color: transparent;
+            color: #4b5563;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+        .nav-links a:hover {
+            background-color: #708070;
+            color: #bae4ca;
         }
         .section {
             padding: 40px 20px;
+        }
+        .main{
+            display: flex;
+            align-items: center;
+            padding: 100px;
+            gap: 0px;
+            justify-content: center;
+            flex: 1;
+        }
+        .textbox{
+            background-color: #d1f2d1;
+            flex: 1;
+        }
+        .imagebox{
+            flex: 1;
         }
         .role-title {
             font-size: 22px;
@@ -63,6 +104,9 @@
         .responsive-img{
             max-width: 20%;
             height: auto;
+        }
+        img{
+        	max-width: 600px;
         }
         p{
             margin-left: 200px;
