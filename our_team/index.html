@@ -2,101 +2,14 @@
 <html lang="en">
 
 <head>
+    <base href="/" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Team</title>
+    <title>Meet Our Team</title>
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-image: url('sl_072622_51930_13.jpg');
-            background-size: auto;
-            background-repeat: repeat;
-            background-size: 800px;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            color: #ff0000;
-            font-size: 125px;
-            font-weight: bold;
-        }
-
-        h2 {
-            color: #ff0000;
-            font-weight: bold;
-        }
-
-        p {
-            color: #000000;
-        }
-
-        .logo {
-            width: 5%;
-            height: auto;
-            align-items: center;
-            margin: 0px;
-            padding: 5px;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 50px;
-            background-color: #ffffff;
-            border-bottom: 5px solid #000000;
-            color: #000000;
-        }
-
-        .title {
-            color: #00e1ff;
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 10px;
-        }
-
-        .nav-links li {
-            margin: 0;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            background-color: transparent;
-            color: #ff0000;
-            font-size: 15px;
-            font-weight: 500;
-            padding: 8px 12px;
-            border-radius: 6px;
-        }
-
-        .nav-links a:hover {
-            background-color: #ffffff;
-            color: #00e1ff;
-        }
-
-        .nav-links a.signup {
-            font-weight: bold;
-            font-size: medium;
-            background-color: #ffffff;
-            color: #000000;
-            transition: background-color 1s;
-        }
-
-        .nav-links a.signup:hover {
-            background-color: #c3c3c3;
-            color: #ffffff;
-        }
-
         .team-container {
             background: rgba(0, 0, 0, 0.08);
             border-radius: 20px;
@@ -147,17 +60,18 @@
 </head>
 
 <body>
-
-    <div class="navbar">
-        <img class='logo' src='LMAOlogo.png'>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="aboutus.html">About Us</a>
-            <a href="competition_resources.html">Competition Resources</a>
-            <a href="our_team.html">Our Team</a>
-            <a class="signup" href="https://tinyurl.com/lmaosignup26">SIGN UP</a>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="LMAOlogo.png" alt="LMAO Logo"></a>
         </div>
-    </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="about_us/">About Us</a></li>
+            <li><a href="competition_resources/">Competition Resources</a></li>
+            <li><a href="our_team/">Our Team</a></li>
+            <li><a class="signup" href="https://tinyurl.com/lmaosignup26">SIGN UP</a></li>
+        </ul>
+    </nav>
     <header style="text-align: center; padding: 60px; background-color:rgba(0, 0, 0, 0.08)">
         <h1 style="margin: 0px">Meet Our Team</h1>
     </header>
@@ -229,7 +143,8 @@
             <div class="team-role">12th Grade</div>
             <div class="team-role">Emotional Support, Problem Writer, PR</div>
             <p class="team-bio">
-                Emotional support team-bio main but I'll also do like Problem Writer and PR I guess, mostly team-bio though.
+                Emotional support team-bio main but I'll also do like Problem Writer and PR I guess, mostly team-bio
+                though.
             </p>
         </div>
         <div class="team-card">
