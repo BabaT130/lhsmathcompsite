@@ -1,9 +1,14 @@
 body {
     font-family: 'Inter', sans-serif;
-    background-image: url('sl_072622_51930_13.jpg');
+    /*background-image: url('sl_072622_51930_13.jpg');
     background-size: auto;
     background-repeat: repeat;
-    background-size: 800px;
+    background-size: 800px;*/
+    background-color: white;
+    background-image:
+        linear-gradient(to right, #bbbbbb 1.5px, transparent 1px),
+        linear-gradient(to bottom, #bbbbbb 1.5px, transparent 1px);
+    background-size: 28px 28px;
     margin: 0;
     padding: 0;
 }
@@ -149,6 +154,7 @@ p {
     .logo {
         display: none;
     }
+
     .navbar {
         justify-content: center;
     }
@@ -158,6 +164,7 @@ p {
     .navbar {
         justify-content: space-between;
     }
+
     .nav-links {
         flex-direction: column;
     }
