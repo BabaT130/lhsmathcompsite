@@ -9,165 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-image: url('sl_072622_51930_13.jpg');
-            background-size: auto;
-            background-repeat: repeat;
-            background-size: 800px;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            color: #ff0000;
-            font-size: 125px;
-            font-weight: bold;
-        }
-
-        h2 {
-            color: #ff0000;
-            font-weight: bold;
-        }
-
-        h3 {
-            color: #ff0000;
-            font-weight: bold;
-        }
-
-        p {
-            color: #000000;
-        }
-
-        .logo {
-            width: 5%;
-            height: auto;
-            align-items: center;
-            margin: 0px;
-            padding: 5px;
-        }
-
-        .banner{
+        .banner {
             width: 75%;
             height: auto;
             display: block;
             margin: 0 auto;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 50px;
-            background-color: #ffffff;
-            border-bottom: 5px solid #000000;
-            color: #000000;
-        }
-
-        .title {
-            color: #00e1ff;
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .banner{
-            
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 10px;
-        }
-
-        .nav-links li {
-            margin: 0;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            background-color: transparent;
-            color: #ff0000;
-            font-size: 15px;
-            font-weight: 500;
-            padding: 8px 12px;
-            border-radius: 6px;
-        }
-
-        .nav-links a:hover {
-            background-color: #ffffff;
-            color: #00e1ff;
-        }
-
-        .nav-links a.signup {
-            font-weight: bold;
-            font-size: medium;
-            background-color: #ffffff;
-            color: #000000;
-            transition: background-color 1s;
-        }
-
-        .nav-links a.signup:hover {
-            background-color: #c3c3c3;
-            color: #ffffff;
-        }
-
-        .section {
-            padding: 40px 20px;
-        }
-
-        .main {
-            background-color: #3c3c3c36;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px 5%;
-            margin-left: 10%;
-            margin-right: 10%;
-            flex: 1;
-            border-radius: 50px;
-        }
-
-        .textbox {
-            background-color: #ffffff;
-            text-align: center;
-            flex: 1;
-            padding: 5%;
-            margin-right: 20px;
-            border-radius: 50px;
-        }
-
-        .imagebox {
-            flex: 1;
-            align-items: center;
-        }
-
-        .role-title {
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .role-container {
-            margin-bottom: 50px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 30px;
-        }
-
-        .placeholder-box {
-            width: 100%;
-            height: 150px;
-            background-color: #e0e0e0;
-            margin-top: 10px;
-        }
-
-        .responsive-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 50px;
         }
     </style>
 </head>
@@ -177,8 +23,15 @@
         <div class="logo">
             <a href="index.html"><img src="LMAOlogo.png" alt="LMAO Logo"></a>
         </div>
-    </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="about_us/">About Us</a></li>
+            <li><a href="competition_resources/">Competition Resources</a></li>
+            <li><a href="our_team/">Our Team</a></li>
+            <li><a class="signup" href="https://tinyurl.com/lmaosignup26">SIGN UP</a></li>
+        </ul>
+    </nav>
 
     <img class='banner' src='LMAOBannerfinal-removebg-preview.png'>
-    
+
 </body>
