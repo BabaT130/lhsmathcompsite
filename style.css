@@ -1,9 +1,5 @@
 body {
     font-family: 'Inter', sans-serif;
-    /*background-image: url('sl_072622_51930_13.jpg');
-    background-size: auto;
-    background-repeat: repeat;
-    background-size: 800px;*/
     background-color: white;
     background-image:
         linear-gradient(to right, #bbbbbb 1.5px, transparent 1px),
@@ -16,8 +12,23 @@ body {
 
 h1 {
     color: #ff0000;
-    font-size: 125px;
     font-weight: bold;
+}
+
+.page-title-text {
+    font-size: calc(30px + 6vw);
+    font-weight: bold;
+}
+
+.page-title-header {
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: calc(15px + 4vw);
+    padding-top: calc(15px + 4vw);
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.08)
 }
 
 h2 {
@@ -73,22 +84,29 @@ p {
 
 .navbar {
     vertical-align: middle;
-    /* position: fixed;*/
-    margin-left: 0px;
-    width: calc(100% - 60px);
+    margin: 0px;
+    box-sizing: border-box;
+    padding: 5px 40px;
+    width: 100%;
+    /*100%-2*lrpadding*/
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 90px;
+    height: 80px;
     z-index: 9999;
     background-color: #ffffff;
     border-bottom: 5px solid #000000;
     color: #000000;
-    padding: 15px 40px;
+}
+
+.nav-filler {
+    padding: 0;
+    margin: 0;
+    height: 80px;
 }
 
 .logo img {
-    height: 80px;
+    height: 60px;
 }
 
 .nav-links {
@@ -121,14 +139,13 @@ p {
 }
 
 .nav-links a:hover {
-    background-color: #cccccc;
+    background-color: #eeeeee;
     color: #00e1ff;
 }
 
 .nav-links a.signup {
     font-weight: bold;
     font-size: medium;
-    background-color: #ffffff;
     color: #000000;
     transition: background-color 0.3s;
 }
@@ -151,6 +168,13 @@ p {
     border-radius: 50px;
 }
 
+.main-text {
+    margin: auto;
+    box-sizing: border-box;
+    padding: 20px;
+    max-width: 800px;
+}
+
 @media (max-width: 760px) {
     .logo {
         display: none;
@@ -159,11 +183,25 @@ p {
     .navbar {
         justify-content: center;
     }
+
+    .main-text {
+        width: 100vw;
+    }
 }
 
 @media (max-width: 530px) {
     .navbar {
         justify-content: space-between;
+        height: 120px;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100%;
+    }
+
+    .nav-filler {
+        padding: 0;
+        margin: 0;
+        height: 120px;
     }
 
     .nav-links {
@@ -184,12 +222,6 @@ p {
     .logo {
         display: block;
     }
-}
-
-.nav-filler {
-    padding: 0;
-    margin: 0;
-    height: 120px;
 }
 
 .fixed {
