@@ -2,8 +2,8 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: white;
     background-image:
-        linear-gradient(to right, #bbbbbb 1.5px, transparent 1px),
-        linear-gradient(to bottom, #bbbbbb 1.5px, transparent 1px);
+        linear-gradient(to right, #dddddd 1px, transparent 1px),
+        linear-gradient(to bottom, #dddddd 1px, transparent 1px);
     background-size: 28px 28px;
     margin: 0;
     padding: 0;
@@ -84,6 +84,17 @@ p {
 .imagebox {
     flex: 1;
     align-items: center;
+}
+
+.dev-banner {
+    width: 100%;
+    text-align: center;
+    background: #fff3cd;
+    display: block;
+    color: #856404;
+    padding: 8px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #f0e1a0;
 }
 
 .navbar {
