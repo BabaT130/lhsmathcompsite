@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="assets/navbar.js"></script>
+    <style>
+        .page-header {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: rgba(0, 0, 0, 0.08);
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-size: clamp(44px, 8vw, 90px);
+        }
+
+        .form-card {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .form-embed {
+            width: 100%;
+            min-height: 1200px;
+            border: 0;
+            display: block;
+        }
+
+        .fallback {
+            text-align: center;
+            margin-top: 14px;
+            color: #000000;
+        }
+
+        .fallback a {
+            color: #ff0000;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .fallback a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="site-navbar"></div>
+
+    <header class="page-header">
+        <h1>Sign Up</h1>
+    </header>
+
+    <div class="main-text">
+        <div class="form-card">
+            <iframe class="form-embed" title="LMAO Sign Up Form"
+                src="https://docs.google.com/forms/d/e/1FAIpQLSeCsqvyCrZYCLghh4OBHFldDI5Cteh-e4RP8GoqnzSsPIC90g/viewform?embedded=true"
+                loading="lazy">
+            </iframe>
+        </div>
+        <!--fallback-->
+        <div class="fallback">
+            Or alternatively, open the form in a new tab:
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeCsqvyCrZYCLghh4OBHFldDI5Cteh-e4RP8GoqnzSsPIC90g/viewform"
+                target="_blank" rel="noopener noreferrer">Sign Up</a>
+        </div>
+    </div>
+</body>
+
+</html>

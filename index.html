@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script defer src="assets/navbar.js"></script>
     <style>
         .banner {
             width: 75%;
@@ -19,25 +20,7 @@
 </head>
 
 <body>
-    <nav class="navbar fixed">
-        <div class="logo">
-            <a href="index.html"><img src="assets/logo.svg" alt="LMAO Logo"></a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="about_us/">About Us</a></li>
-            <li><a href="competition_resources/">Competition Resources</a></li>
-            <li><a href="our_team/">Our Team</a></li>
-            <li><a class="signup"
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSeCsqvyCrZYCLghh4OBHFldDI5Cteh-e4RP8GoqnzSsPIC90g/viewform">SIGN
-                    UP</a></li>
-        </ul>
-    </nav>
-    <div class="nav-filler"></div>
-    <!-- To remove this, change display to "none" in styles.css-->
-    <div class="dev-banner">
-        Website in progress: some pages may be incomplete.
-    </div>
+    <div id="site-navbar"></div>
     <div class="main-text">
         <img class='banner' src='assets/banner.svg' title="Lynbrook Math Awesome Open"
             style="width: 100%; background-color: #ffffff; border-radius: 15px; border: 1px solid #cccccc; padding: 30px; box-sizing: border-box;">
