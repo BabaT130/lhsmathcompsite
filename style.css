@@ -30,7 +30,8 @@ h1 {
     padding-top: calc(15px + 4vw);
     width: 100%;
     box-sizing: border-box;
-    background-color: rgba(0, 0, 0, 0.08)
+    background-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 6px 8px #16365d22;
 }
 
 h2 {
