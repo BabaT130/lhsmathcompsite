@@ -1,4 +1,11 @@
+html,
 body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    height: 100%;
     font-family: 'Inter', sans-serif;
     background-color: white;
     background-image:
@@ -9,6 +16,8 @@ body {
     padding: 0;
     overscroll-behavior-y: none;
     font-size: 16px;
+    display: flex;
+    flex-direction: column;
 }
 
 *,
@@ -249,6 +258,7 @@ p {
 }
 
 .main-text {
+    flex: 1;
     margin: auto;
     box-sizing: border-box;
     padding: 20px;

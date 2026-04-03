@@ -127,7 +127,7 @@
                 </div>
                 <div class="lmao-footer-text">
                     <span class="lmao-footer-name">Lynbrook Math Awesome Open</span>
-                    <span class="lmao-footer-hosted">Hosted by Lynbrook HS Math Club</span>
+                    <span class="lmao-footer-hosted">Hosted by Lynbrook High School Math Club</span>
                 </div>
             </div>
             <div class="lmao-footer-right">
