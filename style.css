@@ -7,8 +7,14 @@ body {
     background-size: 28px 28px;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
     overscroll-behavior-y: none;
+    font-size: 16px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 h1 {
@@ -17,7 +23,7 @@ h1 {
 }
 
 .page-title-text {
-    font-size: calc(24px + 6.5vw);
+    font-size: calc(24px + 6vw);
     font-weight: bold;
 }
 
@@ -26,8 +32,8 @@ h1 {
     margin: 0px;
     box-sizing: border-box;
     padding: 10px;
-    padding-bottom: calc(15px + 4vw);
-    padding-top: calc(15px + 4vw);
+    padding-bottom: calc(10px + 2vw);
+    padding-top: calc(10px + 2vw);
     width: 100%;
     box-sizing: border-box;
     background-color: rgba(0, 0, 0, 0.08);
@@ -87,15 +93,58 @@ p {
     align-items: center;
 }
 
-.dev-banner {
+#site-navbar {
     width: 100%;
-    text-align: center;
+}
+
+.dev-banner {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    align-items: center;
+    width: 100%;
     background: #fff3cd;
-    display: block;
     color: #856404;
-    padding: 8px 0;
-    font-size: 14px;
+    padding: 5px 0;
+    font-size: 16px;
     border-bottom: 1px solid #f0e1a0;
+    box-sizing: border-box;
+    cursor: default;
+}
+
+.dev-banner-text {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+    text-align: center;
+    max-width: calc(100% - 44px);
+    padding: 0 8px;
+    box-sizing: border-box;
+}
+
+.dev-banner-close {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: end;
+    align-self: center;
+    z-index: 1;
+    margin: 0;
+    padding: 4px 10px;
+    color: #856404;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.dev-banner-close:hover {
+    color: #533f03;
+    cursor: pointer;
+}
+
+.dev-banner-close:focus {
+    outline: none;
 }
 
 .navbar {
@@ -104,7 +153,6 @@ p {
     box-sizing: border-box;
     padding: 5px 40px;
     width: 100%;
-    /*100%-2*lrpadding*/
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -112,8 +160,10 @@ p {
     z-index: 9999;
     border-bottom: 1px solid #000000;
     box-shadow: 0 3px 9px #16365d;
+    box-sizing: border-box;
     color: #000000;
     background-color: rgba(255, 255, 255, 0.85);
+    -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
@@ -122,6 +172,8 @@ p {
     padding: 0;
     margin: 0;
     height: 80px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .logo img {
@@ -148,7 +200,7 @@ p {
     text-decoration: none;
     background-color: transparent;
     color: #ff0000;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 500;
     border-radius: 6px;
     display: block;
@@ -164,7 +216,6 @@ p {
 
 .nav-links a.signup {
     font-weight: bold;
-    font-size: medium;
     color: #000000;
     transition: background-color 0.3s;
 }
@@ -204,14 +255,14 @@ p {
     }
 
     .main-text {
-        width: 100vw;
+        width: 100%;
     }
 }
 
 @media (max-width: 530px) {
     .navbar {
         justify-content: space-between;
-        height: 120px;
+        height: 130px;
         padding-left: 10px;
         padding-right: 10px;
         width: 100%;
@@ -220,7 +271,7 @@ p {
     .nav-filler {
         padding: 0;
         margin: 0;
-        height: 120px;
+        height: 130px;
     }
 
     .nav-links {
