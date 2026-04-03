@@ -22,7 +22,7 @@ h1 {
     font-weight: bold;
 }
 
-a {
+.boldlink a {
     color: rgb(50, 50, 130);
     font-weight: 700;
     text-decoration: none;
@@ -30,7 +30,7 @@ a {
     padding-bottom: 2px;
 }
 
-a:hover {
+.boldlink a:hover {
     color: #ff0000;
     border-bottom-color: rgba(255, 0, 0, 0.45);
 }
