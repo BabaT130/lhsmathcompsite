@@ -126,8 +126,8 @@
                     <a href="/"><img src="assets/logo.svg" alt="LMAO logo"></a>
                 </div>
                 <div class="lmao-footer-text">
-                    <span class="lmao-footer-name">Lynbrook Math Awesome Open</span>
-                    <span class="lmao-footer-hosted">Hosted by Lynbrook High School Math Club</span>
+                    <a href="/" style="text-decoration: none; color: inherit;"><span class="lmao-footer-name">Lynbrook Math Awesome Open</span></a>
+                    <a href="/" style="text-decoration: none; color: inherit;"><span class="lmao-footer-hosted">Hosted by Lynbrook High School Math Club</span></a>
                 </div>
             </div>
             <div class="lmao-footer-right">

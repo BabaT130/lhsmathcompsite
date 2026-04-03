@@ -265,7 +265,7 @@ p {
     width: 800px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 820px) {
     .logo {
         display: none;
     }
