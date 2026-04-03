@@ -262,10 +262,10 @@ p {
     margin: auto;
     box-sizing: border-box;
     padding: 20px;
-    max-width: 800px;
+    width: 800px;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 800px) {
     .logo {
         display: none;
     }

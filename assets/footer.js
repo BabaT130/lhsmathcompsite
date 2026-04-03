@@ -123,7 +123,7 @@
         <div class="lmao-footer-inner">
             <div class="lmao-footer-left">
                 <div class="lmao-footer-logo">
-                    <img src="assets/logo.svg" alt="LMAO logo">
+                    <a href="/"><img src="assets/logo.svg" alt="LMAO logo"></a>
                 </div>
                 <div class="lmao-footer-text">
                     <span class="lmao-footer-name">Lynbrook Math Awesome Open</span>
