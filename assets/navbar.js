@@ -16,7 +16,7 @@
     <div class="nav-filler"></div>
     <div class="dev-banner">
         <span class="dev-banner-text">Website in progress: some pages may be incomplete.</span>
-        <span class="dev-banner-close" role="button" tabindex="0" aria-label="Dismiss notice">&times;</span>
+        <span class="dev-banner-close" role="button" tabindex="0">&times;</span>
     </div>
     `;
 

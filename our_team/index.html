@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meet Our Team</title>
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script defer src="assets/navbar.js"></script>
     <script defer src="assets/hide_dev_banners.js"></script>
+    <script defer src="assets/footer.js"></script>
     <style>
         .team-container {
             background: rgba(0, 0, 0, 0.08);
@@ -108,10 +110,9 @@
     <br>
     <div class="team-container">
         <div class="team-card">
-            <div class="team-image-stack" tabindex="0" role="button" aria-pressed="false">
+            <div class="team-image-stack" tabindex="0" role="button">
                 <img src="assets/team_introductions/benjaminz.png" alt="Benjamin" class="team-image">
-                <img src="assets/team_introductions/benjaminz2.png" alt="" class="team-image team-image--overlay"
-                    aria-hidden="true">
+                <img src="assets/team_introductions/benjaminz2.png" alt="" class="team-image team-image--overlay">
             </div>
             <h3>Benjamin Zhang</h3>
             <div class="team-role">11th Grade</div>
@@ -416,24 +417,19 @@
 
     <script>
         document.querySelectorAll('.team-image-stack').forEach(function (stack) {
-            function syncAria() {
-                var on = stack.classList.contains('team-image-stack--overlay-visible');
-                stack.setAttribute('aria-pressed', on ? 'true' : 'false');
-            }
             stack.addEventListener('click', function () {
                 stack.classList.toggle('team-image-stack--overlay-visible');
-                syncAria();
             });
             stack.addEventListener('keydown', function (e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     stack.classList.toggle('team-image-stack--overlay-visible');
-                    syncAria();
                 }
             });
         });
     </script>
 
+    <div id="site-footer"></div>
 </body>
 
 </html>

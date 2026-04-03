@@ -7,21 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script defer src="assets/navbar.js"></script>
     <script defer src="assets/hide_dev_banners.js"></script>
+    <script defer src="assets/footer.js"></script>
     <style>
         .form-card {
             background: #ffffff;
             border-radius: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
             overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
         }
 
         .form-embed {
             width: 100%;
-            min-height: 1200px;
+            min-height: 700px;
             border: 0;
             display: block;
         }
@@ -30,16 +33,6 @@
             text-align: center;
             margin-top: 14px;
             color: #000000;
-        }
-
-        .fallback a {
-            color: #ff0000;
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        .fallback a:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
@@ -56,14 +49,24 @@
                 src="https://docs.google.com/forms/d/e/1FAIpQLSeCsqvyCrZYCLghh4OBHFldDI5Cteh-e4RP8GoqnzSsPIC90g/viewform?embedded=true"
                 loading="lazy">
             </iframe>
+        </div><br>
+        <div class="form-card">
+            <iframe class="form-embed" title="LMAO Team Sign Up Form"
+                src="https://docs.google.com/forms/d/e/1FAIpQLSdH9-eCa5d31s90MqW6-1U_ARTBHiUAUnh92Lwbal26ceq7wQ/viewform?embedded=true"
+                loading="lazy">
+            </iframe>
         </div>
         <!--fallback-->
         <div class="fallback">
-            Or alternatively, open the form in a new tab:
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeCsqvyCrZYCLghh4OBHFldDI5Cteh-e4RP8GoqnzSsPIC90g/viewform"
-                target="_blank" rel="noopener noreferrer">Sign Up</a>
+            Or alternatively, open
+            <a class="boldlink"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSeCsqvyCrZYCLghh4OBHFldDI5Cteh-e4RP8GoqnzSsPIC90g/viewform"
+                target="_blank" rel="noopener noreferrer">Participation Sign Up</a> or <a class="boldlink"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSeCsqvyCrZYCLghh4OBHFldDI5Cteh-e4RP8GoqnzSsPIC90g/viewform"
+                target="_blank" rel="noopener noreferrer">Team Sign Up</a>
         </div>
     </div>
+    <div id="site-footer"></div>
 </body>
 
 </html>
