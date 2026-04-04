@@ -15,28 +15,41 @@
     <script defer src="assets/footer.js"></script>
     <style>
         .sponsors-container {
-            background: rgba(0, 0, 0, 0.08);
-            border-radius: 20px;
-            max-width: 100%;
+            background: rgba(0, 0, 0, 0.06);
+            border-radius: 24px;
+            width: calc(100% - 40px);
+            max-width: 1240px;
             margin: 25px auto 0;
-            padding: 40px;
+            padding: clamp(28px, 4vw, 44px);
             display: flex;
             flex-direction: column;
-            gap: 28px;
+            gap: clamp(24px, 3vw, 32px);
             box-sizing: border-box;
             box-shadow: 0 8px 10px rgba(50, 50, 130, 0.4);
+            border: 1px solid rgba(50, 50, 130, 0.08);
         }
 
         .sponsor-card {
-            background-color: rgb(255, 255, 255);
-            border-radius: 32px;
-            padding: 24px 28px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(165deg, #ffffff 0%, #f8f9ff 55%, #fff5f5 100%);
+            border-radius: 28px;
+            padding: 22px 24px;
+            border: 1px solid rgba(50, 50, 130, 0.1);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 18px;
             align-items: center;
-            text-align: left;
+            text-align: justify;
+            transition:
+                transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .sponsor-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(50, 50, 130, 0.22);
+            box-shadow: 0 8px 22px rgba(255, 0, 0, 0.22);
         }
 
         @media (min-width: 640px) {
@@ -57,7 +70,6 @@
             max-width: 220px;
             height: auto;
             display: block;
-            border-radius: 12px;
             object-fit: contain;
         }
 
@@ -65,21 +77,23 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 12px;
+            gap: 10px;
             min-width: 0;
         }
 
         .sponsor-card h3 {
             color: #ff0000;
-            font-size: 22px;
-            font-weight: bold;
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
             margin: 0;
         }
 
         .sponsor-tagline {
-            color: rgb(50, 50, 130);
-            font-size: 15px;
-            line-height: 1.35;
+            color: rgba(30, 30, 70, 0.88);
+            font-size: 0.9375rem;
+            line-height: 1.55;
             margin: 0;
         }
 
@@ -90,6 +104,7 @@
             text-decoration: none;
             border-bottom: 1px solid rgba(50, 50, 130, 0.35);
             padding-bottom: 2px;
+            transition: color 0.2s ease, border-bottom-color 0.2s ease;
         }
 
         .sponsor-card a:hover {
@@ -102,6 +117,16 @@
             line-height: 1.55;
             margin: 0 0 8px;
             text-align: justify;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .sponsor-card {
+                transition: none;
+            }
+
+            .sponsor-card:hover {
+                transform: none;
+            }
         }
     </style>
 </head>
@@ -117,7 +142,7 @@
             LMAO is grateful to the organizations below for supporting our competition and helping us bring challenging,
             engaging mathematics to students across the Bay Area.
         </p>
-        <!-- <div class="sponsors-container">
+        <div class="sponsors-container" style="display: none;">
             <div class="sponsor-card">
                 <div class="sponsor-card-media">
                     <img src="assets/sponsors/hrt.svg" alt="Hudson River Trading logo">
@@ -157,8 +182,21 @@
                         rel="noopener noreferrer">interviewcake.com</a>
                 </div>
             </div>
-        </div> -->
-</div>
+            <div class="sponsor-card">
+                <div class="sponsor-card-media">
+                    <img src="assets/sponsors/aops.png" alt="AoPS logo">
+                </div>
+                <div class="sponsor-card-body">
+                    <h3>Art of Problem Solving</h3>
+                    <p class="sponsor-tagline">
+                        Community and curriculum built for problem solvers, supporting mathematical enrichment
+                        worldwide.
+                    </p>
+                    <a href="https://www.aops.com/" target="_blank" rel="noopener noreferrer">aops.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="site-footer"></div>
 </body>
 

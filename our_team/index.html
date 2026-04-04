@@ -82,10 +82,12 @@
             display: block;
             object-fit: cover;
             aspect-ratio: 1;
-            box-shadow:
-                0 0 0 4px rgba(255, 255, 255, 0.95),
-                0 0 0 5px rgba(50, 50, 130, 0.12),
-                0 12px 28px rgba(50, 50, 130, 0.15);
+            box-shadow: 0 4px 14px rgba(50, 50, 130, 0.18);
+            transition: box-shadow 0.35s ease;
+        }
+
+        .team-image:hover {
+            box-shadow: 0 14px 40px rgba(50, 50, 130, 0.32);
         }
 
         .team-image-stack {
@@ -96,10 +98,13 @@
             cursor: pointer;
             border-radius: 50%;
             overflow: hidden;
-            box-shadow:
-                0 0 0 4px rgba(255, 255, 255, 0.95),
-                0 0 0 5px rgba(50, 50, 130, 0.12),
-                0 12px 28px rgba(50, 50, 130, 0.15);
+            box-shadow: 0 4px 14px rgba(50, 50, 130, 0.18);
+            transition: box-shadow 0.35s ease;
+        }
+
+        .team-image-stack:hover {
+            box-shadow: 0 14px 40px rgba(50, 50, 130, 0.32);
+            cursor: default;
         }
 
         .team-image-stack:focus-visible {
@@ -182,10 +187,6 @@
             margin-top: 8px;
         }
 
-        .team-image-stack:hover {
-            cursor: default;
-        }
-
         @media (prefers-reduced-motion: reduce) {
             .team-card {
                 transition: none;
@@ -193,6 +194,16 @@
 
             .team-card:hover {
                 transform: none;
+            }
+
+            .team-image,
+            .team-image-stack {
+                transition: none;
+            }
+
+            .team-image:hover,
+            .team-image-stack:hover {
+                box-shadow: 0 4px 14px rgba(50, 50, 130, 0.18);
             }
         }
     </style>
