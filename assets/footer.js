@@ -1,14 +1,14 @@
 (() => {
     const footerHtml = `
     <style>
-        .lmao-footer {
+        .lmo-footer {
             margin-top: 40px;
             padding: 20px 16px 22px;
             background: rgba(0, 0, 0, 0.08);
             border-top: 1px solid rgba(0, 0, 0, 0.08);
         }
 
-        .lmao-footer-inner {
+        .lmo-footer-inner {
             max-width: 1000px;
             margin: 0 auto;
             display: flex;
@@ -19,14 +19,14 @@
             flex-wrap: wrap;
         }
 
-        .lmao-footer-left {
+        .lmo-footer-left {
             display: flex;
             align-items: center;
             gap: 10px;
             min-width: 0;
         }
 
-        .lmao-footer-logo {
+        .lmo-footer-logo {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -38,13 +38,13 @@
             overflow: hidden;
         }
 
-        .lmao-footer-logo img {
+        .lmo-footer-logo img {
             width: 45px;
             height: 45px;
             display: block;
         }
 
-        .lmao-footer-text {
+        .lmo-footer-text {
             display: flex;
             flex-direction: column;
             gap: 2px;
@@ -52,23 +52,23 @@
             color: #111111;
         }
 
-        .lmao-footer-name {
+        .lmo-footer-name {
             font-weight: 700;
             letter-spacing: 0.02em;
         }
 
-        .lmao-footer-hosted {
+        .lmo-footer-hosted {
             color: rgba(0, 0, 0, 0.7);
         }
 
-        .lmao-footer-right {
+        .lmo-footer-right {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-left: auto;
         }
 
-        .lmao-footer-icon-btn {
+        .lmo-footer-icon-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -83,20 +83,20 @@
             transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
         }
 
-        .lmao-footer-icon-btn svg {
+        .lmo-footer-icon-btn svg {
             width: 32px;
             height: 32px;
             display: block;
         }
 
-        .lmao-footer-icon-btn:hover {
+        .lmo-footer-icon-btn:hover {
             transform: scale(1.06);
             background-color: rgba(255, 0, 0, 0.05);
             border-color: rgba(255, 0, 0, 0.35);
             box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
         }
 
-        .lmao-footer-sr-only {
+        .lmo-footer-sr-only {
             position: absolute;
             width: 1px;
             height: 1px;
@@ -109,37 +109,37 @@
         }
 
         @media (max-width: 520px) {
-            .lmao-footer-inner {
+            .lmo-footer-inner {
                 justify-content: center;
             }
 
-            .lmao-footer-right {
+            .lmo-footer-right {
                 margin-left: 0;
             }
         }
     </style>
 
-    <footer class="lmao-footer">
-        <div class="lmao-footer-inner">
-            <div class="lmao-footer-left">
-                <div class="lmao-footer-logo">
-                    <a href="/"><img src="assets/logo.svg" alt="LMAO logo"></a>
+    <footer class="lmo-footer">
+        <div class="lmo-footer-inner">
+            <div class="lmo-footer-left">
+                <div class="lmo-footer-logo">
+                    <a href="/"><img src="assets/logo.svg" alt="LMO logo"></a>
                 </div>
-                <div class="lmao-footer-text">
-                    <a href="/" style="text-decoration: none; color: inherit;"><span class="lmao-footer-name">Lynbrook Math Awesome Open</span></a>
-                    <a href="/" style="text-decoration: none; color: inherit;"><span class="lmao-footer-hosted">Hosted by Lynbrook High School Math Club</span></a>
+                <div class="lmo-footer-text">
+                    <a href="/" style="text-decoration: none; color: inherit;"><span class="lmo-footer-name">Lynbrook Math Open</span></a>
+                    <a href="/" style="text-decoration: none; color: inherit;"><span class="lmo-footer-hosted">Hosted by the Lynbrook Math Club</span></a>
                 </div>
             </div>
-            <div class="lmao-footer-right">
-                <a class="lmao-footer-icon-btn" href="mailto:lynbrookmath@gmail.com">
-                    <span class="lmao-footer-sr-only">Email</span>
+            <div class="lmo-footer-right">
+                <a class="lmo-footer-icon-btn" href="mailto:lynbrookmath@gmail.com">
+                    <span class="lmo-footer-sr-only">Email</span>
                     <svg viewBox="0 0 24 24" focusable="false">
                         <path d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z" fill="none" stroke=#ff0000 stroke-width="1" stroke-linejoin="round"/>
                         <path d="M4 7l8 6 8-6" fill="none" stroke=#ff0000 stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </a>
-                <a class="lmao-footer-icon-btn" href="https://discord.gg/wjQ6ejfmvm">
-                    <span class="lmao-footer-sr-only">Discord</span>
+                <a class="lmo-footer-icon-btn" href="https://discord.gg/wjQ6ejfmvm">
+                    <span class="lmo-footer-sr-only">Discord</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
                         <defs>
                             <style>

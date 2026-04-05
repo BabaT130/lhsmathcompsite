@@ -2,7 +2,7 @@
     const navbarHtml = `
     <nav class="navbar fixed">
         <div class="logo">
-            <a href="index.html"><img src="assets/logo.svg" alt="LMAO Logo"></a>
+            <a href="index.html"><img src="assets/logo.svg" alt="LMO Logo"></a>
         </div>
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
