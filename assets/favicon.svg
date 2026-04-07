@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com" viewBox="13.9 34 68.2 68.6"
   width="50px" height="50.2933px">
+  <rect width="10000px" height="100000px" fill="white" />
   <defs>
     <clipPath id="ecd1daa86a">
       <path d="M 360.511719 1076.5625 L 419.011719 1076.5625 L 419.011719 1136.5625 L 360.511719 1136.5625 Z M 360.511719 1076.5625 " clip-rule="nonzero"/>
