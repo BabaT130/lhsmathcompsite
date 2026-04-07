@@ -2,14 +2,14 @@
     const navbarHtml = `
     <nav class="navbar fixed">
         <div class="logo">
-            <a href="index.html"><img src="assets/logo.svg" alt="LMO Logo"></a>
+            <a href="/"><img src="/assets/logo.svg" alt="LMO Logo"></a>
         </div>
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
-            <li><a href="competition_resources/">Resources</a></li>
-            <li><a href="about_us/">About Us</a></li>
-            <li><a href="sponsors/">Sponsors</a></li>
-            <li><a href="our_team/">Our Team</a></li>
+            <li><a href="/competition_resources/">Resources</a></li>
+            <li><a href="/about_us/">About Us</a></li>
+            <li><a href="/sponsors/">Sponsors</a></li>
+            <li><a href="/our_team/">Our Team</a></li>
             <li><a class="signup" href="/signup/">SIGN UP</a></li>
         </ul>
     </nav>

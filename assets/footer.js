@@ -123,7 +123,7 @@
         <div class="lmo-footer-inner">
             <div class="lmo-footer-left">
                 <div class="lmo-footer-logo">
-                    <a href="/"><img src="assets/logo.svg" alt="LMO logo"></a>
+                    <a href="/"><img src="/assets/logo.svg" alt="LMO logo"></a>
                 </div>
                 <div class="lmo-footer-text">
                     <a href="/" style="text-decoration: none; color: inherit;"><span class="lmo-footer-name">Lynbrook Math Open</span></a>

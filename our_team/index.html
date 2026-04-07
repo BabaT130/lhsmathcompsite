@@ -2,16 +2,16 @@
 <html lang="en">
 
 <head>
-    <base href="/" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meet Our Team</title>
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script defer src="assets/navbar.js"></script>
-    <script defer src="assets/hide_dev_banners.js"></script>
-    <script defer src="assets/footer.js"></script>
+    <link rel="stylesheet" href="/style.css">
+    <script defer src="/assets/navbar.js"></script>
+    <script defer src="/assets/hide_dev_banners.js"></script>
+    <script defer src="/assets/footer.js"></script>
+    <script defer src="./team_roles.js"></script>
     <style>
         .team-container {
             background: rgba(0, 0, 0, 0.06);
@@ -136,41 +136,194 @@
             opacity: 1;
         }
 
-        .team-role {
-            color: rgb(42, 42, 110);
-            font-size: 0.95rem;
-            line-height: 1.35;
-            margin-bottom: 6px;
-            text-align: center;
-        }
-
-        .team-card>h3+.team-role {
+        .team-grade {
             display: table;
             margin-left: auto;
             margin-right: auto;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             padding: 5px 14px;
             border-radius: 999px;
             font-size: 0.8125rem;
             font-weight: 600;
             letter-spacing: 0.02em;
             text-transform: uppercase;
+            text-align: center;
             color: rgb(50, 50, 130);
             background: rgba(50, 50, 130, 0.09);
             border: 1px solid rgba(50, 50, 130, 0.12);
         }
 
-        .team-card>h3+.team-role+.team-role {
-            font-size: 0.9375rem;
-            font-weight: 500;
-            text-transform: none;
-            letter-spacing: normal;
-            color: rgba(30, 30, 70, 0.88);
-            display: block;
-            padding: 0 4px 2px;
-            margin-bottom: 12px;
-            background: none;
+        .team-roles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .team-roles>[class^='role-'] {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            line-height: 1.3;
+            padding: 3px 8px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            text-align: center;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+            transition: filter 0.15s ease, transform 0.15s ease;
+        }
+
+        .team-roles>[class^='role-']:hover {
+            filter: brightness(0.97);
+        }
+
+        .team-roles>[class^='role-']:active {
+            transform: scale(0.98);
+        }
+
+        .team-role-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(16px, 4vw, 32px);
+            box-sizing: border-box;
+        }
+
+        .team-role-modal[hidden] {
+            display: none;
+        }
+
+        .team-role-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(20, 20, 40, 0.3);
             border: none;
+            padding: 0;
+            cursor: default;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .team-role-modal-backdrop.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .team-role-modal-panel {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 400px;
+            max-height: min(70vh, 420px);
+            overflow: auto;
+            margin: 0;
+            padding: 22px 24px 20px;
+            background: linear-gradient(165deg, #ffffff 0%, #f8f9ff 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(50, 50, 130, 0.14);
+            box-shadow: 0 16px 48px rgba(30, 30, 60, 0.28);
+        }
+
+        .team-role-modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 36px;
+            height: 36px;
+            margin: 0;
+            padding: 0;
+            border: none;
+            border-radius: 8px;
+            background: rgba(50, 50, 130, 0.08);
+            color: rgb(50, 50, 130);
+            font-size: 1.35rem;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .team-role-modal-close:hover {
+            background: rgba(255, 0, 0, 0.12);
+            color: #b00000;
+        }
+
+        .team-role-modal-title {
+            margin: 0 40px 10px 0;
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: rgb(50, 50, 130);
+        }
+
+        .team-role-modal-body {
+            margin: 0;
+            font-size: 0.9375rem;
+            line-height: 1.55;
+            color: #2a2a2a;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .team-roles>[class^='role-'] {
+                transition: none;
+            }
+
+            .team-roles>[class^='role-']:active {
+                transform: none;
+            }
+        }
+
+        .team-roles>.role-pw {
+            color: rgb(42, 42, 105);
+            background: rgba(50, 50, 130, 0.11);
+            border-color: rgba(50, 50, 130, 0.22);
+        }
+
+        .team-roles>.role-ops {
+            color: rgb(28, 88, 95);
+            background: rgba(30, 130, 125, 0.1);
+            border-color: rgba(30, 130, 125, 0.22);
+        }
+
+        .team-roles>.role-pr {
+            color: rgb(115, 38, 78);
+            background: rgba(175, 55, 95, 0.1);
+            border-color: rgba(175, 55, 95, 0.22);
+        }
+
+        .team-roles>.role-webdev {
+            color: rgb(28, 72, 130);
+            background: rgba(45, 105, 200, 0.11);
+            border-color: rgba(45, 105, 200, 0.24);
+        }
+
+        .team-roles>.role-activities {
+            color: rgb(115, 72, 22);
+            background: rgba(195, 125, 45, 0.12);
+            border-color: rgba(195, 125, 45, 0.26);
+        }
+
+        .team-roles>.role-leadership {
+            color: rgb(80, 30, 28);
+            background: rgba(220, 100, 45, 0.1);
+            border-color: rgba(180, 80, 50, 0.28);
+        }
+
+        .team-roles>.role-misc {
+            color: rgb(72, 72, 78);
+            background: rgba(90, 90, 100, 0.1);
+            border-color: rgba(90, 90, 100, 0.2);
+            font-style: italic;
         }
 
         .team-bio {
@@ -217,12 +370,25 @@
     <div class="team-container">
         <div class="team-card">
             <div class="team-image-stack" tabindex="0" role="button">
-                <img src="assets/team_introductions/benjaminz.png" alt="Benjamin" class="team-image">
-                <img src="assets/team_introductions/benjaminz2.png" alt="" class="team-image team-image--overlay">
+                <img src="/assets/team_introductions/benjaminz.png" alt="Benjamin" class="team-image">
+                <img src="/assets/team_introductions/benjaminz2.png" alt="" class="team-image team-image--overlay">
             </div>
             <h3>Benjamin Zhang</h3>
-            <div class="team-role">11th Grade</div>
-            <div class="team-role">Founder, President, Officer, Overseer, Leader, King, Almighty, God</div>
+            <div class="team-grade">11th Grade</div>
+            <div class="team-roles">
+                <div class="role-leadership">Founder</div>
+                <div class="role-leadership">President</div>
+                <div class="role-leadership">Officer</div>
+                <div class="role-leadership">Overseer</div>
+                <div class="role-leadership">Leader</div>
+                <div class="role-leadership">King</div>
+                <div class="role-leadership">Almighty</div>
+                <div class="role-leadership">God</div>
+                <div class="role-pw">Problem Writing</div>
+                <div class="role-ops">Operations</div>
+                <div class="role-pr">Public Relations</div>
+                <div class="role-webdev">Web Development</div>
+            </div>
             <p class="team-bio">
                 Benjamin is a junior at Lynbrook High School who is fascinated by mathematics, computer science, and
                 cryptography. Outside of his extracurriculars, he can be found playing his oboe or chatting with his
@@ -231,29 +397,39 @@
             </p>
         </div>
         <div class="team-card">
-            <img src="assets/team_introductions/sohamu.png" alt="Soham" class="team-image">
+            <img src="/assets/team_introductions/sohamu.png" alt="Soham" class="team-image">
             <h3>Sohum Uttamchandani</h3>
-            <div class="team-role">11th Grade</div>
-            <div class="team-role">Problem Writer, Operations, Public Relations</div>
+            <div class="team-grade">11th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+                <div class="role-ops">Operations</div>
+                <div class="role-pr">Public Relations</div>
+                <div class="role-webdev">Web Development</div>
+            </div>
             <p class="team-bio">
                 Sohum is a junior at Lynbrook High School. He is passionate about math and physics. Outside of that, in
                 his freetime he enjoys to nature journal.
             </p>
         </div>
         <div class="team-card">
-            <img src="assets/team_introductions/tianlinl.png" alt="Tianlin" class="team-image">
+            <img src="/assets/team_introductions/tianlinl.png" alt="Tianlin" class="team-image">
             <h3>Tianlin Liu</h3>
-            <div class="team-role">10th Grade</div>
-            <div class="team-role">Problem Writer, Operations</div>
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+                <div class="role-ops">Operations</div>
+                <div class="role-pr">Public Relations</div>
+                <div class="role-webdev">Web Development</div>
+            </div>
             <p class="team-bio">
                 Tianlin is a 10th grader from Lynbrook High School. Her favorite subject is geometry. Outside of math,
                 she also likes drawing and reading.
             </p>
         </div>
         <div class="team-card">
-            <img src="assets/team_introductions/yunfeix.png" alt="Yunfei" class="team-image">
+            <img src="/assets/team_introductions/yunfeix.png" alt="Yunfei" class="team-image">
             <h3>Yunfei Xia</h3>
-            <div class="team-role">10th Grade</div>
+            <div class="team-grade">10th Grade</div>
             <p class="team-bio">
                 Yunfei, also known as Steven, is an Olympiad Geometry grinder at Lynbrook, especially in favor of
                 projective. He is one of the only few who belong to the intersection of Track and Field and Math, after
@@ -261,10 +437,13 @@
             </p>
         </div>
         <div class="team-card">
-            <img src="assets/team_introductions/dhruvip.png" alt="Dhruvi" class="team-image">
+            <img src="/assets/team_introductions/dhruvip.png" alt="Dhruvi" class="team-image">
             <h3>Dhruvi Pandey</h3>
-            <div class="team-role">10th Grade</div>
-            <div class="team-role">Public Relations, Operations</div>
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-ops">Operations</div>
+                <div class="role-pr">Public Relations</div>
+            </div>
             <p class="team-bio">
                 Dhruvi is a sophomore at Lynbrook. Her favorite subjects include physics, computer science, problem
                 solving, art, and playing the flute. In her free time, she likes playing video games and volunteering
@@ -273,30 +452,39 @@
         </div>
         <div class="team-card">
             <h3>Abhigyan Singh</h3>
-            <div class="team-role">11th Grade</div>
-            <div class="team-role">Problem Writer</div>
+            <div class="team-grade">11th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+            </div>
             <p class="team-bio">
                 Abhigyan Singh is a junior at Lynbrook High School interested in mathematics and computer science. In
                 his free time, you can probably find him cubing, cooking, or playing Minecraft.
             </p>
         </div>
         <div class="team-card">
-            <img src="assets/team_introductions/tommyw.png" alt="Tommy" class="team-image">
+            <img src="/assets/team_introductions/tommyw.png" alt="Tommy" class="team-image">
             <h3>Tommy Wang</h3>
-            <div class="team-role">10th Grade
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
             </div>
-            <div class="team-role">Problem Writer</div>
         </div>
         <div class="team-card">
-            <img src="assets/team_introductions/vedant.png" alt="Vedant" class="team-image">
+            <img src="/assets/team_introductions/vedant.png" alt="Vedant" class="team-image">
             <h3>Vedant Sengar</h3>
-            <div class="team-role">9th Grade</div>
-            <div class="team-role">Problem Writer</div>
+            <div class="team-grade">9th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+            </div>
         </div>
         <div class="team-card">
             <h3>Robert Yang</h3>
-            <div class="team-role">9th Grade</div>
-            <div class="team-role">Problem Writer, Operations, Activities</div>
+            <div class="team-grade">9th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+                <div class="role-ops">Operations</div>
+                <div class="role-activities">Activities</div>
+            </div>
             <p class="team-bio">
                 Robert is a freshman at Lynbrook High School. He enjoys thinking about discrete math, and he spends some
                 of his free time solving physics and chemistry problems. Even with all of that, he finds the time to go
@@ -305,8 +493,13 @@
         </div>
         <div class="team-card">
             <h3>Catherine Jian</h3>
-            <div class="team-role">10th Grade</div>
-            <div class="team-role">Operations, Public Relations, Web Dev, Problem Writer</div>
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+                <div class="role-ops">Operations</div>
+                <div class="role-pr">Public Relations</div>
+                <div class="role-webdev">Web Development</div>
+            </div>
             <p class="team-bio">
                 Catherine is currently a sophomore at Lynbrook High School. Her favorite math topics are geometry and
                 combinatorics. Outside of math, she enjoys reading about history.
@@ -314,8 +507,10 @@
         </div>
         <div class="team-card">
             <h3>Derek Hu</h3>
-            <div class="team-role">9th Grade</div>
-            <div class="team-role">Problem Writer</div>
+            <div class="team-grade">9th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+            </div>
             <p class="team-bio">
                 Derek is a freshman at Lynbrook High School. Some of his interests include math, gardening, running,
                 throwing (as in shot put and discus), cooking, playing musical instruments, coding, civil engineering,
@@ -325,8 +520,11 @@
         </div>
         <div class="team-card">
             <h3>Yutong Qiu</h3>
-            <div class="team-role">10th Grade</div>
-            <div class="team-role">Public Relations, Operations</div>
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-ops">Operations</div>
+                <div class="role-pr">Public Relations</div>
+            </div>
             <p class="team-bio">
                 Yutong is a sophomore at Lynbrook High School. Their favorite math subject is discrete math. They also
                 enjoy computer science, physics, writing, drawing, and playing violin.
@@ -334,8 +532,11 @@
         </div>
         <div class="team-card">
             <h3>Bohan Yang</h3>
-            <div class="team-role">9th Grade</div>
-            <div class="team-role">Problem Writer, Operations</div>
+            <div class="team-grade">9th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+                <div class="role-ops">Operations</div>
+            </div>
             <p class="team-bio">
                 While a lazy bum who rarely locks in, Bohan enjoys problem solving and tackling competitive math. He
                 also enjoys writing problems of his own and presenting them to others via MathCounts volunteering. Bohan
@@ -344,8 +545,11 @@
         </div>
         <div class="team-card">
             <h3>Hannah Zhang</h3>
-            <div class="team-role">10th Grade</div>
-            <div class="team-role">Public Relations, Operations</div>
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-pr">Public Relations</div>
+                <div class="role-ops">Operations</div>
+            </div>
             <p class="team-bio">
                 Hannah is a sophomore at Lynbrook. Her favorite math topic is geometry. Outside of math she also enjoys
                 swimming, running, watching YouTube, and doing random things.
@@ -353,8 +557,11 @@
         </div>
         <div class="team-card">
             <h3>Mason Shu</h3>
-            <div class="team-role">10th Grade</div>
-            <div class="team-role">Problem Writer, Web Dev</div>
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+                <div class="role-webdev">Web Development</div>
+            </div>
             <p class="team-bio">
                 Mason is a student with strong interests in mathematical proof writing and analysis. Outside of math, he
                 enjoys coding (particularly in the Rust language), playing musical instruments, and physics.
@@ -362,188 +569,249 @@
         </div>
         <div class="team-card">
             <h3>Ryan Wang</h3>
-            <div class="team-role">9th Grade</div>
-            <div class="team-role"><span style="font-style: italic;">Emotional Damage</span>, Problem Writer</div>
+            <div class="team-grade">9th Grade</div>
+            <div class="team-roles">
+                <div class="role-misc">Emotional Damage</div>
+                <div class="role-pw">Problem Writing</div>
+            </div>
             <p class="team-bio">
                 Despite being named "iliketrains", one does not enjoy trains more than the average person.
             </p>
         </div>
         <div class="team-card">
             <h3>Nitin Reddy Vaka</h3>
-            <div class="team-role">11th Grade</div>
-            <div class="team-role">Problem Writer</div>
+            <div class="team-grade">11th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+            </div>
         </div>
         <div class="team-card">
             <h3>Andrew Liu</h3>
-            <div class="team-role">10th Grade</div>
-            <div class="team-role">Emotional Support, Operations</div>
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-misc">Emotional Support</div>
+                <div class="role-ops">Operations</div>
+            </div>
         </div>
         <div class="team-card">
             <h3>Matthew Yuan</h3>
-            <div class="team-role">12th Grade</div>
-            <div class="team-role">Emotional Support, Problem Writer, Public Relations</div>
+            <div class="team-grade">12th Grade</div>
+            <div class="team-roles">
+                <div class="role-misc">Emotional Support</div>
+                <div class="role-pw">Problem Writing</div>
+                <div class="role-pr">Public Relations</div>
+            </div>
             <p class="team-bio">
-                Emotional support team-bio main but I'll also do like Problem Writer and Public Relations I guess,
-                mostly team-bio
-                though.
+                Emotional support team-bio main but I'll also do like Problem Writing and Public Relations I guess,
+                mostly team-bio though.
             </p>
         </div>
         <div class="team-card">
             <h3>Brianna Su</h3>
-            <div class="team-role">9th Grade</div>
-            <div class="team-role">Web Dev, Public Relations, Operations</div>
+            <div class="team-grade">9th Grade</div>
+            <div class="team-roles">
+                <div class="role-webdev">Web Development</div>
+                <div class="role-pr">Public Relations</div>
+                <div class="role-ops">Operations</div>
+            </div>
         </div>
         <div class="team-card">
             <h3>Tanish Kolhe</h3>
-            <div class="team-role">10th Grade</div>
-            <div class="team-role">Problem Writer</div>
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+            </div>
             <p class="team-bio">
                 I like dogs and bluff.
             </p>
         </div>
         <div class="team-card">
             <h3>Sophia Liu</h3>
-            <div class="team-role">9th Grade</div>
-            <div class="team-role">Public Relations, Operations</div>
+            <div class="team-grade">9th Grade</div>
+            <div class="team-roles">
+                <div class="role-pr">Public Relations</div>
+                <div class="role-ops">Operations</div>
+            </div>
         </div>
         <div class="team-card">
             <h3>Brian Lu</h3>
-            <div class="team-role">10th Grade</div>
-            <div class="team-role">Problem Writer</div>
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+            </div>
             <p class="team-bio">
                 Didn't make JMO, likes to run.
             </p>
         </div>
         <div class="team-card">
             <h3>Ishaan Mittal</h3>
-            <div class="team-role">10th Grade</div>
-            <div class="team-role">Problem Writer</div>
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+            </div>
         </div>
         <div class="team-card">
             <h3>Sophia Shi</h3>
-            <div class="team-role">11th Grade</div>
-            <div class="team-role">Public Relations, Activities</div>
+            <div class="team-grade">11th Grade</div>
+            <div class="team-roles">
+                <div class="role-pr">Public Relations</div>
+                <div class="role-activities">Activities</div>
+            </div>
         </div>
         <div class="team-card">
             <h3>Ian Chen</h3>
-            <div class="team-role">11th Grade</div>
-            <div class="team-role">Activities</div>
+            <div class="team-grade">11th Grade</div>
+            <div class="team-roles">
+                <div class="role-activities">Activities</div>
+            </div>
         </div>
         <div class="team-card">
             <h3>Wesley Shen</h3>
-            <div class="team-role">10th Grade</div>
-            <div class="team-role">Problem Writer, Operations</div>
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+                <div class="role-ops">Operations</div>
+            </div>
             <p class="team-bio">
                 I'll make sure to actually do something.
             </p>
         </div>
         <div class="team-card">
             <h3>Isabel Ye</h3>
-            <div class="team-role">11th Grade</div>
-            <div class="team-role">Activities</div>
+            <div class="team-grade">11th Grade</div>
+            <div class="team-roles">
+                <div class="role-activities">Activities</div>
+            </div>
         </div>
         <div class="team-card">
             <h3>Sungrok (Roy) Kim</h3>
-            <div class="team-role">11th Grade</div>
-            <div class="team-role">Operations, Problem Writer</div>
+            <div class="team-grade">11th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+                <div class="role-ops">Operations</div>
+            </div>
             <p class="team-bio">
                 I like soccer.
             </p>
         </div>
         <div class="team-card">
             <h3>Brian Law</h3>
-            <div class="team-role">12th Grade</div>
-            <div class="team-role">Problem Writer</div>
+            <div class="team-grade">12th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+            </div>
             <p class="team-bio">
                 Apparently on one of the joker cards?
             </p>
         </div>
         <div class="team-card">
             <h3>Evan Xiang</h3>
-            <div class="team-role">10th Grade</div>
-            <div class="team-role">Operations, Public Relations</div>
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-ops">Operations</div>
+                <div class="role-pr">Public Relations</div>
+            </div>
             <p class="team-bio">
                 I like basketball.
             </p>
         </div>
         <div class="team-card">
             <h3>Batuhan Harmanci</h3>
-            <div class="team-role">10th Grade</div>
-            <div class="team-role">Problem Writer, Public Relations</div>
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+                <div class="role-pr">Public Relations</div>
+            </div>
             <p class="team-bio">
                 I'm from Mountain View High School, probably just here to help Dhruvi.
             </p>
         </div>
         <div class="team-card">
             <h3>Jasmine Lien</h3>
-            <div class="team-role">10th Grade</div>
-            <div class="team-role">Public Relations, Operations</div>
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-pr">Public Relations</div>
+                <div class="role-ops">Operations</div>
+            </div>
             <p class="team-bio">
                 I like food and making tables.
             </p>
         </div>
         <div class="team-card">
             <h3>Chelsea Ye</h3>
-            <div class="team-role">10th Grade</div>
-            <div class="team-role">Public Relations, Operations</div>
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-pr">Public Relations</div>
+                <div class="role-ops">Operations</div>
+            </div>
             <p class="team-bio">
                 Chelsea ran a sandwich shop in Minecraft and considers herself qualified.
             </p>
         </div>
         <div class="team-card">
             <h3>Aarush Tiwari</h3>
-            <div class="team-role">12th Grade</div>
-            <div class="team-role">Web Dev</div>
+            <div class="team-grade">12th Grade</div>
+            <div class="team-roles">
+                <div class="role-webdev">Web Development</div>
+            </div>
             <p class="team-bio">
                 Hi guys, this is Aarush ie Baba T, working on the LMO website.
             </p>
         </div>
         <div class="team-card">
             <h3>Rushil Agrawal</h3>
-            <div class="team-role">9th Grade</div>
-            <div class="team-role">Web Dev</div>
+            <div class="team-grade">9th Grade</div>
+            <div class="team-roles">
+                <div class="role-webdev">Web Development</div>
+            </div>
             <p class="team-bio">
                 Rushil likes food and basketball.
             </p>
         </div>
         <div class="team-card">
             <h3>Katherine Li</h3>
-            <div class="team-role">9th Grade</div>
-            <div class="team-role">Operations, Public Relations</div>
+            <div class="team-grade">9th Grade</div>
+            <div class="team-roles">
+                <div class="role-ops">Operations</div>
+                <div class="role-pr">Public Relations</div>
+            </div>
             <p class="team-bio">
                 Katherine enjoys data sciences and appreciates nice typography design.
             </p>
         </div>
         <div class="team-card">
             <h3>Victoria Huang</h3>
-            <div class="team-role">10th Grade</div>
-            <div class="team-role">Public Relations, Operations</div>
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-pr">Public Relations</div>
+                <div class="role-ops">Operations</div>
+            </div>
         </div>
         <div class="team-card">
             <h3>Ethan Han</h3>
-            <div class="team-role">9th Grade</div>
-            <div class="team-role">Operations, Problem Writer</div>
+            <div class="team-grade">9th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+                <div class="role-ops">Operations</div>
+            </div>
         </div>
         <div class="team-card">
             <h3>Wenyuan Xi</h3>
-            <div class="team-role">10th Grade</div>
-            <div class="team-role">Problem Writing</div>
+            <div class="team-grade">10th Grade</div>
+            <div class="team-roles">
+                <div class="role-pw">Problem Writing</div>
+            </div>
         </div>
     </div>
 
-    <script>
-        document.querySelectorAll('.team-image-stack').forEach(function (stack) {
-            stack.addEventListener('click', function () {
-                stack.classList.toggle('team-image-stack--overlay-visible');
-            });
-            stack.addEventListener('keydown', function (e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    stack.classList.toggle('team-image-stack--overlay-visible');
-                }
-            });
-        });
-    </script>
+    <div id="team-role-modal" class="team-role-modal" hidden>
+        <button type="button" class="team-role-modal-backdrop"></button>
+        <div class="team-role-modal-panel" role="dialog">
+            <button type="button" class="team-role-modal-close">&times;</button>
+            <h2 id="team-role-modal-title" class="team-role-modal-title"></h2>
+            <p class="team-role-modal-body"></p>
+        </div>
+    </div>
 
     <div id="site-footer"></div>
 </body>
