@@ -1,0 +1,611 @@
+{
+  "rolePriority": [
+    [
+      "Founder",
+      "President",
+      "Overseer",
+      "King",
+      "Almighty",
+      "God"
+    ],
+    [
+      "Officer"
+    ],
+    [
+      "Lead"
+    ],
+    [
+      "Problem Writing",
+      "Operations",
+      "Public Relations",
+      "Web Development",
+      "Activities"
+    ],
+    [
+      "Emotional Damage",
+      "Emotional Support"
+    ]
+  ],
+  "roleTypes": {
+    "Founder": "ownership",
+    "President": "ownership",
+    "Overseer": "ownership",
+    "King": "ownership",
+    "Almighty": "ownership",
+    "God": "ownership",
+    "Officer": "officer",
+    "Lead": "leadership",
+    "Problem Writing": "pw",
+    "Operations": "ops",
+    "Public Relations": "pr",
+    "Web Development": "webdev",
+    "Activities": "activities",
+    "Emotional Damage": "misc",
+    "Emotional Support": "misc"
+  },
+  "roleDescriptions": {
+    "leadership": "Leads a specific department.",
+    "officer": "Officer",
+    "pw": "Writes original contest problems for all divisions, checks them for accuracy and fairness, and puts together complete solution sets. Problems go through internal review and testing before the competition.",
+    "ops": "Takes care of the practical side of running the contest, such as rooms, timing, materials, registration check-in, and day-of coordination. Also handles sponsor outreach and serves as the main point of contact when issues come up during the event.",
+    "pr": "Promotes the competition to schools, clubs, and the broader community through announcements, social media, and outreach materials. Keeps branding consistent across platforms and works with Web Dev to keep the website visuals up to date.",
+    "webdev": "Builds and maintains the competition website, including event info, registration, and submission systems. Makes sure everything is accessible, clear, and works on mobile. Coordinates with PR on branding and with Operations on logistics updates.",
+    "activities": "Plans additional functions on the competition day that make the event more welcoming, enriching, and enjoyable for all competitors."
+  },
+  "roleStyles": {
+    "ownership": {
+      "color": "rgb(80, 30, 28)",
+      "background": "rgba(220, 100, 45, 0.1)",
+      "borderColor": "rgba(180, 80, 50, 0.28)"
+    },
+    "officer": {
+      "color": "rgb(20, 90, 55)",
+      "background": "rgba(40, 160, 100, 0.11)",
+      "borderColor": "rgba(40, 160, 100, 0.22)"
+    },
+    "leadership": {
+      "color": "rgb(95, 33, 120)",
+      "background": "rgba(145, 80, 205, 0.11)",
+      "borderColor": "rgba(145, 80, 205, 0.24)"
+    },
+    "pw": {
+      "color": "rgb(42, 42, 105)",
+      "background": "rgba(50, 50, 130, 0.11)",
+      "borderColor": "rgba(50, 50, 130, 0.22)"
+    },
+    "ops": {
+      "color": "rgb(28, 88, 95)",
+      "background": "rgba(30, 130, 125, 0.1)",
+      "borderColor": "rgba(30, 130, 125, 0.22)"
+    },
+    "pr": {
+      "color": "rgb(115, 38, 78)",
+      "background": "rgba(175, 55, 95, 0.1)",
+      "borderColor": "rgba(175, 55, 95, 0.22)"
+    },
+    "webdev": {
+      "color": "rgb(28, 72, 130)",
+      "background": "rgba(45, 105, 200, 0.11)",
+      "borderColor": "rgba(45, 105, 200, 0.24)"
+    },
+    "activities": {
+      "color": "rgb(115, 72, 22)",
+      "background": "rgba(195, 125, 45, 0.12)",
+      "borderColor": "rgba(195, 125, 45, 0.26)"
+    },
+    "misc": {
+      "color": "rgb(72, 72, 78)",
+      "background": "rgba(90, 90, 100, 0.1)",
+      "borderColor": "rgba(90, 90, 100, 0.2)",
+      "fontStyle": "italic"
+    }
+  },
+  "members": [
+    {
+      "name": "Benjamin Zhang",
+      "grade": "11th Grade",
+      "roles": [
+        "Founder",
+        "President",
+        "Overseer",
+        "King",
+        "Almighty",
+        "God",
+        "Officer",
+        "Problem Writing",
+        "Operations",
+        "Public Relations",
+        "Web Development"
+      ],
+      "images": [
+        "/assets/team_introductions/benjaminz.png",
+        "/assets/team_introductions/benjaminz2.png"
+      ],
+      "bio": "Benjamin is a junior at Lynbrook High School who is fascinated by mathematics, computer science, and cryptography. Outside of his extracurriculars, he can be found playing his oboe or chatting with his friends. As LMO's President this year, Benjamin hopes to inspire the next generation of mathematicians and scientists in a fun and engaging way!"
+    },
+    {
+      "name": "Sohum Uttamchandani",
+      "grade": "11th Grade",
+      "roles": [
+        "Problem Writing",
+        "Operations",
+        "Public Relations",
+        "Web Development",
+        "Officer"
+      ],
+      "images": [
+        "/assets/team_introductions/sohamu.png"
+      ],
+      "bio": "Sohum is a junior at Lynbrook High School. He is passionate about math and physics. Outside of that, in his freetime he enjoys to nature journal."
+    },
+    {
+      "name": "Tianlin Liu",
+      "grade": "10th Grade",
+      "roles": [
+        "Problem Writing",
+        "Operations",
+        "Public Relations",
+        "Web Development",
+        "Officer"
+      ],
+      "images": [
+        "/assets/team_introductions/tianlinl.png"
+      ],
+      "bio": "Tianlin is a 10th grader from Lynbrook High School. Her favorite subject is geometry. Outside of math, she also likes drawing and reading."
+    },
+    {
+      "name": "Yunfei Xia",
+      "grade": "10th Grade",
+      "roles": [
+        "Activities",
+        "Problem Writing",
+        "Operations",
+        "Officer"
+      ],
+      "images": [
+        "/assets/team_introductions/yunfeix.png"
+      ],
+      "bio": "Yunfei, also known as Steven, is an Olympiad Geometry grinder at Lynbrook, especially in favor of projective. He is one of the only few who belong to the intersection of Track and Field and Math, after many quit. He liked student-organized math tournaments and was motivated to initiate LMO."
+    },
+    {
+      "name": "Dhruvi Pandey",
+      "grade": "10th Grade",
+      "roles": [
+        "Operations",
+        "Public Relations",
+        "Lead"
+      ],
+      "images": [
+        "/assets/team_introductions/dhruvip.png"
+      ],
+      "bio": "Dhruvi is a sophomore at Lynbrook. Her favorite subjects include physics, computer science, problem solving, art, and playing the flute. In her free time, she likes playing video games and volunteering for the community."
+    },
+    {
+      "name": "Abhigyan Singh",
+      "grade": "11th Grade",
+      "roles": [
+        "Problem Writing",
+        "Officer"
+      ],
+      "images": [],
+      "bio": "Abhigyan Singh is a junior at Lynbrook High School interested in mathematics and computer science. In his free time, you can probably find him cubing, cooking, or playing Minecraft."
+    },
+    {
+      "name": "Benjamin Oh",
+      "grade": "11th Grade",
+      "roles": [
+        "Lead",
+        "Problem Writing"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Tommy Wang",
+      "grade": "10th Grade",
+      "roles": [
+        "Problem Writing"
+      ],
+      "images": [
+        "/assets/team_introductions/tommyw.png"
+      ],
+      "bio": ""
+    },
+    {
+      "name": "Vedant Sengar",
+      "grade": "9th Grade",
+      "roles": [
+        "Problem Writing"
+      ],
+      "images": [
+        "/assets/team_introductions/vedant.png"
+      ],
+      "bio": ""
+    },
+    {
+      "name": "Robert Yang",
+      "grade": "9th Grade",
+      "roles": [
+        "Problem Writing",
+        "Operations",
+        "Activities"
+      ],
+      "images": [],
+      "bio": "Robert is a freshman at Lynbrook High School. He enjoys thinking about discrete math, and he spends some of his free time solving physics and chemistry problems. Even with all of that, he finds the time to go outside and touch grass by playing varsity tennis for Lynbrook."
+    },
+    {
+      "name": "Catherine Jian",
+      "grade": "10th Grade",
+      "roles": [
+        "Problem Writing",
+        "Operations",
+        "Public Relations",
+        "Web Development",
+        "Lead"
+      ],
+      "images": [],
+      "bio": "Catherine is currently a sophomore at Lynbrook High School. Her favorite math topics are geometry and combinatorics. Outside of math, she enjoys reading about history."
+    },
+    {
+      "name": "Derek Hu",
+      "grade": "9th Grade",
+      "roles": [
+        "Problem Writing"
+      ],
+      "images": [],
+      "bio": "Derek is a freshman at Lynbrook High School. Some of his interests include math, gardening, running, throwing (as in shot put and discus), cooking, playing musical instruments, coding, civil engineering, card games, grand strategy games, civics, governance, AI alignment, and eating food. Geometry is the bane of his existence."
+    },
+    {
+      "name": "Yutong Qiu",
+      "grade": "10th Grade",
+      "roles": [
+        "Operations",
+        "Public Relations"
+      ],
+      "images": [],
+      "bio": "Yutong is a sophomore at Lynbrook High School. Their favorite math subject is discrete math. They also enjoy computer science, physics, writing, drawing, and playing violin."
+    },
+    {
+      "name": "Bohan Yang",
+      "grade": "9th Grade",
+      "roles": [
+        "Problem Writing",
+        "Operations"
+      ],
+      "images": [],
+      "bio": "While a lazy bum who rarely locks in, Bohan enjoys problem solving and tackling competitive math. He also enjoys writing problems of his own and presenting them to others via MathCounts volunteering. Bohan also likes to swim and debate outside of math, thus giving him somewhat of a life."
+    },
+    {
+      "name": "Hannah Zhang",
+      "grade": "10th Grade",
+      "roles": [
+        "Public Relations",
+        "Operations",
+        "Lead"
+      ],
+      "images": [],
+      "bio": "Hannah is a sophomore at Lynbrook. Her favorite math topic is geometry. Outside of math she also enjoys swimming, running, watching YouTube, and doing random things."
+    },
+    {
+      "name": "Mason Shu",
+      "grade": "10th Grade",
+      "roles": [
+        "Problem Writing",
+        "Web Development"
+      ],
+      "images": [],
+      "bio": "Mason is a student with strong interests in mathematical proof writing and analysis. Outside of math, he enjoys coding (particularly in the Rust language), playing musical instruments, and physics."
+    },
+    {
+      "name": "Ryan Wang",
+      "grade": "9th Grade",
+      "roles": [
+        "Emotional Damage",
+        "Problem Writing"
+      ],
+      "images": [],
+      "bio": "Despite being named \"iliketrains\", one does not enjoy trains more than the average person."
+    },
+    {
+      "name": "Nitin Reddy Vaka",
+      "grade": "11th Grade",
+      "roles": [
+        "Lead",
+        "Problem Writing"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Andrew Liu",
+      "grade": "10th Grade",
+      "roles": [
+        "Emotional Support",
+        "Operations"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Samriddho Sarkar",
+      "grade": "9th Grade",
+      "roles": [
+        "Public Relations"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Matthew Yuan",
+      "grade": "12th Grade",
+      "roles": [
+        "Emotional Support",
+        "Problem Writing",
+        "Public Relations"
+      ],
+      "images": [],
+      "bio": "Emotional support team-bio main but I'll also do like Problem Writing and Public Relations I guess, mostly team-bio though."
+    },
+    {
+      "name": "Brianna Su",
+      "grade": "9th Grade",
+      "roles": [
+        "Web Development",
+        "Public Relations",
+        "Operations"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Tanish Kolhe",
+      "grade": "10th Grade",
+      "roles": [
+        "Problem Writing"
+      ],
+      "images": []
+    },
+    {
+      "name": "Sophia Liu",
+      "grade": "9th Grade",
+      "roles": [
+        "Public Relations",
+        "Operations"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Brian Lu",
+      "grade": "10th Grade",
+      "roles": [
+        "Problem Writing"
+      ],
+      "images": [],
+      "bio": "Didn't make JMO, likes to run."
+    },
+    {
+      "name": "Ishaan Mittal",
+      "grade": "10th Grade",
+      "roles": [
+        "Problem Writing"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Sophia Shi",
+      "grade": "11th Grade",
+      "roles": [
+        "Public Relations",
+        "Activities"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Ian Chen",
+      "grade": "11th Grade",
+      "roles": [
+        "Activities"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Wesley Shen",
+      "grade": "10th Grade",
+      "roles": [
+        "Problem Writing",
+        "Operations"
+      ],
+      "images": [],
+      "bio": "I'll make sure to actually do something."
+    },
+    {
+      "name": "Isabel Ye",
+      "grade": "11th Grade",
+      "roles": [
+        "Activities"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Sungrok (Roy) Kim",
+      "grade": "11th Grade",
+      "roles": [
+        "Problem Writing",
+        "Operations"
+      ],
+      "images": [],
+      "bio": "I like soccer."
+    },
+    {
+      "name": "Brian Law",
+      "grade": "12th Grade",
+      "roles": [
+        "Problem Writing"
+      ],
+      "images": [],
+      "bio": "Apparently on one of the joker cards?"
+    },
+    {
+      "name": "Evan Xiang",
+      "grade": "10th Grade",
+      "roles": [
+        "Operations",
+        "Public Relations"
+      ],
+      "images": [],
+      "bio": "I like basketball."
+    },
+    {
+      "name": "Batuhan Harmanci",
+      "grade": "10th Grade",
+      "roles": [
+        "Problem Writing",
+        "Public Relations"
+      ],
+      "images": [],
+      "bio": "I'm from Mountain View High School, probably just here to help Dhruvi."
+    },
+    {
+      "name": "Jasmine Lien",
+      "grade": "10th Grade",
+      "roles": [
+        "Public Relations",
+        "Operations"
+      ],
+      "images": [],
+      "bio": "I like food and making tables."
+    },
+    {
+      "name": "Chelsea Ye",
+      "grade": "10th Grade",
+      "roles": [
+        "Public Relations",
+        "Operations",
+        "Lead"
+      ],
+      "images": [],
+      "bio": "Chelsea ran a sandwich shop in Minecraft and considers herself qualified."
+    },
+    {
+      "name": "Aarush Tiwari",
+      "grade": "12th Grade",
+      "roles": [
+        "Web Development",
+        "Lead"
+      ],
+      "images": [],
+      "bio": "Hi guys, this is Aarush ie Baba T, working on the LMO website."
+    },
+    {
+      "name": "Rushil Agrawal",
+      "grade": "9th Grade",
+      "roles": [
+        "Web Development"
+      ],
+      "images": [],
+      "bio": "Rushil likes food and basketball."
+    },
+    {
+      "name": "Anna Chen",
+      "grade": "10th Grade",
+      "roles": [
+        "Public Relations",
+        "Operations"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Katherine Li",
+      "grade": "9th Grade",
+      "roles": [
+        "Operations",
+        "Public Relations"
+      ],
+      "images": [],
+      "bio": "Katherine enjoys data sciences and appreciates nice typography design."
+    },
+    {
+      "name": "Victoria Huang",
+      "grade": "10th Grade",
+      "roles": [
+        "Public Relations",
+        "Operations"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Ethan Han",
+      "grade": "9th Grade",
+      "roles": [
+        "Problem Writing",
+        "Operations"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Wenyuan Xi",
+      "grade": "10th Grade",
+      "roles": [
+        "Problem Writing"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Rohan Singh",
+      "grade": "10th Grade",
+      "roles": [
+        "Problem Writing",
+        "Operations"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Andrew Cheng",
+      "grade": "11th Grade",
+      "roles": [
+        "Problem Writing"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Sophia Fan",
+      "grade": "10th Grade",
+      "roles": [
+        "Public Relations",
+        "Operations"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Wenbo Xi",
+      "grade": "10th Grade",
+      "roles": [
+        "Problem Writing"
+      ],
+      "images": [],
+      "bio": ""
+    },
+    {
+      "name": "Ruichen Han",
+      "grade": "10th Grade",
+      "roles": [
+        "Web Development",
+        "Operations"
+      ],
+      "images": [],
+      "bio": ""
+    }
+  ]
+}

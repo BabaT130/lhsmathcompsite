@@ -1,66 +1,219 @@
-var ROLE_DESCRIPTIONS = {
-    'role-pw': {
-        title: 'Problem Writer',
-        body: 'Writes original contest problems for all divisions, checks them for accuracy and fairness, and puts together complete solution sets. Problems go through internal review and testing before the competition.'
-    },
-    'role-ops': {
-        title: 'Operations',
-        body: 'Takes care of the practical side of running the contes, such as rooms, timing, materials, registration check-in, and day-of coordination. Also handles sponsor outreach and serves as the main point of contact when issues come up during the event.'
-    },
-    'role-pr': {
-        title: 'Public Relations',
-        body: 'Promotes the competition to schools, clubs, and the broader community through announcements, social media, and outreach materials. Keeps branding consistent across platforms and works with Web Dev to keep the website visuals up to date.'
-    },
-    'role-webdev': {
-        title: 'Web Developer',
-        body: 'Builds and maintains the competition website, including event info, registration, and submission systems. Makes sure everything is accessible, clear, and works on mobile. Coordinates with PR on branding and with Operations on logistics updates.'
-    },
-    'role-activities': {
-        title: 'Activities',
-        body: 'Plans additional functions on the competition day that make the event more welcoming, enriching, and enjoyable for all competitors.'
-    },
-};
-
-function findRoleClass(el) {
-    if (!el || !el.classList) {
-        return null;
-    }
-    var list = el.classList;
-    for (var i = 0; i < list.length; i++) {
-        if (list[i].indexOf('role-') === 0) {
-            return list[i];
-        }
-    }
-    return null;
-}
-
-function getRoleContent(chip) {
-    var roleClass = findRoleClass(chip);
-    if (!roleClass || !ROLE_DESCRIPTIONS[roleClass]) {
-        return null;
-    }
-    var def = ROLE_DESCRIPTIONS[roleClass];
-    var label = chip.textContent.trim();
-    var title = def.title != null ? def.title : label;
-    return { title: title, body: def.body };
-}
-
 var modal = document.getElementById('team-role-modal');
 var titleEl = document.getElementById('team-role-modal-title');
 var bodyEl = modal ? modal.querySelector('.team-role-modal-body') : null;
 var backdrop = modal ? modal.querySelector('.team-role-modal-backdrop') : null;
 var closeBtn = modal ? modal.querySelector('.team-role-modal-close') : null;
-
+var panel = modal ? modal.querySelector('.team-role-modal-panel') : null;
+var container = document.getElementById('team-container');
 var lastFocus = null;
+var roleDescriptions = {};
+var roleTypes = {};
 
-function openModal(content) {
+function buildRoleOrderMap(priorityGroups) {
+    var orderMap = {};
+    if (!Array.isArray(priorityGroups)) {
+        return orderMap;
+    }
+    var nextIndex = 0;
+    priorityGroups.forEach(function (group) {
+        if (Array.isArray(group)) {
+            group.forEach(function (label) {
+                orderMap[label] = nextIndex;
+                nextIndex += 1;
+            });
+            return;
+        }
+        orderMap[group] = nextIndex;
+        nextIndex += 1;
+    });
+    return orderMap;
+}
+
+function buildRoleGroupMap(priorityGroups) {
+    var groupMap = {};
+    if (!Array.isArray(priorityGroups)) {
+        return groupMap;
+    }
+    priorityGroups.forEach(function (group, groupIndex) {
+        if (Array.isArray(group)) {
+            group.forEach(function (label) {
+                groupMap[label] = groupIndex;
+            });
+            return;
+        }
+        groupMap[group] = groupIndex;
+    });
+    return groupMap;
+}
+
+function sortRoles(roleNames, orderMap) {
+    return roleNames
+        .map(function (roleName, index) {
+            var roleType = roleTypes[roleName];
+            if (!roleName || !roleType) {
+                return null;
+            }
+            return {
+                label: roleName,
+                type: roleType,
+                index: index
+            };
+        })
+        .filter(Boolean)
+        .sort(function (a, b) {
+            var aPriority = Object.prototype.hasOwnProperty.call(orderMap, a.label) ? orderMap[a.label] : Number.MAX_SAFE_INTEGER;
+            var bPriority = Object.prototype.hasOwnProperty.call(orderMap, b.label) ? orderMap[b.label] : Number.MAX_SAFE_INTEGER;
+            if (aPriority !== bPriority) {
+                return aPriority - bPriority;
+            }
+            return a.index - b.index;
+        });
+}
+
+function getHighestRoleGroup(member, groupMap) {
+    var roles = Array.isArray(member.roles) ? member.roles : [];
+    var bestGroup = Number.MAX_SAFE_INTEGER;
+
+    roles.forEach(function (roleName) {
+        var groupIndex = Object.prototype.hasOwnProperty.call(groupMap, roleName) ? groupMap[roleName] : Number.MAX_SAFE_INTEGER;
+        if (groupIndex < bestGroup) {
+            bestGroup = groupIndex;
+        }
+    });
+
+    return bestGroup;
+}
+
+function sortMembers(members, groupMap) {
+    return members
+        .map(function (member, index) {
+            return {
+                member: member,
+                originalIndex: index,
+                highestGroup: getHighestRoleGroup(member, groupMap)
+            };
+        })
+        .sort(function (a, b) {
+            if (a.highestGroup !== b.highestGroup) {
+                return a.highestGroup - b.highestGroup;
+            }
+            return a.originalIndex - b.originalIndex;
+        })
+        .map(function (entry) {
+            return entry.member;
+        });
+}
+
+function applyRoleStyle(chip, styleDef) {
+    if (!styleDef) {
+        return;
+    }
+    if (styleDef.color) {
+        chip.style.color = styleDef.color;
+    }
+    if (styleDef.background) {
+        chip.style.background = styleDef.background;
+    }
+    if (styleDef.borderColor) {
+        chip.style.borderColor = styleDef.borderColor;
+    }
+    if (styleDef.fontStyle) {
+        chip.style.fontStyle = styleDef.fontStyle;
+    }
+}
+
+function createImageStack(member) {
+    var images = Array.isArray(member.images) ? member.images.filter(Boolean) : [];
+    if (!images.length) {
+        return null;
+    }
+
+    var stack = document.createElement('button');
+    stack.type = 'button';
+    stack.className = 'team-image-stack';
+    stack.setAttribute(
+        'aria-label',
+        images.length > 1 ? 'Cycle through photos of ' + member.name : 'Photo of ' + member.name
+    );
+
+    var image = document.createElement('img');
+    image.className = 'team-image';
+    image.src = images[0];
+    image.alt = member.name;
+    stack.appendChild(image);
+
+    if (images.length > 1) {
+        stack.title = 'Click to cycle through photos';
+        var currentIndex = 0;
+        stack.addEventListener('click', function () {
+            currentIndex = (currentIndex + 1) % images.length;
+            image.src = images[currentIndex];
+        });
+    }
+
+    return stack;
+}
+
+function createRoleChip(role, roleStyles) {
+    var chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'team-role-chip';
+    chip.textContent = role.label;
+    chip.dataset.roleLabel = role.label;
+    chip.dataset.roleType = role.type;
+    applyRoleStyle(chip, roleStyles[role.type]);
+    return chip;
+}
+
+function createTeamCard(member, roleOrderMap, roleStyles) {
+    var card = document.createElement('div');
+    card.className = 'team-card';
+
+    var imageStack = createImageStack(member);
+    if (imageStack) {
+        card.appendChild(imageStack);
+    }
+
+    var name = document.createElement('h3');
+    name.textContent = member.name;
+    card.appendChild(name);
+
+    var grade = document.createElement('div');
+    grade.className = 'team-grade';
+    grade.textContent = member.grade || '';
+    card.appendChild(grade);
+
+    var roles = Array.isArray(member.roles) ? sortRoles(member.roles, roleOrderMap) : [];
+    if (roles.length) {
+        var roleRow = document.createElement('div');
+        roleRow.className = 'team-roles';
+        roles.forEach(function (role) {
+            roleRow.appendChild(createRoleChip(role, roleStyles));
+        });
+        card.appendChild(roleRow);
+    }
+
+    if (member.bio) {
+        var bio = document.createElement('p');
+        bio.className = 'team-bio';
+        bio.textContent = member.bio;
+        card.appendChild(bio);
+    }
+
+    return card;
+}
+
+function openModal(label, description) {
     if (!modal || !titleEl || !bodyEl) {
         return;
     }
     lastFocus = document.activeElement;
-    titleEl.textContent = content.title;
-    bodyEl.textContent = content.body;
+    titleEl.textContent = label;
+    bodyEl.textContent = description;
     modal.hidden = false;
+    if (panel) {
+        panel.classList.remove('is-closing');
+    }
     requestAnimationFrame(function () {
         if (backdrop) {
             backdrop.classList.add('is-visible');
@@ -75,77 +228,100 @@ function closeModal() {
     if (!modal) {
         return;
     }
+    if (panel) {
+        panel.classList.add('is-closing');
+    }
     if (backdrop) {
         backdrop.classList.remove('is-visible');
     }
-    var TRANSITION_MS = 300;
+    var transitionMs = 300;
     setTimeout(function () {
         modal.hidden = true;
-    }, TRANSITION_MS);
-    document.body.style.overflow = '';
+        if (panel) {
+            panel.classList.remove('is-closing');
+        }
+    }, transitionMs);
     if (lastFocus && typeof lastFocus.focus === 'function') {
         lastFocus.focus();
     }
 }
 
-document.querySelectorAll('.team-image-stack').forEach(function (stack) {
-    stack.addEventListener('click', function () {
-        stack.classList.toggle('team-image-stack--overlay-visible');
+function renderTeam(data) {
+    if (!container) {
+        return;
+    }
+
+    roleTypes = data.roleTypes || {};
+    roleDescriptions = data.roleDescriptions || {};
+    var roleStyles = data.roleStyles || {};
+    var rolePriority = data.rolePriority || [];
+    var roleOrderMap = buildRoleOrderMap(rolePriority);
+    var roleGroupMap = buildRoleGroupMap(rolePriority);
+    var members = Array.isArray(data.members) ? sortMembers(data.members, roleGroupMap) : [];
+    var fragment = document.createDocumentFragment();
+
+    members.forEach(function (member) {
+        fragment.appendChild(createTeamCard(member, roleOrderMap, roleStyles));
     });
-    stack.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            stack.classList.toggle('team-image-stack--overlay-visible');
+
+    container.innerHTML = '';
+    container.appendChild(fragment);
+}
+
+function showLoadError() {
+    if (!container) {
+        return;
+    }
+    container.innerHTML = '';
+    var message = document.createElement('p');
+    message.className = 'team-bio';
+    message.textContent = 'Unable to load the team roster right now.';
+    container.appendChild(message);
+}
+
+async function loadTeamData() {
+    try {
+        var response = await fetch('./team_data.json', { cache: 'no-store' });
+        if (!response.ok) {
+            throw new Error('Failed to load team data');
         }
-    });
-});
+        var data = await response.json();
+        renderTeam(data);
+    } catch (error) {
+        console.error(error);
+        showLoadError();
+    }
+}
 
-document.querySelectorAll('.team-roles [class^="role-"]').forEach(function (chip) {
-    chip.setAttribute('role', 'button');
-    chip.setAttribute('tabindex', '0');
-});
-
-var container = document.querySelector('.team-container');
 if (container) {
     container.addEventListener('click', function (ev) {
-        var chip = ev.target.closest('.team-roles [class^="role-"]');
+        var chip = ev.target.closest('.team-role-chip');
         if (!chip) {
             return;
         }
-        var content = getRoleContent(chip);
-        if (!content) {
-            return;
-        }
-        ev.preventDefault();
-        openModal(content);
-    });
 
-    container.addEventListener('keydown', function (ev) {
-        if (ev.key !== 'Enter' && ev.key !== ' ') {
+        var roleType = chip.dataset.roleType;
+        var description = roleDescriptions[roleType];
+        if (!description) {
             return;
         }
-        var chip = ev.target.closest('.team-roles [class^="role-"]');
-        if (!chip || !container.contains(chip)) {
-            return;
-        }
-        var content = getRoleContent(chip);
-        if (!content) {
-            return;
-        }
-        ev.preventDefault();
-        openModal(content);
+
+        openModal(chip.dataset.roleLabel || chip.textContent.trim(), description);
     });
 }
 
 if (backdrop) {
     backdrop.addEventListener('click', closeModal);
 }
+
 if (closeBtn) {
     closeBtn.addEventListener('click', closeModal);
 }
 
-document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && modal && !modal.hidden) {
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && modal && !modal.hidden) {
         closeModal();
     }
 });
+
+loadTeamData();
