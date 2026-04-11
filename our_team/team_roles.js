@@ -12,6 +12,22 @@ var teamData = null;
 var renderFrame = 0;
 var TEAM_CARD_MIN_WIDTH = 300;
 var lastRenderedColumnCount = 0;
+var scrollRestoreKey = 'team-scroll:' + window.location.pathname;
+var pendingScrollRestore = null;
+
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+try {
+    var savedScroll = sessionStorage.getItem(scrollRestoreKey);
+    pendingScrollRestore = savedScroll == null ? null : parseInt(savedScroll, 10);
+    if (!Number.isFinite(pendingScrollRestore)) {
+        pendingScrollRestore = null;
+    }
+} catch (error) {
+    pendingScrollRestore = null;
+}
 
 function buildRoleOrderMap(priorityGroups) {
     var orderMap = {};
@@ -277,6 +293,28 @@ function stretchLastCards(columns) {
     });
 }
 
+function saveScrollPosition() {
+    try {
+        sessionStorage.setItem(scrollRestoreKey, String(window.scrollY || window.pageYOffset || 0));
+    } catch (error) {
+        // Ignore storage failures.
+    }
+}
+
+function restoreScrollPosition() {
+    if (pendingScrollRestore == null) {
+        return;
+    }
+
+    var targetScroll = pendingScrollRestore;
+    pendingScrollRestore = null;
+    requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+            window.scrollTo(0, targetScroll);
+        });
+    });
+}
+
 function openModal(label, description) {
     if (!modal || !titleEl || !bodyEl) {
         return;
@@ -355,6 +393,7 @@ function renderTeam(data) {
     });
 
     stretchLastCards(columns);
+    restoreScrollPosition();
 }
 
 function scheduleTeamRender() {
@@ -433,5 +472,7 @@ document.addEventListener('keydown', function (event) {
 
 window.addEventListener('resize', scheduleTeamRender);
 window.addEventListener('load', scheduleTeamRender);
+window.addEventListener('scroll', saveScrollPosition, { passive: true });
+window.addEventListener('pagehide', saveScrollPosition);
 
 loadTeamData();
