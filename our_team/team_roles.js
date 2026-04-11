@@ -8,6 +8,9 @@ var container = document.getElementById('team-container');
 var lastFocus = null;
 var roleDescriptions = {};
 var roleTypes = {};
+var teamData = null;
+var renderFrame = 0;
+var TEAM_CARD_MIN_WIDTH = 300;
 
 function buildRoleOrderMap(priorityGroups) {
     var orderMap = {};
@@ -203,6 +206,48 @@ function createTeamCard(member, roleOrderMap, roleStyles) {
     return card;
 }
 
+function getColumnCount() {
+    if (!container) {
+        return 1;
+    }
+
+    var styles = window.getComputedStyle(container);
+    var gap = parseFloat(styles.columnGap || styles.gap || '0');
+    var availableWidth = container.clientWidth;
+    var columnCount = Math.floor((availableWidth + gap) / (TEAM_CARD_MIN_WIDTH + gap));
+    return Math.max(1, columnCount);
+}
+
+function createColumns(count) {
+    var columns = [];
+    for (var i = 0; i < count; i += 1) {
+        var column = document.createElement('div');
+        column.className = 'team-column';
+        columns.push(column);
+    }
+    return columns;
+}
+
+function getShortestColumnIndex(columnHeights) {
+    var shortestIndex = 0;
+    for (var i = 1; i < columnHeights.length; i += 1) {
+        if (columnHeights[i] < columnHeights[shortestIndex]) {
+            shortestIndex = i;
+        }
+    }
+    return shortestIndex;
+}
+
+function stretchLastCards(columns) {
+    columns.forEach(function (column) {
+        var cards = column.querySelectorAll('.team-card');
+        if (!cards.length) {
+            return;
+        }
+        cards[cards.length - 1].classList.add('team-card--stretch');
+    });
+}
+
 function openModal(label, description) {
     if (!modal || !titleEl || !bodyEl) {
         return;
@@ -258,14 +303,41 @@ function renderTeam(data) {
     var roleOrderMap = buildRoleOrderMap(rolePriority);
     var roleGroupMap = buildRoleGroupMap(rolePriority);
     var members = Array.isArray(data.members) ? sortMembers(data.members, roleGroupMap) : [];
-    var fragment = document.createDocumentFragment();
+    container.innerHTML = '';
+    var columns = createColumns(getColumnCount());
+    var columnFragment = document.createDocumentFragment();
+    var gap = parseFloat(window.getComputedStyle(container).rowGap || window.getComputedStyle(container).gap || '0');
+    var columnHeights = new Array(columns.length).fill(0);
+
+    columns.forEach(function (column) {
+        columnFragment.appendChild(column);
+    });
+    container.appendChild(columnFragment);
 
     members.forEach(function (member) {
-        fragment.appendChild(createTeamCard(member, roleOrderMap, roleStyles));
+        var card = createTeamCard(member, roleOrderMap, roleStyles);
+        var columnIndex = getShortestColumnIndex(columnHeights);
+        columns[columnIndex].appendChild(card);
+        columnHeights[columnIndex] += card.offsetHeight;
+        if (columns[columnIndex].children.length > 1) {
+            columnHeights[columnIndex] += gap;
+        }
     });
 
-    container.innerHTML = '';
-    container.appendChild(fragment);
+    stretchLastCards(columns);
+}
+
+function scheduleTeamRender() {
+    if (!teamData || !container) {
+        return;
+    }
+    if (renderFrame) {
+        cancelAnimationFrame(renderFrame);
+    }
+    renderFrame = requestAnimationFrame(function () {
+        renderFrame = 0;
+        renderTeam(teamData);
+    });
 }
 
 function showLoadError() {
@@ -275,7 +347,7 @@ function showLoadError() {
     container.innerHTML = '';
     var message = document.createElement('p');
     message.className = 'team-bio';
-    message.textContent = 'Unable to load the team roster right now.';
+    message.textContent = 'Unable to load team members list.';
     container.appendChild(message);
 }
 
@@ -283,9 +355,10 @@ async function loadTeamData() {
     try {
         var response = await fetch('./team_data.json', { cache: 'no-store' });
         if (!response.ok) {
-            throw new Error('Failed to load team data');
+            throw new Error('Failed to load team members list.');
         }
         var data = await response.json();
+        teamData = data;
         renderTeam(data);
     } catch (error) {
         console.error(error);
@@ -323,5 +396,8 @@ document.addEventListener('keydown', function (event) {
         closeModal();
     }
 });
+
+window.addEventListener('resize', scheduleTeamRender);
+window.addEventListener('load', scheduleTeamRender);
 
 loadTeamData();
