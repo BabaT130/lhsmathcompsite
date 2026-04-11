@@ -278,7 +278,7 @@ p {
     }
 }
 
-@media (max-width: 530px) {
+@media (max-width: 560px) {
     .navbar {
         justify-content: space-between;
         height: 150px;
