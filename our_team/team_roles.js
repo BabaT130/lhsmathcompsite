@@ -152,50 +152,38 @@ function createImageStack(member) {
     stack.type = 'button';
     stack.className = 'team-image-stack';
 
-    var currentImage = document.createElement('img');
-    currentImage.className = 'team-image team-image--current';
-    currentImage.src = images[0];
-    currentImage.alt = member.name;
-    stack.appendChild(currentImage);
+    var primaryImage = document.createElement('img');
+    primaryImage.className = 'team-image is-visible';
+    primaryImage.src = images[0];
+    primaryImage.alt = member.name;
+    stack.appendChild(primaryImage);
+
+    var secondaryImage = document.createElement('img');
+    secondaryImage.className = 'team-image';
+    secondaryImage.alt = '';
+    if (images.length > 1) {
+        secondaryImage.src = images[1];
+    } else {
+        secondaryImage.src = images[0];
+    }
+    stack.appendChild(secondaryImage);
 
     if (images.length > 1) {
-        var nextImage = document.createElement('img');
-        nextImage.className = 'team-image team-image--next';
-        nextImage.src = images[1];
-        nextImage.alt = '';
-        stack.appendChild(nextImage);
-
         stack.title = 'Click to cycle through photos';
         var currentIndex = 0;
-        var isTransitioning = false;
-        var targetIndex = 1;
-        var finishTransition = function () {
-            currentIndex = targetIndex;
-            stack.classList.add('is-resetting');
-            currentImage.src = images[currentIndex];
-            nextImage.src = images[(currentIndex + 1) % images.length];
-            stack.classList.remove('is-fading');
-            void stack.offsetWidth;
-            stack.classList.remove('is-resetting');
-            isTransitioning = false;
-        };
+        var activeLayer = primaryImage;
+        var inactiveLayer = secondaryImage;
 
         stack.addEventListener('click', function () {
-            if (isTransitioning) {
-                return;
-            }
-            isTransitioning = true;
-            targetIndex = (currentIndex + 1) % images.length;
-            nextImage.src = images[targetIndex];
-            requestAnimationFrame(function () {
-                stack.classList.add('is-fading');
-            });
-        });
+            var nextIndex = (currentIndex + 1) % images.length;
+            inactiveLayer.src = images[nextIndex];
+            inactiveLayer.classList.add('is-visible');
+            activeLayer.classList.remove('is-visible');
+            currentIndex = nextIndex;
 
-        nextImage.addEventListener('transitionend', function (event) {
-            if (event.propertyName === 'opacity' && stack.classList.contains('is-fading')) {
-                finishTransition();
-            }
+            var previousActive = activeLayer;
+            activeLayer = inactiveLayer;
+            inactiveLayer = previousActive;
         });
     }
 
