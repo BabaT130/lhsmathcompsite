@@ -9,8 +9,8 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: white;
     background-image:
-        linear-gradient(to right, #dddddd 1px, transparent 1px),
-        linear-gradient(to bottom, #dddddd 1px, transparent 1px);
+        linear-gradient(to right, #e8e8e8 1px, transparent 1px),
+        linear-gradient(to bottom, #e8e8e8 1px, transparent 1px);
     background-size: 28px 28px;
     margin: 0;
     padding: 0;
@@ -281,7 +281,7 @@ p {
 @media (max-width: 530px) {
     .navbar {
         justify-content: space-between;
-        height: 140px;
+        height: 150px;
         padding-left: 10px;
         padding-right: 10px;
         width: 100%;
@@ -290,7 +290,7 @@ p {
     .nav-filler {
         padding: 0;
         margin: 0;
-        height: 140px;
+        height: 150px;
     }
 
     .nav-links {
@@ -305,7 +305,7 @@ p {
     }
 
     .logo img {
-        height: 100px;
+        height: 120px;
     }
 
     .logo {
