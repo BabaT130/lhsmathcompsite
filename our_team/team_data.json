@@ -196,9 +196,7 @@
       "roles": [
         "Lead",
         "Problem Writing"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Tommy Wang",
@@ -208,8 +206,7 @@
       ],
       "images": [
         "/assets/team_introductions/tommyw.png"
-      ],
-      "bio": ""
+      ]
     },
     {
       "name": "Vedant Sengar",
@@ -219,8 +216,7 @@
       ],
       "images": [
         "/assets/team_introductions/vedant.png"
-      ],
-      "bio": ""
+      ]
     },
     {
       "name": "Robert Yang",
@@ -313,9 +309,7 @@
       "roles": [
         "Lead",
         "Problem Writing"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Andrew Liu",
@@ -323,18 +317,14 @@
       "roles": [
         "Emotional Support",
         "Operations"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Samriddho Sarkar",
       "grade": "9th Grade",
       "roles": [
         "Public Relations"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Matthew Yuan",
@@ -354,9 +344,7 @@
         "Web Development",
         "Public Relations",
         "Operations"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Tanish Kolhe",
@@ -372,9 +360,7 @@
       "roles": [
         "Public Relations",
         "Operations"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Brian Lu",
@@ -390,9 +376,7 @@
       "grade": "10th Grade",
       "roles": [
         "Problem Writing"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Sophia Shi",
@@ -400,18 +384,14 @@
       "roles": [
         "Public Relations",
         "Activities"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Ian Chen",
       "grade": "11th Grade",
       "roles": [
         "Activities"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Wesley Shen",
@@ -428,9 +408,7 @@
       "grade": "11th Grade",
       "roles": [
         "Activities"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Sungrok (Roy) Kim",
@@ -517,9 +495,7 @@
       "roles": [
         "Public Relations",
         "Operations"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Katherine Li",
@@ -537,9 +513,7 @@
       "roles": [
         "Public Relations",
         "Operations"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Ethan Han",
@@ -547,18 +521,14 @@
       "roles": [
         "Problem Writing",
         "Operations"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Wenyuan Xi",
       "grade": "10th Grade",
       "roles": [
         "Problem Writing"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Rohan Singh",
@@ -566,18 +536,14 @@
       "roles": [
         "Problem Writing",
         "Operations"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Andrew Cheng",
       "grade": "11th Grade",
       "roles": [
         "Problem Writing"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Sophia Fan",
@@ -585,18 +551,14 @@
       "roles": [
         "Public Relations",
         "Operations"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Wenbo Xi",
       "grade": "10th Grade",
       "roles": [
         "Problem Writing"
-      ],
-      "images": [],
-      "bio": ""
+      ]
     },
     {
       "name": "Ruichen Han",
@@ -604,9 +566,14 @@
       "roles": [
         "Web Development",
         "Operations"
-      ],
-      "images": [],
-      "bio": ""
+      ]
+    },
+    {
+      "name": "Rohan Fernandes",
+      "grade": "12th Grade",
+      "roles": [
+        "Web Development"
+      ]
     }
   ]
 }
