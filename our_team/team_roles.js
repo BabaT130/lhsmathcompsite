@@ -11,6 +11,7 @@ var roleTypes = {};
 var teamData = null;
 var renderFrame = 0;
 var TEAM_CARD_MIN_WIDTH = 300;
+var lastRenderedColumnCount = 0;
 
 function buildRoleOrderMap(priorityGroups) {
     var orderMap = {};
@@ -134,23 +135,51 @@ function createImageStack(member) {
     var stack = document.createElement('button');
     stack.type = 'button';
     stack.className = 'team-image-stack';
-    stack.setAttribute(
-        'aria-label',
-        images.length > 1 ? 'Cycle through photos of ' + member.name : 'Photo of ' + member.name
-    );
 
-    var image = document.createElement('img');
-    image.className = 'team-image';
-    image.src = images[0];
-    image.alt = member.name;
-    stack.appendChild(image);
+    var currentImage = document.createElement('img');
+    currentImage.className = 'team-image team-image--current';
+    currentImage.src = images[0];
+    currentImage.alt = member.name;
+    stack.appendChild(currentImage);
 
     if (images.length > 1) {
+        var nextImage = document.createElement('img');
+        nextImage.className = 'team-image team-image--next';
+        nextImage.src = images[1];
+        nextImage.alt = '';
+        stack.appendChild(nextImage);
+
         stack.title = 'Click to cycle through photos';
         var currentIndex = 0;
+        var isTransitioning = false;
+        var targetIndex = 1;
+        var finishTransition = function () {
+            currentIndex = targetIndex;
+            stack.classList.add('is-resetting');
+            currentImage.src = images[currentIndex];
+            nextImage.src = images[(currentIndex + 1) % images.length];
+            stack.classList.remove('is-fading');
+            void stack.offsetWidth;
+            stack.classList.remove('is-resetting');
+            isTransitioning = false;
+        };
+
         stack.addEventListener('click', function () {
-            currentIndex = (currentIndex + 1) % images.length;
-            image.src = images[currentIndex];
+            if (isTransitioning) {
+                return;
+            }
+            isTransitioning = true;
+            targetIndex = (currentIndex + 1) % images.length;
+            nextImage.src = images[targetIndex];
+            requestAnimationFrame(function () {
+                stack.classList.add('is-fading');
+            });
+        });
+
+        nextImage.addEventListener('transitionend', function (event) {
+            if (event.propertyName === 'opacity' && stack.classList.contains('is-fading')) {
+                finishTransition();
+            }
         });
     }
 
@@ -303,8 +332,9 @@ function renderTeam(data) {
     var roleOrderMap = buildRoleOrderMap(rolePriority);
     var roleGroupMap = buildRoleGroupMap(rolePriority);
     var members = Array.isArray(data.members) ? sortMembers(data.members, roleGroupMap) : [];
+    lastRenderedColumnCount = getColumnCount();
     container.innerHTML = '';
-    var columns = createColumns(getColumnCount());
+    var columns = createColumns(lastRenderedColumnCount);
     var columnFragment = document.createDocumentFragment();
     var gap = parseFloat(window.getComputedStyle(container).rowGap || window.getComputedStyle(container).gap || '0');
     var columnHeights = new Array(columns.length).fill(0);
@@ -329,6 +359,10 @@ function renderTeam(data) {
 
 function scheduleTeamRender() {
     if (!teamData || !container) {
+        return;
+    }
+    var nextColumnCount = getColumnCount();
+    if (nextColumnCount === lastRenderedColumnCount) {
         return;
     }
     if (renderFrame) {

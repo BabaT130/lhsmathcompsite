@@ -291,7 +291,8 @@
       "grade": "10th Grade",
       "roles": [
         "Problem Writing",
-        "Web Development"
+        "Web Development",
+        "Lead"
       ],
       "images": [],
       "bio": "Mason is a student with strong interests in mathematical proof writing and analysis. Outside of math, he enjoys coding (particularly in the Rust language), playing musical instruments, and physics."

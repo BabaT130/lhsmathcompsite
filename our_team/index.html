@@ -88,6 +88,7 @@
         }
 
         .team-image-stack {
+            position: relative;
             width: 80%;
             max-width: 220px;
             margin: 0 auto 18px;
@@ -116,6 +117,26 @@
             display: block;
             object-fit: cover;
             aspect-ratio: 1;
+            transition: opacity 0.35s ease;
+        }
+
+        .team-image-stack .team-image--next {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .team-image-stack.is-fading .team-image--current {
+            opacity: 0;
+        }
+
+        .team-image-stack.is-fading .team-image--next {
+            opacity: 1;
+        }
+
+        .team-image-stack.is-resetting .team-image {
+            transition: none;
         }
 
         .team-grade {
@@ -278,6 +299,7 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
+
             .team-card,
             .team-image-stack,
             .team-role-chip,
@@ -318,9 +340,9 @@
     </div>
 
     <div id="team-role-modal" class="team-role-modal" hidden>
-        <button type="button" class="team-role-modal-backdrop" aria-label="Close team role modal"></button>
-        <div class="team-role-modal-panel" role="dialog" aria-modal="true" aria-labelledby="team-role-modal-title">
-            <button type="button" class="team-role-modal-close" aria-label="Close">&times;</button>
+        <button type="button" class="team-role-modal-backdrop"></button>
+        <div class="team-role-modal-panel" role="dialog">
+            <button type="button" class="team-role-modal-close">&times;</button>
             <h2 id="team-role-modal-title" class="team-role-modal-title"></h2>
             <p class="team-role-modal-body"></p>
         </div>
