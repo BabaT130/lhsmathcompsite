@@ -13,42 +13,17 @@
     <script defer src="/assets/hide_dev_banners.js"></script>
     <script defer src="/assets/footer.js"></script>
     <style>
-        .sponsors-container {
-            background: rgba(0, 0, 0, 0.06);
-            border-radius: 24px;
-            width: calc(100% - 40px);
-            max-width: 1240px;
-            margin: 25px auto 0;
-            padding: clamp(28px, 4vw, 44px);
-            display: flex;
+        #sponsors-container {
             flex-direction: column;
             gap: clamp(24px, 3vw, 32px);
-            box-sizing: border-box;
-            box-shadow: 0 8px 10px rgba(50, 50, 130, 0.4);
-            border: 1px solid rgba(50, 50, 130, 0.08);
         }
 
         .sponsor-card {
-            background: linear-gradient(165deg, #ffffff 0%, #f8f9ff 55%, #fff5f5 100%);
-            border-radius: 28px;
-            padding: 22px 24px;
-            border: 1px solid rgba(50, 50, 130, 0.1);
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
             display: grid;
             grid-template-columns: 1fr;
             gap: 18px;
             align-items: center;
             text-align: justify;
-            transition:
-                transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 0.3s ease,
-                border-color 0.3s ease;
-        }
-
-        .sponsor-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(50, 50, 130, 0.22);
-            box-shadow: 0 8px 22px rgba(255, 0, 0, 0.22);
         }
 
         @media (min-width: 640px) {
@@ -137,12 +112,12 @@
     </header>
     <br>
     <div class="main-text">
-        <p class="sponsors-intro">
-            LMO is grateful to the organizations below for supporting our competition and helping us bring challenging,
-            engaging mathematics to students across the Bay Area.
+        <p class="sponsors-intro simple-card">
+            LMO is grateful to the organizations below for supporting our competition and helping us bring
+            challenging, engaging mathematics to students across the Bay Area.
         </p>
-        <div class="sponsors-container">
-            <div class="sponsor-card">
+        <div id="sponsors-container" class="container">
+            <div class="sponsor-card hover-card">
                 <div class="sponsor-card-media">
                     <img src="/assets/sponsors/aops.png" alt="AoPS logo">
                 </div>
@@ -155,7 +130,7 @@
                     <a href="https://www.aops.com/" target="_blank" rel="noopener noreferrer">aops.com</a>
                 </div>
             </div>
-            <div class="sponsor-card">
+            <div class="sponsor-card hover-card">
                 <div class="sponsor-card-media">
                     <img src="/assets/sponsors/hrt.svg" alt="Hudson River Trading logo">
                 </div>
@@ -169,20 +144,21 @@
                         rel="noopener noreferrer">hudsonrivertrading.com</a>
                 </div>
             </div>
-            <div class="sponsor-card">
+            <div class="sponsor-card hover-card">
                 <div class="sponsor-card-media">
                     <img src="/assets/sponsors/janestreet.svg" alt="Jane Street logo">
                 </div>
                 <div class="sponsor-card-body">
                     <h3>Jane Street</h3>
                     <p class="sponsor-tagline">
-                        A quantitative trading firm known for its deep investment in mathematics, computer science, and
+                        A quantitative trading firm known for its deep investment in mathematics, computer science,
+                        and
                         problem-solving communities around the world.
                     </p>
                     <a href="https://www.janestreet.com/" target="_blank" rel="noopener noreferrer">janestreet.com</a>
                 </div>
             </div>
-            <div class="sponsor-card">
+            <div class="sponsor-card hover-card">
                 <div class="sponsor-card-media">
                     <img src="/assets/sponsors/interviewcake.svg" alt="Interview Cake logo">
                 </div>

@@ -203,7 +203,7 @@ function createRoleChip(role, roleStyles) {
 
 function createTeamCard(member, roleOrderMap, roleStyles) {
     var card = document.createElement('div');
-    card.className = 'team-card';
+    card.classList = 'team-card hover-card';
 
     var imageStack = createImageStack(member);
     if (imageStack) {

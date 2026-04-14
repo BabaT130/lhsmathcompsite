@@ -14,21 +14,9 @@
     <script defer src="/assets/footer.js"></script>
     <script defer src="./team_roles.js"></script>
     <style>
-        .team-container {
+        #team-container {
             --team-column-gap: clamp(24px, 3vw, 36px);
-            background: rgba(0, 0, 0, 0.06);
-            border-radius: 24px;
-            width: calc(100% - 40px);
-            max-width: 1240px;
-            margin: 25px auto;
-            padding: clamp(28px, 4vw, 44px);
-            display: flex;
-            align-items: stretch;
             gap: var(--team-column-gap);
-            box-sizing: border-box;
-            justify-content: center;
-            box-shadow: 0 8px 10px rgba(50, 50, 130, 0.4);
-            border: 1px solid rgba(50, 50, 130, 0.08);
         }
 
         .team-column {
@@ -42,18 +30,9 @@
         .team-card {
             position: relative;
             overflow: hidden;
-            background: linear-gradient(165deg, #ffffff 0%, #f8f9ff 55%, #fff5f5 100%);
-            border-radius: 28px;
-            padding: 28px 28px 26px;
             display: flex;
             flex-direction: column;
             text-align: justify;
-            border: 1px solid rgba(50, 50, 130, 0.1);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-            transition:
-                transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 0.3s ease,
-                border-color 0.3s ease;
         }
 
         .team-card::before {
@@ -65,12 +44,6 @@
             height: 5px;
             border-radius: 28px 28px 0 0;
             opacity: 0.95;
-        }
-
-        .team-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(50, 50, 130, 0.22);
-            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4);
         }
 
         .team-card--stretch {
@@ -322,10 +295,10 @@
 <body>
     <div id="site-navbar"></div>
     <header class="page-title-header">
-        <h1 style="margin: 0px" class="page-title-text">Meet Our Team</h1>
+        <h1 class="page-title-text">Meet Our Team</h1>
     </header>
     <br>
-    <div id="team-container" class="team-container">
+    <div id="team-container" class="container">
         <p class="team-bio">Loading team roster...</p>
     </div>
 

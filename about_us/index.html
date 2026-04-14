@@ -13,6 +13,227 @@
     <script defer src="/assets/hide_dev_banners.js"></script>
     <script defer src="/assets/footer.js"></script>
     <style>
+        .main-text.about-page {
+            width: min(1080px, calc(100% - 32px));
+            padding: 28px 0 56px;
+        }
+
+        .about-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            min-width: 0;
+        }
+
+        .about-stack>*,
+        .about-grid>* {
+            min-width: 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .about-hero {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(28px, 4vw, 40px);
+            background:
+                radial-gradient(circle at top right, rgba(255, 0, 0, 0.12), transparent 34%),
+                radial-gradient(circle at bottom left, rgba(50, 50, 130, 0.12), transparent 32%),
+                linear-gradient(160deg, #ffffff 0%, #f8f9ff 55%, #fff6f6 100%);
+        }
+
+        .about-kicker {
+            margin: 0 0 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgb(50, 50, 130);
+        }
+
+        .about-title {
+            margin: 0 0 16px;
+            font-size: clamp(2rem, 3vw, 2.9rem);
+            line-height: 1.05;
+            color: black;
+        }
+
+        .about-lead {
+            max-width: 760px;
+            margin: 18px 0 0;
+            font-size: 1.05rem;
+            line-height: 1.72;
+            color: black;
+        }
+
+        .about-chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .about-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(50, 50, 130, 0.12);
+            color: #222222;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .about-section-title,
+        .about-prize-card h3 {
+            margin: 0 0 12px;
+            line-height: 1.2;
+        }
+
+        .about-section-title {
+            font-size: 1.45rem;
+            color: #111111;
+            margin-bottom: 18px;
+        }
+
+        .about-body {
+            margin: 0;
+            line-height: 1.7;
+            color: black;
+        }
+
+        .about-body+.about-body {
+            margin-top: 12px;
+        }
+
+        .about-prize-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 18px;
+        }
+
+        .about-prize-card {
+            padding: 22px;
+            border-radius: 22px;
+            background: linear-gradient(180deg, rgba(248, 248, 248, 0.96), #ffffff);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .about-prize-card h3 {
+            font-size: 1.1rem;
+            color: rgb(30, 30, 110);
+        }
+
+        .about-prize-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .about-prize-list li {
+            margin-bottom: 8px;
+            line-height: 1.62;
+            color: black;
+        }
+
+        .about-prize-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-note {
+            margin: 18px 0 0;
+            line-height: 1.68;
+            color: black;
+        }
+
+        .about-note:last-child {
+            margin-top: 18px;
+        }
+
+        .about-list {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .about-list li {
+            margin-bottom: 10px;
+            line-height: 1.65;
+        }
+
+        .about-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-links {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .about-link-card {
+            display: block;
+            text-decoration: none;
+            padding: 18px 20px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(50, 50, 130, 0.12);
+            transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+        }
+
+        .about-link-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 0, 0, 0.24);
+            box-shadow: 0 10px 24px rgba(50, 50, 130, 0.14);
+        }
+
+        .about-link-label {
+            display: block;
+            margin: 0 0 6px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(0, 0, 0, 0.46);
+        }
+
+        .about-link-title {
+            display: block;
+            margin: 0 0 10px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: rgb(50, 50, 130);
+        }
+
+        .about-link-copy {
+            display: block;
+            line-height: 1.55;
+            color: #333333;
+        }
+
+        @media (max-width: 920px) {
+
+            .about-grid,
+            .about-prize-grid,
+            .about-links {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 820px) {
+            .hover-card {
+                padding: 24px 20px;
+            }
+
+            .about-hero {
+                padding: 26px 22px;
+            }
+        }
     </style>
 </head>
 
@@ -21,38 +242,74 @@
     <header class="page-title-header">
         <h1 style="margin: 0px" class="page-title-text">About Us</h1>
     </header>
-    
-    <br><br>
-    <div class="main">
-        <div class="textbox">
-            <h3> Our Mission </h3>
-            <p>We strive to empower the next generation of mathematicians.</p>
-            <p>As Lynbrook's flagship math competition, LMO brings together the brightest minds to compete against each
-                other.</p>
-        </div>
-    </div>
 
-    <br></br>
+    <div class="main-text">
+        <div class="container">
+            <div class="about-stack">
+                <section class="hover-card about-hero">
+                    <p class="about-kicker">Lynbrook Math Open</p>
+                    <h2 class="about-title">Lynbrook High School's annual math competition.</h2>
+                    <p class="about-body">
+                        LMO includes an individual round, a team round, interesting activities, and a full
+                        day on campus with other competitors.
+                    </p>
+                </section>
 
-    <div class="main">
-        <div class="textbox">
-            <h3> Competition Overview </h3>
-            <ul>
-                <li>In-person at LHS</li>
-                <li>Individual and Team Entries</li>
-                <li>Sponsored Prizes</li>
-            </ul>
-        </div>
-    </div>
+                <section class="hover-card">
+                    <h2 class="about-section-title">Prizes</h2>
+                    <div class="about-prize-grid">
+                        <article class="about-prize-card">
+                            <h3>Team Round</h3>
+                            <ul class="about-prize-list">
+                                <li>1st place: $100</li>
+                                <li>2nd place: $60</li>
+                                <li>3rd place: $20</li>
+                            </ul>
+                        </article>
+                        <article class="about-prize-card">
+                            <h3>Individual Round</h3>
+                            <ul class="about-prize-list">
+                                <li>1st place: $50</li>
+                                <li>2nd place: $25</li>
+                                <li>3rd place: $10</li>
+                                <li>4th place: $5</li>
+                                <li>5th place: $5</li>
+                            </ul>
+                        </article>
+                    </div>
+                    <p class="about-note">
+                        Four $25 AoPS coupons will be randomly raffled to participants. As of right now, all
+                        participants will get a share of $1000+ worth of free swag, graciously
+                        sponsored by <a class="boldlink" href="https://www.hudsonrivertrading.com/" target="_blank"
+                            rel="noopener noreferrer">Hudson River Trading</a>.
+                    </p>
+                    <p class="about-note">
+                        There will also be physical prizes, including medals, plaques, and certificates.
+                    </p>
+                </section>
 
-    <br></br>
-
-    <div class="main">
-        <div class="textbox">
-            <h3> Dates and Deadlines </h3>
-            <ul>
-                <li>04/25/2026 --- Competition Date and Winners Announced</li>
-            </ul>
+                <section class="hover-card">
+                    <h2 class="about-section-title">More information</h2>
+                    <div class="about-links">
+                        <a class="about-link-card" href="/our_team/">
+                            <span class="about-link-label">Team</span>
+                            <span class="about-link-title">Meet Our Team</span>
+                            <span class="about-link-copy">See the students organizing and running the
+                                competition.</span>
+                        </a>
+                        <a class="about-link-card" href="/competition_resources/">
+                            <span class="about-link-label">Resources</span>
+                            <span class="about-link-title">Competition Information</span>
+                            <span class="about-link-copy">Find the schedule, format details, and day-of
+                                logistics.</span>
+                        </a>
+                    </div>
+                    <p class="about-note">
+                        Questions can be sent to <a class="boldlink"
+                            href="mailto:lynbrookmath@gmail.com">lynbrookmath@gmail.com</a>.
+                    </p>
+                </section>
+            </div>
         </div>
     </div>
 
