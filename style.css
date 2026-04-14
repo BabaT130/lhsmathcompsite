@@ -1,3 +1,13 @@
+:root {
+    --body-copy-color: rgba(30, 30, 70, 0.88);
+    --body-copy-size: 0.9375rem;
+    --body-copy-line-height: 1.55;
+    --accent-red: #ff0000;
+    --accent-blue: rgb(50, 50, 130);
+    --accent-red-surface: linear-gradient(165deg, rgba(255, 0, 0, 0.07) 0%, rgba(255, 255, 255, 0.9) 55%);
+    --accent-blue-surface: linear-gradient(165deg, rgba(50, 50, 130, 0.09) 0%, rgba(255, 255, 255, 0.95) 60%);
+}
+
 html,
 body {
     height: 100%;
@@ -99,6 +109,7 @@ a.boldlink:hover {
     padding: 10px;
     padding-bottom: calc(10px + 2vw);
     padding-top: calc(10px + 2vw);
+    text-shadow: 1px 1px 4px #ff0000aa;
     width: 100%;
     box-sizing: border-box;
     background-color: rgba(0, 0, 0, 0.08);
@@ -116,7 +127,14 @@ h3 {
 }
 
 p {
-    color: #000000;
+    color: var(--body-copy-color);
+    font-size: var(--body-copy-size);
+    line-height: var(--body-copy-line-height);
+}
+
+li {
+    color: var(--body-copy-color);
+    line-height: var(--body-copy-line-height);
 }
 
 .section {
@@ -212,7 +230,7 @@ p {
     vertical-align: middle;
     margin: 0 auto;
     box-sizing: border-box;
-    padding: 5px 40px;
+    padding: 5px 15px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -254,6 +272,7 @@ p {
     margin-left: 5px;
     align-items: center;
     justify-content: center;
+    line-height: 1.2;
 }
 
 .nav-links a {
@@ -267,11 +286,12 @@ p {
     display: block;
     padding: 8px 12px;
     text-align: center;
+    line-height: 1.2;
     transition: color 0.3s, background-color 0.3s;
 }
 
 .nav-links a:hover {
-    background-color: #eeeeee;
+    background-color: #ccccff22;
     color: #00e1ff;
 }
 
@@ -329,8 +349,8 @@ p {
 
 .info-section p {
     margin: 0 0 14px;
-    font-size: 17px;
-    line-height: 1.7;
+    font-size: var(--body-copy-size);
+    line-height: var(--body-copy-line-height);
 }
 
 .info-section p:last-child {
@@ -344,7 +364,7 @@ p {
 
 .info-list li {
     margin-bottom: 12px;
-    line-height: 1.6;
+    line-height: var(--body-copy-line-height);
 }
 
 .info-list li:last-child {
@@ -402,7 +422,7 @@ p {
 @media (max-width: 560px) {
     .navbar {
         justify-content: space-between;
-        height: 150px;
+        height: 145px;
         padding-left: 10px;
         padding-right: 10px;
         width: 100%;
@@ -411,7 +431,7 @@ p {
     .nav-filler {
         padding: 0;
         margin: 0;
-        height: 150px;
+        height: 145px;
     }
 
     .nav-links {
@@ -426,7 +446,7 @@ p {
     }
 
     .logo img {
-        height: 120px;
+        height: 110px;
     }
 
     .logo {
@@ -434,7 +454,7 @@ p {
     }
 
     .info-section p {
-        font-size: 16px;
+        font-size: var(--body-copy-size);
     }
 
     .info-table th,
