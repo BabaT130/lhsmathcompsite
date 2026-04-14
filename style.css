@@ -129,9 +129,9 @@ p {
     /*flex-wrap: wrap;*/
     align-items: center;
     justify-content: center;
-    padding: 20px 5%;
-    margin-left: 10%;
-    margin-right: 10%;
+    padding: 1% 1%;
+    margin-left: 20%;
+    margin-right: 20%;
     flex: 1;
     /*align-items: stretch;*/
     border-radius: 50px;

@@ -574,6 +574,15 @@
       "roles": [
         "Web Development"
       ]
+    },
+    {
+      "name": "Alber Wu",
+      "grade": "10th Grade",
+      "roles": [
+        "Web Development",
+        "Public Relations"
+      ],
+      "bio": "Alber is a sophomore at LHS, and he likes to do math but also more importantly, he is a competitive fencer and travels around nationally and internationally pretty often. He also likes Brawl Stars and Minecraft."
     }
   ]
 }
