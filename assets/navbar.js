@@ -7,7 +7,7 @@
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
             <li><a href="/about_us/">About Us</a></li>
-            <li><a href="/competition_resources/">Resources</a></li>
+            <li><a href="/resources/">Resources</a></li>
             <li><a href="/sponsors/">Sponsors</a></li>
             <li><a href="/our_team/">Our Team</a></li>
             <li><a href="/faq/">FAQ</a></li>
