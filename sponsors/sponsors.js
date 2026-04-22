@@ -1,6 +1,10 @@
 (() => {
     let balanceFrame = 0;
 
+    function notifySponsorLayoutUpdated() {
+        document.dispatchEvent(new CustomEvent('sponsors:updated'));
+    }
+
     function createLogoCard(entry, isMono) {
         const link = document.createElement('a');
         link.className = `sponsor-logo-card hover-card${isMono ? ' sponsor-logo-card--mono' : ''}`;
@@ -130,6 +134,7 @@
         balanceFrame = requestAnimationFrame(() => {
             balanceFrame = 0;
             balanceLogoGrids();
+            notifySponsorLayoutUpdated();
         });
     }
 

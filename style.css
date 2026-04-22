@@ -436,6 +436,10 @@ a.boldlink:hover {
     width: 100%;
 }
 
+.home-sponsor-grid-shell {
+    width: 100%;
+}
+
 .sponsor-logo-row {
     display: flex;
     justify-content: center;
@@ -454,6 +458,23 @@ a.boldlink:hover {
     gap: 14px;
     text-align: center;
     text-decoration: none;
+}
+
+.home-sponsor-panel.home-sponsor-animate .sponsor-fly-in,
+.home-sponsor-panel.home-sponsor-animate .sponsor-logo-card {
+    opacity: 0;
+    transform: translate3d(0, 52px, 0);
+    transition:
+        opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--sponsor-reveal-delay, 0ms);
+    will-change: opacity, transform;
+}
+
+.home-sponsor-panel.home-sponsor-animate .sponsor-fly-in.is-visible,
+.home-sponsor-panel.home-sponsor-animate .sponsor-logo-card.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
 }
 
 .sponsor-logo-card--mono img {
@@ -523,6 +544,17 @@ a.boldlink:hover {
 .sponsor-card a:hover {
     color: var(--accent-red);
     border-bottom-color: rgba(217, 39, 46, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-sponsor-panel.home-sponsor-animate .sponsor-fly-in,
+    .home-sponsor-panel.home-sponsor-animate .sponsor-logo-card,
+    .home-sponsor-panel.home-sponsor-animate .sponsor-fly-in.is-visible,
+    .home-sponsor-panel.home-sponsor-animate .sponsor-logo-card.is-visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 .info-page {
