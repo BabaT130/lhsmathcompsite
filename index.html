@@ -262,22 +262,26 @@
         }
 
         .home-sponsor-copy {
+            width: 100%;
             max-width: 720px;
+            align-self: center;
+            text-align: center;
         }
 
         .home-sponsor-spacer {
-            height: 30vh;
+            height: 60vh;
         }
 
         .home-sponsor-panel .sponsor-logo-grid {
-            justify-items: center;
+            --sponsor-logo-card-width: 220px;
         }
 
         .home-sponsor-panel .sponsor-logo-card {
-            width: min(100%, 220px);
+            width: min(100%, var(--sponsor-logo-card-width));
         }
 
         @media (max-width: 980px) {
+
             .home-hero,
             .home-day-layout {
                 grid-template-columns: 1fr;
@@ -401,7 +405,8 @@
                             <span class="home-schedule-event">
                                 <strong>Activities and Problem Disputes</strong>
                                 <span>Go to assigned classrooms for clarifications or disputes on problems. During this
-                                    time, activities by various clubs will also be happening in select classrooms.</span>
+                                    time, activities by various clubs will also be happening in select
+                                    classrooms.</span>
                             </span>
                         </li>
                         <li>
@@ -458,19 +463,20 @@
 
         <div class="home-sponsor-spacer"></div>
 
-        <section id="sponsors-thanks" class="home-section home-sponsor-panel">
-                <div class="home-sponsor-heading">
-                    <p class="section-eyebrow">Sponsors</p>
-                    <h2 id="home-sponsors-title">Thank you to our sponsors.</h2>
+        <section id="sponsors-thanks" class="home-section home-sponsor-panel" style="justify-content: center;">
+            <div class="home-sponsor-heading" style="text-align: center;">
+                <!-- <p class="section-eyebrow">Sponsors</p> -->
+                <h2 id="home-sponsors-title">Thank you to our sponsors.</h2>
+            </div>
+            <p class="home-sponsor-copy" style="text-align: center;">
+                These organizations make LMO possible and help support the competition.
+            </p>
+            <div class="home-sponsor-grid-shell">
+                <div id="home-sponsors-grid" class="sponsor-logo-grid" data-sponsor-view="logo"
+                    data-sponsor-tone="mono">
+                    <p class="sponsor-loading">Loading sponsors...</p>
                 </div>
-                <p class="home-sponsor-copy">
-                    These organizations make LMO possible and help support the competition.
-                </p>
-                <div class="home-sponsor-grid-shell">
-                    <div id="home-sponsors-grid" class="sponsor-logo-grid" data-sponsor-view="logo" data-sponsor-tone="mono">
-                        <p class="sponsor-loading">Loading sponsors...</p>
-                    </div>
-                </div>
+            </div>
         </section>
     </main>
 
