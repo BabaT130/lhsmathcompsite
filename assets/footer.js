@@ -2,27 +2,32 @@
     const footerHtml = `
     <style>
         .lmo-footer {
-            margin-top: 40px;
-            padding: 20px 16px 22px;
-            background: rgba(0, 0, 0, 0.08);
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            width: min(var(--page-width), calc(100% - 32px));
+            margin: 0 auto 24px;
+            padding: 26px 28px;
+            border-radius: 28px;
+            border: 1px solid rgba(49, 55, 140, 0.08);
+            background:
+                radial-gradient(circle at top right, rgba(217, 39, 46, 0.08), transparent 30%),
+                radial-gradient(circle at bottom left, rgba(49, 55, 140, 0.1), transparent 28%),
+                rgba(255, 255, 255, 0.84);
+            box-shadow: 0 18px 40px rgba(30, 35, 80, 0.1);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
         }
 
         .lmo-footer-inner {
-            max-width: 1000px;
-            margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 16px;
-            box-sizing: border-box;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
         .lmo-footer-left {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 14px;
             min-width: 0;
         }
 
@@ -30,70 +35,68 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 54px;
-            height: 54px;
-            border-radius: 12px;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-            overflow: hidden;
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid rgba(49, 55, 140, 0.08);
         }
 
         .lmo-footer-logo img {
-            width: 45px;
-            height: 45px;
+            width: 42px;
+            height: 42px;
             display: block;
         }
 
         .lmo-footer-text {
             display: flex;
             flex-direction: column;
-            gap: 2px;
-            font-size: 13px;
-            color: #111111;
+            gap: 4px;
         }
 
         .lmo-footer-name {
-            font-weight: 700;
-            letter-spacing: 0.02em;
+            font-size: 1rem;
+            font-weight: 800;
+            color: #161b45;
         }
 
         .lmo-footer-hosted {
-            color: rgba(0, 0, 0, 0.7);
+            font-size: 0.92rem;
+            color: rgba(33, 38, 93, 0.76);
         }
 
         .lmo-footer-right {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-left: auto;
         }
 
         .lmo-footer-icon-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 52px;
-            height: 52px;
+            width: 50px;
+            height: 50px;
             border-radius: 999px;
-            border: 1px solid rgba(0, 0, 0, 0.15);
-            background: #ffffff;
-            color: #ff0000;
+            border: 1px solid rgba(49, 55, 140, 0.1);
+            background: rgba(255, 255, 255, 0.92);
+            color: var(--accent-red);
             text-decoration: none;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-            transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
         }
 
         .lmo-footer-icon-btn svg {
-            width: 32px;
-            height: 32px;
+            width: 24px;
+            height: 24px;
             display: block;
+            stroke: currentColor;
         }
 
         .lmo-footer-icon-btn:hover {
-            transform: scale(1.06);
-            background-color: rgba(255, 0, 0, 0.05);
-            border-color: rgba(255, 0, 0, 0.35);
-            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
+            transform: translateY(-2px);
+            color: var(--accent-blue);
+            border-color: rgba(217, 39, 46, 0.2);
+            box-shadow: 0 14px 28px rgba(49, 55, 140, 0.12);
         }
 
         .lmo-footer-sr-only {
@@ -108,13 +111,21 @@
             border: 0;
         }
 
-        @media (max-width: 520px) {
+        @media (max-width: 820px) {
+            .lmo-footer {
+                width: min(100%, calc(100% - 20px));
+                padding: 22px 20px;
+                border-radius: 24px;
+            }
+        }
+
+        @media (max-width: 560px) {
             .lmo-footer-inner {
-                justify-content: center;
+                align-items: flex-start;
             }
 
             .lmo-footer-right {
-                margin-left: 0;
+                width: 100%;
             }
         }
     </style>
@@ -122,38 +133,32 @@
     <footer class="lmo-footer">
         <div class="lmo-footer-inner">
             <div class="lmo-footer-left">
-                <div class="lmo-footer-logo">
-                    <a href="/"><img src="/assets/logo.svg" alt="LMO logo"></a>
-                </div>
+                <a class="lmo-footer-logo" href="/">
+                    <img src="/assets/logo.svg" alt="LMO logo">
+                </a>
                 <div class="lmo-footer-text">
-                    <a href="/" style="text-decoration: none; color: inherit;"><span class="lmo-footer-name">Lynbrook Math Open</span></a>
-                    <a href="/" style="text-decoration: none; color: inherit;"><span class="lmo-footer-hosted">Hosted by the Lynbrook Math Club</span></a>
+                    <a href="/" style="text-decoration: none;">
+                        <span class="lmo-footer-name">Lynbrook Math Open</span>
+                    </a>
+                    <span class="lmo-footer-hosted">Hosted by the Lynbrook Math Club</span>
                 </div>
             </div>
             <div class="lmo-footer-right">
                 <a class="lmo-footer-icon-btn" href="mailto:lynbrookmath@gmail.com">
                     <span class="lmo-footer-sr-only">Email</span>
-                    <svg viewBox="0 0 24 24" focusable="false">
-                        <path d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z" fill="none" stroke=#ff0000 stroke-width="1" stroke-linejoin="round"/>
-                        <path d="M4 7l8 6 8-6" fill="none" stroke=#ff0000 stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M4 7.5h16a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1z" stroke-width="1.5" stroke-linejoin="round"></path>
+                        <path d="M4 8.5 12 13.5 20 8.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
                 </a>
                 <a class="lmo-footer-icon-btn" href="https://discord.gg/wjQ6ejfmvm">
                     <span class="lmo-footer-sr-only">Discord</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                        <defs>
-                            <style>
-                            .a{fill:none;stroke:#ff0000;stroke-linecap:round;stroke-linejoin:round;}
-                            </style>
-                        </defs>
-
-                        <path class="a" d="M8.77,17.11A23.71,23.71,0,0,1,7.34,19C3.65,18.895,2.25,16.5,2.25,16.5A22.415,22.415,0,0,1,4.655,6.74A8.235,8.235,0,0,1,9.345,5l0.5,1.155"/>
-
-                        <path class="a" d="M8.925,11.335a1.74,1.74,0,0,0-1.685,1.95a1.69,1.69,0,0,0,1.655,1.61a1.765,1.765,0,0,0,1.715-1.95A1.725,1.725,0,0,0,8.925,11.335Z"/>
-
-                        <path class="a" d="M6.1,7.185a14.095,14.095,0,0,1,4.08-1.09A11.63,11.63,0,0,1,12,6a11.63,11.63,0,0,1,1.82,0.105a14.095,14.095,0,0,1,4.08,1.09m-3.735-1.045l0.5-1.155a8.235,8.235,0,0,1,4.69,1.755A22.415,22.415,0,0,1,21.75,16.5S20.35,18.895,16.66,19a23.71,23.71,0,0,1-1.43-1.905m3.23-1.45a14.815,14.815,0,0,1-4.32,1.745,10.625,10.625,0,0,1-2.14,0.2h0a10.625,10.625,0,0,1-2.14-0.2a14.815,14.815,0,0,1-4.32-1.745"/>
-
-                        <path class="a" d="M15.075,11.335a1.74,1.74,0,0,1,1.685,1.95a1.69,1.69,0,0,1-1.655,1.61a1.765,1.765,0,0,1-1.715-1.95A1.725,1.725,0,0,1,15.075,11.335Z"/>
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M8.3 7.2A13.8 13.8 0 0 1 12 6.7a13.8 13.8 0 0 1 3.7.5" stroke-width="1.5" stroke-linecap="round"></path>
+                        <path d="M8.2 17.1a18.8 18.8 0 0 1-1.3 1.5c-3-.3-4.4-2.4-4.4-2.4A18.7 18.7 0 0 1 4.7 7.3 8.7 8.7 0 0 1 9.1 5.6l.5 1.2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M15.8 17.1a18.8 18.8 0 0 0 1.3 1.5c3-.3 4.4-2.4 4.4-2.4a18.7 18.7 0 0 0-2.2-8.9 8.7 8.7 0 0 0-4.4-1.7l-.5 1.2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M9.1 11.4a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6ZM14.9 11.4a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6Z" stroke-width="1.5" stroke-linejoin="round"></path>
+                        <path d="M6.5 15.4a13.3 13.3 0 0 0 5.5 1.2 13.3 13.3 0 0 0 5.5-1.2" stroke-width="1.5" stroke-linecap="round"></path>
                     </svg>
                 </a>
             </div>
@@ -162,15 +167,17 @@
     `;
 
     function renderFooter() {
-        const mount = document.getElementById("site-footer");
-        if (!mount) return;
+        const mount = document.getElementById('site-footer');
+        if (!mount) {
+            return;
+        }
+
         mount.innerHTML = footerHtml;
     }
 
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", renderFooter);
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderFooter);
     } else {
         renderFooter();
     }
 })();
-

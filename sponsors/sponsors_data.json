@@ -1,0 +1,46 @@
+{
+  "entries": [
+    {
+      "name": "Art of Problem Solving",
+      "logo": "/assets/sponsors/aops.png",
+      "website": "https://www.aops.com/",
+      "displayUrl": "aops.com",
+      "tagline": "Community and curriculum built for problem solvers, supporting mathematical enrichment worldwide."
+    },
+    {
+      "name": "Hudson River Trading",
+      "logo": "/assets/sponsors/hrt.svg",
+      "website": "https://www.hudsonrivertrading.com/",
+      "displayUrl": "hudsonrivertrading.com",
+      "tagline": "Algorithmic trading firm committed to open markets and investing in technical education and research."
+    },
+    {
+      "name": "Citadel",
+      "logo": "/assets/sponsors/citadel.svg",
+      "website": "https://www.citadel.com/",
+      "displayUrl": "citadel.com",
+      "tagline": "Quantitative finance and trading work centered on analytical thinking, strong execution, and solving hard problems."
+    },
+    {
+      "name": "Jane Street",
+      "logo": "/assets/sponsors/janestreet.svg",
+      "website": "https://www.janestreet.com/",
+      "displayUrl": "janestreet.com",
+      "tagline": "A quantitative trading firm known for its deep investment in mathematics, computer science, and problem-solving communities."
+    },
+    {
+      "name": "Awesome Math",
+      "logo": "/assets/sponsors/awesomemath.png",
+      "website": "https://www.awesomemath.org/",
+      "displayUrl": "awesomemath.org",
+      "tagline": "Math enrichment programs for students in grades 2-12, with online classes and summer experiences."
+    },
+    {
+      "name": "Interview Cake",
+      "logo": "/assets/sponsors/interviewcake.svg",
+      "website": "https://www.interviewcake.com/",
+      "displayUrl": "interviewcake.com",
+      "tagline": "Technical interview preparation built to teach durable problem-solving patterns for software engineering."
+    }
+  ]
+}

@@ -64,7 +64,7 @@
     function init() {
         setTimeout(function () {
             document.querySelectorAll(".dev-banner").forEach(hideBanner);
-        }, 5000);
+        }, 2000000);
 
         function dismissFromCloseEl(closeEl) {
             const banner = closeEl.closest(".dev-banner");

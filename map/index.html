@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Map</title>
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <script defer src="/assets/navbar.js"></script>
+    <script defer src="/assets/hide_dev_banners.js"></script>
+    <script defer src="/assets/footer.js"></script>
+    <style>
+        .map-page {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding-top: 18px;
+        }
+
+        .map-page-header h1 {
+            font-size: 3.4rem;
+            line-height: 0.98;
+            text-shadow: none;
+        }
+
+        .map-page-header p {
+            max-width: 760px;
+            margin: 12px 0 0;
+        }
+
+        .map-shell {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .map-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .map-viewer {
+            padding: 18px;
+        }
+
+        .map-viewer img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 24px;
+            border: 1px solid rgba(49, 55, 140, 0.1);
+            background: #ffffff;
+        }
+
+        @media (max-width: 820px) {
+            .map-page-header h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .map-page-header h1 {
+                font-size: 2.25rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="site-navbar"></div>
+
+    <main class="main-text map-page">
+        <section class="map-page-header">
+            <p class="section-eyebrow">Map</p>
+            <h1>Campus map.</h1>
+            <p>Use the annotated campus map below for navigation about Lynbrook High School.</p>
+        </section>
+
+        <div class="container map-shell">
+            <div class="map-toolbar">
+                <a class="button-link button-link--primary" href="/assets/annotated_map.png" target="_blank" rel="noopener noreferrer">Open image in a new tab</a>
+                <a class="button-link button-link--secondary" href="/resources/">Back to resources</a>
+            </div>
+
+            <section class="map-viewer hover-card">
+                <img src="/assets/annotated_map.png" alt="Annotated map of Lynbrook High School for the Lynbrook Math Open">
+            </section>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+</body>
+
+</html>

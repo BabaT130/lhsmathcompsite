@@ -14,6 +14,30 @@
     <script defer src="/assets/footer.js"></script>
     <script defer src="./faq.js"></script>
     <style>
+        .faq-page {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            padding-top: 18px;
+        }
+
+        .faq-page-header h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            line-height: 0.98;
+            text-shadow: none;
+        }
+
+        .faq-page-header p {
+            max-width: 760px;
+            margin: 12px 0 0;
+        }
+
+        .faq-shell {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
         .faq-list {
             width: 100%;
             display: flex;
@@ -130,16 +154,18 @@
 
 <body>
     <div id="site-navbar"></div>
-    <header class="page-title-header">
-        <h1 style="margin: 0px" class="page-title-text">FAQ</h1>
-    </header>
-    <div class="main-text">
-        <div class="container">
+    <main class="main-text faq-page">
+        <section class="faq-page-header">
+            <p class="section-eyebrow">FAQ</p>
+            <h1>Frequently asked questions.</h1>
+            <p>Quick answers about eligibility, registration, food, materials, and where everything happens.</p>
+        </section>
+        <div class="container faq-shell">
             <div id="faq-list" class="faq-list">
                 <p class="faq-loading">Loading FAQ...</p>
             </div>
         </div>
-    </div>
+    </main>
     <div id="site-footer"></div>
 </body>
 

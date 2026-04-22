@@ -4,12 +4,10 @@ var FAQ_ANIMATION_MS = 320;
 function createFaqIcon() {
     var icon = document.createElement('span');
     icon.className = 'faq-icon';
-    icon.setAttribute('aria-hidden', 'true');
 
     var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', '0 0 16 16');
     svg.setAttribute('fill', 'none');
-    svg.setAttribute('aria-hidden', 'true');
 
     var vertical = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     vertical.setAttribute('d', 'M8 2.5V13.5');
@@ -41,9 +39,15 @@ function createFaqItem(entry) {
     var answerInner = document.createElement('div');
     answerInner.className = 'faq-answer-inner';
 
-    var body = document.createElement('p');
-    body.textContent = entry.answer || '';
-    answerInner.appendChild(body);
+    if (entry.answerHtml) {
+        var htmlBody = document.createElement('p');
+        htmlBody.innerHTML = entry.answerHtml;
+        answerInner.appendChild(htmlBody);
+    } else {
+        var body = document.createElement('p');
+        body.textContent = entry.answer || '';
+        answerInner.appendChild(body);
+    }
     answer.appendChild(answerInner);
 
     item.appendChild(summary);

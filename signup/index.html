@@ -13,17 +13,61 @@
     <script defer src="/assets/hide_dev_banners.js"></script>
     <script defer src="/assets/footer.js"></script>
     <style>
+        .signup-page {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding-top: 18px;
+        }
+
+        .signup-page-header h1 {
+            font-size: 3.4rem;
+            line-height: 0.98;
+            text-shadow: none;
+        }
+
+        .signup-page-header p {
+            max-width: 760px;
+            margin: 12px 0 0;
+        }
+
+        .signup-shell {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
         .form-card {
             background: #ffffff;
-            border-radius: 20px;
+            border-radius: 28px;
             width: 100%;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(49, 55, 140, 0.08);
+            box-shadow: 0 18px 38px rgba(30, 35, 80, 0.12);
+        }
+
+        .form-card-header {
+            padding: 16px 18px;
+            border-bottom: 1px solid rgba(49, 55, 140, 0.08);
+            background: rgba(248, 249, 255, 0.9);
+        }
+
+        .form-card-header h3 {
+            margin: 0;
+            font-size: 1rem;
+            color: #171c44;
+            text-shadow: none;
         }
 
         .form-embed {
             width: 100%;
-            min-height: 650px;
+            min-height: 880px;
             border: 0;
             display: block;
         }
@@ -35,39 +79,69 @@
             line-height: var(--body-copy-line-height);
             color: var(--body-copy-color);
         }
+
+        @media (max-width: 980px) {
+            .signup-page-header h1 {
+                font-size: 2.8rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-embed {
+                min-height: 720px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .signup-page-header h1 {
+                font-size: 2.25rem;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div id="site-navbar"></div>
-    <header class="page-title-header">
-        <h1 style="margin: 0px" class="page-title-text">Sign Up</h1>
-    </header>
-
-    <div class="main-text">
-        <div class="form-card">
-            <iframe class="form-embed" title="LMO Sign Up Form"
-                src="https://docs.google.com/forms/d/e/1FAIpQLSeCsqvyCrZYCLghh4OBHFldDI5Cteh-e4RP8GoqnzSsPIC90g/viewform?embedded=true"
-                loading="lazy">
-            </iframe>
-        </div><br>
-        <div class="form-card">
-            <iframe class="form-embed" title="LMO Team Sign Up Form"
-                src="https://docs.google.com/forms/d/e/1FAIpQLSdH9-eCa5d31s90MqW6-1U_ARTBHiUAUnh92Lwbal26ceq7wQ/viewform?embedded=true"
-                loading="lazy">
-            </iframe>
+    <main class="main-text signup-page">
+        <section class="signup-page-header">
+            <p class="section-eyebrow">Sign Up</p>
+            <h1>Registration.</h1>
+            <p>Use the forms below for general registration and team registration.</p>
+        </section>
+        <div class="signup-shell">
+        <div class="form-grid">
+            <section class="form-card">
+                <div class="form-card-header">
+                    <h3>Individual Registration</h3>
+                </div>
+                <iframe class="form-embed" title="LMO Sign Up Form"
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSeCsqvyCrZYCLghh4OBHFldDI5Cteh-e4RP8GoqnzSsPIC90g/viewform?embedded=true"
+                    loading="lazy">
+                </iframe>
+            </section>
+            <section class="form-card">
+                <div class="form-card-header">
+                    <h3>Team Registration</h3>
+                </div>
+                <iframe class="form-embed" title="LMO Team Sign Up Form"
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSdH9-eCa5d31s90MqW6-1U_ARTBHiUAUnh92Lwbal26ceq7wQ/viewform?embedded=true"
+                    loading="lazy">
+                </iframe>
+            </section>
         </div>
-        <!--fallback-->
         <div class="fallback">
             Or alternatively, go to the
             <a class="boldlink"
                 href="https://docs.google.com/forms/d/e/1FAIpQLSeCsqvyCrZYCLghh4OBHFldDI5Cteh-e4RP8GoqnzSsPIC90g/viewform"
-                target="_blank" rel="noopener noreferrer">individual participation sign-up form</a> or the <a
+                target="_blank" rel="noopener noreferrer">general participation sign-up form</a> or the <a
                 class="boldlink"
-                href="https://docs.google.com/forms/d/e/1FAIpQLSeCsqvyCrZYCLghh4OBHFldDI5Cteh-e4RP8GoqnzSsPIC90g/viewform"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdH9-eCa5d31s90MqW6-1U_ARTBHiUAUnh92Lwbal26ceq7wQ/viewform"
                 target="_blank" rel="noopener noreferrer">team sign-up form</a>.
         </div>
-    </div>
+        </div>
+    </main>
     <div id="site-footer"></div>
 </body>
 

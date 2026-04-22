@@ -7,259 +7,473 @@
     <title>Lynbrook Math Open</title>
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <script defer src="/assets/navbar.js"></script>
     <script defer src="/assets/hide_dev_banners.js"></script>
     <script defer src="/assets/footer.js"></script>
+    <script defer src="/sponsors/sponsors.js"></script>
+    <script defer src="/home.js"></script>
     <style>
-        .home-section {
-            text-align: justify;
-            background: rgba(0, 0, 0, 0.08);
-            border-radius: 20px;
-            max-width: 100%;
-            margin: 28px auto 0;
-            padding: 32px 28px;
-            box-sizing: border-box;
-            box-shadow: 0 8px 10px rgba(50, 50, 130, 0.4);
+        .home-scroll-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 18% 18%, rgba(255, 190, 190, 0.82), transparent 30%),
+                radial-gradient(circle at 84% 12%, rgba(176, 191, 255, 0.84), transparent 34%),
+                linear-gradient(180deg, #fff3ec 0%, #ebefff 54%, #e0e8ff 100%);
+            opacity: 0;
+            transition: opacity 0.32s ease;
         }
 
-        .home-section-card {
-            background-color: #ffffff;
-            border-radius: 32px;
-            padding: 0;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-            box-sizing: border-box;
+        body.home-sponsor-mode .home-scroll-backdrop {
+            opacity: 1;
         }
 
-        .home-section-block {
-            padding: 24px 36px;
+        .home-main {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(42px, 7vw, 84px);
+            padding-top: 28px;
         }
 
-        .home-intro-tagline {
-            margin: 0 0 18px;
-            font-size: 15px;
-            font-weight: 600;
-            color: rgb(50, 50, 130);
-            letter-spacing: 0.02em;
+        .home-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.82fr);
+            gap: 24px;
+            align-items: stretch;
         }
 
-        .home-event-grid {
+        .home-hero-copy {
+            padding: clamp(12px, 3vw, 24px) 0;
+        }
+
+        .home-kicker {
+            margin: 0 0 16px;
+            font-size: 0.88rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+        }
+
+        .home-title {
+            max-width: 10ch;
+            font-size: 4.4rem;
+            line-height: 0.96;
+            margin: 0;
+            color: #15193e;
+            text-shadow: none;
+        }
+
+        .home-lead {
+            max-width: 640px;
+            margin: 22px 0 0;
+            font-size: clamp(1.02rem, 1.4vw, 1.12rem);
+            line-height: 1.72;
+        }
+
+        .home-cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .home-hero-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            justify-content: space-between;
+            padding: 26px;
+            background:
+                radial-gradient(circle at top right, rgba(217, 39, 46, 0.12), transparent 32%),
+                radial-gradient(circle at bottom left, rgba(49, 55, 140, 0.14), transparent 32%),
+                linear-gradient(160deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 255, 0.96) 62%, rgba(255, 246, 246, 0.96) 100%);
+        }
+
+        .home-mark {
+            width: min(100%, 320px);
+            height: auto;
+            display: block;
+        }
+
+        .home-meta-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 0;
-            margin: 0;
+            gap: 14px;
         }
 
-        @media (min-width: 700px) {
-            .home-event-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+        .home-meta-card {
+            padding: 18px 18px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.74);
+            border: 1px solid rgba(49, 55, 140, 0.08);
         }
 
-        .home-event {
-            margin: 0;
-            padding: 24px 36px;
-            box-sizing: border-box;
-        }
-
-        .home-event--when {
-            background: var(--accent-red-surface);
-            border-top: 1px solid rgba(0, 0, 0, 0.06);
-        }
-
-        .home-event--where {
-            background: var(--accent-blue-surface);
-            border-top: 1px solid rgba(0, 0, 0, 0.06);
-        }
-
-        @media (min-width: 700px) {
-            .home-event--where {
-                border-top: 1px solid rgba(0, 0, 0, 0.06);
-                border-left: 1px solid rgba(0, 0, 0, 0.08);
-            }
-        }
-
-        .home-event-kicker {
-            margin: 0 0 12px;
-            font-size: 11px;
+        .home-meta-label {
+            margin: 0 0 8px;
+            font-size: 0.78rem;
             font-weight: 800;
             letter-spacing: 0.14em;
             text-transform: uppercase;
-            color: rgba(0, 0, 0, 0.45);
+            color: rgba(33, 38, 93, 0.56);
         }
 
-        .home-event-day {
-            margin: 0 0 4px;
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--accent-red);
-        }
-
-        .home-event-date-line {
-            margin: 0 0 14px;
-            font-size: clamp(1.35rem, 3.2vw, 1.65rem);
+        .home-meta-value {
+            margin: 0;
+            font-size: 1.1rem;
             font-weight: 800;
-            line-height: 1.15;
-            color: #111;
+            line-height: 1.35;
+            color: #131737;
         }
 
-        .home-event-time-row {
+        .home-meta-subtle {
+            margin: 8px 0 0;
+            font-size: 0.95rem;
+        }
+
+        .home-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .home-section h2 {
+            font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+            color: #14193d;
+            text-shadow: none;
+        }
+
+        .home-faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .home-faq-card {
+            height: 100%;
+        }
+
+        .home-faq-card h3 {
+            margin: 0 0 12px;
+            font-size: 1.15rem;
+            color: var(--accent-red);
+            text-shadow: none;
+        }
+
+        .home-faq-card p {
+            margin: 0;
+        }
+
+        .home-day-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+            gap: 20px;
+        }
+
+        .home-schedule-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .home-schedule-card h3,
+        .home-map-card h3 {
+            margin: 0 0 14px;
+        }
+
+        .home-schedule-card li {
+            display: grid;
+            grid-template-columns: minmax(92px, 124px) 1fr;
+            gap: 16px;
+            align-items: start;
+            margin: 0;
+        }
+
+        .home-schedule-time {
+            font-size: 0.9rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            color: var(--accent-blue);
+        }
+
+        .home-schedule-event {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .home-schedule-event strong {
+            color: #111531;
+            font-size: 1rem;
+        }
+
+        .home-map-card {
+            background: var(--accent-blue-surface);
+        }
+
+        .home-map-card h3,
+        .home-sponsor-panel h2 {
+            text-shadow: none;
+        }
+
+        .home-map-card p,
+        .home-sponsor-panel p {
+            margin: 0;
+        }
+
+        .home-map-card .section-eyebrow,
+        .home-schedule-card .section-eyebrow {
+            margin-bottom: 12px;
+        }
+
+        .home-map-actions {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
-            gap: 8px 14px;
-            font-size: 15px;
-            color: #333;
+            gap: 12px;
+            margin-top: 20px;
         }
 
-        .home-event-time-block {
-            display: inline-flex;
+        .home-map-embed {
+            margin-top: 18px;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid rgba(49, 55, 140, 0.12);
+            box-shadow: 0 10px 24px rgba(31, 36, 86, 0.12);
+        }
+
+        .home-map-embed iframe {
+            width: 100%;
+            height: 280px;
+            border: 0;
+            display: block;
+        }
+
+        .home-sponsor-panel {
+            display: flex;
             flex-direction: column;
-            gap: 2px;
-            padding: 8px 12px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.75);
-            border: 1px solid rgba(255, 0, 0, 0.18);
+            gap: 18px;
         }
 
-        .home-event-time-label {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--accent-blue);
+        .home-sponsor-copy {
+            max-width: 720px;
         }
 
-        .home-event-time {
-            margin: 0;
-            font-weight: 700;
-            font-variant-numeric: tabular-nums;
+        .home-sponsor-spacer {
+            height: 50vh;
         }
 
-        .home-event-time-sep {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 2px;
-            color: var(--accent-red);
-            -webkit-user-select: none;
-            user-select: none;
+        .home-sponsor-panel .sponsor-logo-grid {
+            justify-items: center;
         }
 
-        .home-event-time-sep svg {
-            width: 18px;
-            height: 18px;
-            display: block;
+        .home-sponsor-panel .sponsor-logo-card {
+            width: min(100%, 220px);
         }
 
-        .home-event-place {
-            margin: 0 0 12px;
-            font-size: 1.2rem;
-            font-weight: 800;
-            line-height: 1.25;
-            color: var(--accent-red);
+        @media (max-width: 980px) {
+            .home-hero,
+            .home-day-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .home-faq-grid {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            }
         }
 
-        .home-event-address {
-            margin: 0;
-            font-size: 15px;
-            display: block;
-            margin-top: 6px;
-            font-weight: 600;
-            color: var(--accent-blue);
-            font-style: normal;
-        }
+        @media (max-width: 640px) {
+            .home-scroll-backdrop {
+                background:
+                    radial-gradient(circle at 14% 8%, rgba(255, 196, 196, 0.58), transparent 24%),
+                    radial-gradient(circle at 88% 10%, rgba(188, 200, 255, 0.6), transparent 26%),
+                    linear-gradient(180deg, #fff8f3 0%, #eff2ff 56%, #e5ecff 100%);
+            }
 
-        .home-section-text {
-            font-size: var(--body-copy-size);
-            line-height: var(--body-copy-line-height);
-            color: var(--body-copy-color);
-            margin: 0px 0px;
-        }
+            .home-main {
+                gap: 42px;
+            }
 
-        .home-cta {
-            font-size: var(--body-copy-size);
-            line-height: var(--body-copy-line-height);
-            color: var(--body-copy-color);
-            margin: 18px 0px;
-            padding: 16px 20px;
-            border-radius: 14px;
-            background: #f8f8f8;
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            .home-title {
+                font-size: 3.1rem;
+            }
+
+            .home-schedule-card li {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
         }
     </style>
 </head>
 
 <body>
+    <div class="home-scroll-backdrop"></div>
     <div id="site-navbar"></div>
-    <div class="main-text">
-        <style>
-            img.banner {
-                height: auto;
-                display: block;
-                margin: 0 auto;
-                width: 100%;
-            }
-        </style>
-        <img class='banner simple-card' src='assets/banner.svg' title="Lynbrook Math Open">
 
-        <div class="home-section">
-            <div class="home-section-card">
-                <div class="home-section-block">
-                    <h2>Welcome to LMO 2026</h2>
-                    <p class="home-intro-tagline">Lynbrook Math Open</p>
-                    <p class="home-section-text">The Lynbrook Math Open (LMO) is an annual math competition run
-                        by high school students,
-                        with an Individual Round and a Team Round. We invite students across FUHSD to join us for the
-                        2026 competition. Registration is required for everyone who plans to compete.</p>
-                </div>
-                <div class="home-event-grid">
-                    <article class="home-event home-event--when">
-                        <p id="home-when-heading" class="home-event-kicker">When</p>
-                        <p class="home-event-day">Saturday</p>
-                        <p class="home-event-date-line">
-                            <time datetime="2026-04-25">April 25, 2026</time>
-                        </p>
-                        <div class="home-event-time-row">
-                            <div class="home-event-time-block">
-                                <span class="home-event-time-label">Starts</span>
-                                <p class="home-event-time"><time datetime="2026-04-25T08:00">8:00 AM</time></p>
-                            </div>
-                            <span class="home-event-time-sep">
-                                <svg viewBox="0 0 24 24" focusable="false">
-                                    <path d="M7 4l9 8-9 8" fill="none" stroke="currentColor" stroke-width="2.2"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
-                            <div class="home-event-time-block">
-                                <span class="home-event-time-label">Ends</span>
-                                <p class="home-event-time"><time datetime="2026-04-25T16:00">3:00 PM</time></p>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="home-event home-event--where">
-                        <p id="home-where-heading" class="home-event-kicker">Where</p>
-                        <p class="home-event-place">Lynbrook High School</p>
-                        <address class="home-event-address">
-                            1280 Johnson Ave<br>San Jose, CA 95129
-                        </address>
-                    </article>
-                </div>
-
-                <div class="home-section-block">
-                    <p class="home-section-text">
-                        The contest has two rounds: twelve problems in the individual round and fifteen in the team
-                        round. Difficulty spans roughly early AMC 10 through mid-late AIME.
-                    </p>
-                    <p class="home-cta">
-                        Interested? Head over to our <a class="boldlink" href="/signup/">sign-up page</a>.
-                    </p>
+    <main class="main-text home-main">
+        <section class="home-hero">
+            <div class="home-hero-copy">
+                <p class="home-kicker">Lynbrook Math Open 2026</p>
+                <h1 id="home-title" class="home-title">Lynbrook Math Open 2026</h1>
+                <p class="home-lead">
+                    Lynbrook Math Open is Lynbrook High School's annual student-run competition: 12 individual
+                    problems, a 15-question team round, lunch, activities, and awards.
+                </p>
+                <div class="home-cta-row">
+                    <a class="button-link button-link--primary" href="/signup/">Register for LMO</a>
+                    <a class="button-link button-link--secondary" href="/resources/">View resources</a>
+                    <a class="button-link button-link--secondary" href="/map/">Open the campus map</a>
                 </div>
             </div>
-        </div>
-    </div>
+
+            <aside class="home-hero-panel hover-card">
+                <img class="home-mark" src="/assets/banner.svg" alt="Lynbrook Math Open">
+                <div class="home-meta-grid">
+                    <section class="home-meta-card">
+                        <p class="home-meta-label">When</p>
+                        <p class="home-meta-value">Saturday, April 25, 2026</p>
+                        <p class="home-meta-subtle">8:00 AM to 3:00 PM</p>
+                    </section>
+                    <section class="home-meta-card">
+                        <p class="home-meta-label">Where</p>
+                        <p class="home-meta-value">Lynbrook High School</p>
+                        <p class="home-meta-subtle">1280 Johnson Ave, San Jose, CA 95129</p>
+                    </section>
+                </div>
+            </aside>
+        </section>
+
+        <section class="home-section">
+            <div>
+                <p class="section-eyebrow">Competition Day</p>
+                <h2 id="home-day-title">General Information.</h2>
+            </div>
+            <div class="home-day-layout">
+                <article class="home-schedule-card hover-card">
+                    <h3>Day outline.</h3>
+                    <ul>
+                        <li>
+                            <span class="home-schedule-time">8:00 to 8:45</span>
+                            <span class="home-schedule-event">
+                                <strong>Competitor Check-In</strong>
+                                <span>Arrive in the theater lobby or reception area to confirm registration, receive
+                                    room assignments, and confirm waivers are submitted properly.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="home-schedule-time">9:00 to 9:15</span>
+                            <span class="home-schedule-event">
+                                <strong>Opening Ceremony</strong>
+                                <span>Brief introduction and overview of the competition in the Theater.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="home-schedule-time">9:30 to 10:45</span>
+                            <span class="home-schedule-event">
+                                <strong>Individual Round</strong>
+                                <span>The individual competitors then go to their assigned rooms to work on the
+                                    individual round, with proctors supervising.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="home-schedule-time">11:00 to 12:30</span>
+                            <span class="home-schedule-event">
+                                <strong>Team Round</strong>
+                                <span>Teams of 4 to 6 go to assigned classrooms and work on the team round, with
+                                    proctors supervising.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="home-schedule-time">12:30 to 1:00</span>
+                            <span class="home-schedule-event">
+                                <strong>Lunch Break</strong>
+                                <span>Teams eat their own lunch anywhere on campus.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="home-schedule-time">1:00 to 2:15</span>
+                            <span class="home-schedule-event">
+                                <strong>Activities and Problem Disputes</strong>
+                                <span>Go to assigned classrooms for clarifications or disputes on problems. During this
+                                    time, activities by various clubs will also be happening in select classrooms.</span>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="home-schedule-time">2:30 to 3:00</span>
+                            <span class="home-schedule-event">
+                                <strong>Closing Ceremony and Awards</strong>
+                                <span>Recap of the tournament, recognition for volunteers and organizers, and awards
+                                    for top students and teams in the Theater.</span>
+                            </span>
+                        </li>
+                    </ul>
+                </article>
+
+                <article class="home-map-card hover-card">
+                    <p class="section-eyebrow">Map</p>
+                    <h3>Campus directions.</h3>
+                    <p>
+                        If you want the annotated campus map before arriving, or need to check where to go once you are
+                        on campus, use the map page here.
+                    </p>
+                    <div class="home-map-embed">
+                        <iframe title="Google Maps view of Lynbrook High School"
+                            src="https://www.google.com/maps?q=Lynbrook%20High%20School%201280%20Johnson%20Ave%20San%20Jose%20CA%2095129&z=16&output=embed"
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="home-map-actions">
+                        <a class="button-link button-link--primary" href="/map/">View campus map</a>
+                        <a class="button-link button-link--secondary" href="/resources/">See resources</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="home-section">
+            <div>
+                <p class="section-eyebrow">Quick Answers</p>
+                <h2 id="home-faq-title">Common questions.</h2>
+            </div>
+            <div class="home-faq-grid">
+                <article class="home-faq-card hover-card">
+                    <h3>Food</h3>
+                    <p>We plan to provide pizza and boba for competitors during the day.</p>
+                </article>
+                <article class="home-faq-card hover-card">
+                    <h3>Teams</h3>
+                    <p>Teams are expected to have four to six students, and competitors should take part in both
+                        rounds.</p>
+                </article>
+            </div>
+            <div>
+                <a class="button-link button-link--secondary" href="/faq/">Read the full FAQ</a>
+            </div>
+        </section>
+
+        <div class="home-sponsor-spacer"></div>
+
+        <section id="sponsors-thanks" class="home-section home-sponsor-panel">
+                <div class="home-sponsor-heading">
+                    <p class="section-eyebrow">Sponsors</p>
+                    <h2 id="home-sponsors-title">Thank you to our sponsors.</h2>
+                </div>
+                <p class="home-sponsor-copy">
+                    These organizations make LMO possible and help support the competition.
+                </p>
+                <div class="home-sponsor-grid-shell">
+                    <div id="home-sponsors-grid" class="sponsor-logo-grid" data-sponsor-view="logo" data-sponsor-tone="mono">
+                        <p class="sponsor-loading">Loading sponsors...</p>
+                    </div>
+                </div>
+        </section>
+    </main>
+
     <div id="site-footer"></div>
 </body>
 

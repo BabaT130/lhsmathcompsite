@@ -5,12 +5,24 @@
       "answer": "Yes. Lynbrook Math Open is completely free for competitors."
     },
     {
-      "question": "Is the competition free?",
-      "answer": "Yes. Lynbrook Math Open is completely free for competitors."
+      "question": "Who can participate?",
+      "answer": "LMO is open to students from across FUHSD. The contest difficulty is roughly early AMC 10 through mid-to-late AIME."
     },
     {
-      "question": "Is the sky really blue?",
-      "answer": "Unfortunately, no."
+      "question": "How do registration and team assignment work?",
+      "answer": "Competitors are automatically assigned to both the individual and team rounds. If your group already has a team in mind, one member should submit the team registration form; otherwise, a team will be assigned."
+    },
+    {
+      "question": "Will food be provided?",
+      "answer": "Yes. Pizza and boba will be provided for competitors."
+    },
+    {
+      "question": "What materials are allowed?",
+      "answer": "You may use pens or pencils, erasers, a compass, and a ruler or straightedge. You may not use protractors, graph paper, or calculators."
+    },
+    {
+      "question": "What are the event locations?",
+      "answerHtml": "Check-in is in the theater lobby or reception area, the opening ceremony and awards are in the Theater, and testing rooms or classrooms will be assigned on the day of the event. For the full layout, use the <a class=\"boldlink\" href=\"/map/\">Map page</a> or the <a class=\"boldlink\" href=\"/resources/\">Resources page</a>."
     }
   ]
 }

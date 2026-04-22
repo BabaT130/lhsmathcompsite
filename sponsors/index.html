@@ -7,200 +7,60 @@
     <title>Sponsors</title>
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
     <script defer src="/assets/navbar.js"></script>
     <script defer src="/assets/hide_dev_banners.js"></script>
     <script defer src="/assets/footer.js"></script>
+    <script defer src="/sponsors/sponsors.js"></script>
     <style>
-        #sponsors-container {
+        .sponsors-page {
+            display: flex;
             flex-direction: column;
-            gap: clamp(24px, 3vw, 32px);
+            gap: 24px;
+            padding-top: 18px;
         }
 
-        .sponsor-card {
-            display: grid;
-            grid-template-columns: 1fr;
+        .sponsors-page-header h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            line-height: 0.98;
+            text-shadow: none;
+        }
+
+        .sponsors-page-header p {
+            max-width: 760px;
+            margin: 12px 0 0;
+        }
+
+        .sponsors-shell {
+            display: flex;
+            flex-direction: column;
             gap: 18px;
-            align-items: center;
-            text-align: justify;
         }
 
-        @media (min-width: 640px) {
-            .sponsor-card {
-                grid-template-columns: minmax(140px, 220px) minmax(0, 1fr);
-            }
-        }
-
-        .sponsor-card-media {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-        }
-
-        .sponsor-card-media img {
-            width: 100%;
-            max-width: 220px;
-            height: auto;
-            display: block;
-            object-fit: contain;
-        }
-
-        .sponsor-card-body {
+        .sponsors-page-grid {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
-            min-width: 0;
-        }
-
-        .sponsor-card h3 {
-            color: #ff0000;
-            font-size: 1.35rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-            margin: 0;
-        }
-
-        .sponsor-tagline {
-            color: rgba(30, 30, 70, 0.88);
-            font-size: 0.9375rem;
-            line-height: 1.55;
-            margin: 0;
-        }
-
-        .sponsor-card a {
-            color: rgb(50, 50, 130);
-            font-size: 15px;
-            font-weight: 700;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(50, 50, 130, 0.35);
-            padding-bottom: 2px;
-            transition: color 0.2s ease, border-bottom-color 0.2s ease;
-        }
-
-        .sponsor-card a:hover {
-            color: #ff0000;
-            border-bottom-color: rgba(255, 0, 0, 0.45);
-        }
-
-        .sponsors-intro {
-            font-size: var(--body-copy-size);
-            line-height: var(--body-copy-line-height);
-            color: var(--body-copy-color);
-            margin: 0 0 8px;
-            text-align: justify;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .sponsor-card {
-                transition: none;
-            }
-
-            .sponsor-card:hover {
-                transform: none;
-            }
+            gap: 20px;
         }
     </style>
 </head>
 
 <body>
     <div id="site-navbar"></div>
-    <header class="page-title-header">
-        <h1 style="margin: 0px" class="page-title-text">Sponsors</h1>
-    </header>
-    <br>
-    <div class="main-text">
-        <p class="sponsors-intro hover-card">
-            LMO is grateful to the organizations below for supporting our competition and helping us bring
-            challenging, engaging mathematics to students across the Bay Area.
-        </p>
-        <div id="sponsors-container" class="container">
-            <div class="sponsor-card hover-card">
-                <div class="sponsor-card-media">
-                    <img src="/assets/sponsors/aops.png" alt="AoPS logo">
-                </div>
-                <div class="sponsor-card-body">
-                    <h3>Art of Problem Solving</h3>
-                    <p class="sponsor-tagline">
-                        Community and curriculum built for problem solvers, supporting mathematical enrichment
-                        worldwide.
-                    </p>
-                    <a href="https://www.aops.com/" target="_blank" rel="noopener noreferrer">aops.com</a>
-                </div>
-            </div>
-            <div class="sponsor-card hover-card">
-                <div class="sponsor-card-media">
-                    <img src="/assets/sponsors/hrt.svg" alt="Hudson River Trading logo">
-                </div>
-                <div class="sponsor-card-body">
-                    <h3>Hudson River Trading</h3>
-                    <p class="sponsor-tagline">
-                        Algorithmic trading firm committed to open markets and investing in technical education and
-                        research.
-                    </p>
-                    <a href="https://www.hudsonrivertrading.com/" target="_blank"
-                        rel="noopener noreferrer">hudsonrivertrading.com</a>
-                </div>
-            </div>
-            <div class="sponsor-card hover-card">
-                <div class="sponsor-card-media">
-                    <img src="/assets/sponsors/citadel.svg" alt="Citadel logo">
-                </div>
-                <div class="sponsor-card-body">
-                    <h3>Citadel</h3>
-                    <p class="sponsor-tagline">
-                        Major finance and trading work built around quantitative thinking, analytical skill, and
-                        solving hard problems under pressure.
-                    </p>
-                    <a href="https://www.citadel.com/" target="_blank" rel="noopener noreferrer">citadel.com</a>
-                </div>
-            </div>
-            <div class="sponsor-card hover-card">
-                <div class="sponsor-card-media">
-                    <img src="/assets/sponsors/janestreet.svg" alt="Jane Street logo">
-                </div>
-                <div class="sponsor-card-body">
-                    <h3>Jane Street</h3>
-                    <p class="sponsor-tagline">
-                        A quantitative trading firm known for its deep investment in mathematics, computer science,
-                        and
-                        problem-solving communities around the world.
-                    </p>
-                    <a href="https://www.janestreet.com/" target="_blank" rel="noopener noreferrer">janestreet.com</a>
-                </div>
-            </div>
-            <div class="sponsor-card hover-card">
-                <div class="sponsor-card-media">
-                    <img src="/assets/sponsors/awesomemath.png" alt="Awesome Math logo">
-                </div>
-                <div class="sponsor-card-body">
-                    <h3>Awesome Math</h3>
-                    <p class="sponsor-tagline">
-                        A math enrichment program for students in grades 2-12, offering online classes and summer
-                        programs.
-                    </p>
-                    <a href="https://www.awesomemath.org/" target="_blank" rel="noopener noreferrer">awesomemath.org</a>
-                </div>
-            </div>
-            <div class="sponsor-card hover-card">
-                <div class="sponsor-card-media">
-                    <img src="/assets/sponsors/interviewcake.svg" alt="Interview Cake logo">
-                </div>
-                <div class="sponsor-card-body">
-                    <h3>Interview Cake</h3>
-                    <p class="sponsor-tagline">
-                        A technical interview preparation resource built to help engineers learn
-                        problem-solving patterns and succeed in software engineering interviews.
-                    </p>
-                    <a href="https://www.interviewcake.com/" target="_blank"
-                        rel="noopener noreferrer">interviewcake.com</a>
-                </div>
+    <main class="main-text sponsors-page">
+        <section class="sponsors-page-header">
+            <p class="section-eyebrow">Sponsors</p>
+            <h1>Thank you to our sponsors for supporting LMO.</h1>
+            <p>Lynbrook Math Open is grateful for the generous support from the following organizations.</p>
+        </section>
+        <div class="container sponsors-shell">
+            <div id="sponsors-page-grid" class="sponsors-page-grid" data-sponsor-view="detail">
+                <p class="sponsor-loading">Loading sponsors...</p>
             </div>
         </div>
-    </div>
+    </main>
+
     <div id="site-footer"></div>
 </body>
 
