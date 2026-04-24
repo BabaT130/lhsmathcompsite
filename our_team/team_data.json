@@ -300,7 +300,9 @@
         "Emotional Damage",
         "Problem Writing"
       ],
-      "images": [],
+      "images": [
+        "/assets/team_introductions/ryanw.png"
+      ],
       "bio": "Despite being named \"iliketrains\", one does not enjoy trains more than the average person."
     },
     {
@@ -310,6 +312,15 @@
         "Lead",
         "Problem Writing"
       ]
+    },
+    {
+      "name": "Ethan Han",
+      "grade": "9th Grade",
+      "roles": [
+        "Problem Writing",
+        "Operations"
+      ],
+      "bio": "Ethan is a freshman at Lynbrook. Aside from math, he enjoys playing rhythm games, swimming, running, thinking about shower thoughts, strategizing and overthinking a simple conversation, and sleeping."
     },
     {
       "name": "Andrew Liu",
@@ -512,14 +523,6 @@
       "grade": "10th Grade",
       "roles": [
         "Public Relations",
-        "Operations"
-      ]
-    },
-    {
-      "name": "Ethan Han",
-      "grade": "9th Grade",
-      "roles": [
-        "Problem Writing",
         "Operations"
       ]
     },

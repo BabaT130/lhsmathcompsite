@@ -31,6 +31,17 @@
         return [];
     }
 
+    function isFullyInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+
+        return rect.top >= 0
+            && rect.left >= 0
+            && rect.bottom <= viewportHeight
+            && rect.right <= viewportWidth;
+    }
+
     function applySponsorVisibility(section) {
         const isVisible = section.dataset.sponsorVisible === 'true';
         requestAnimationFrame(() => {
@@ -43,7 +54,8 @@
             });
 
             getSponsorPreviousTargets(section).forEach((item) => {
-                item.classList.toggle('is-hidden', isVisible);
+                const shouldHide = isVisible && !isFullyInViewport(item);
+                item.classList.toggle('is-hidden', shouldHide);
             });
         });
     }

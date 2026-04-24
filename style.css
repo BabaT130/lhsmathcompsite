@@ -320,7 +320,7 @@ a.boldlink:hover {
     gap: 18px;
     border-radius: 26px;
     border: 1px solid rgba(49, 55, 140, 0.1);
-    background: rgba(255, 255, 255, 0.76);
+    background: rgba(255, 255, 255, 0.7);
     -webkit-backdrop-filter: blur(16px);
     backdrop-filter: blur(16px);
     box-shadow: 0 18px 36px rgba(31, 36, 86, 0.14);
@@ -428,7 +428,7 @@ a.boldlink:hover {
 }
 
 .sponsor-logo-grid {
-    --sponsor-logo-card-width: 170px;
+    --sponsor-logo-card-width: 180px;
     --sponsor-logo-gap: 18px;
     display: flex;
     flex-direction: column;
@@ -451,7 +451,7 @@ a.boldlink:hover {
 .sponsor-logo-card {
     width: min(100%, var(--sponsor-logo-card-width));
     flex: 0 1 var(--sponsor-logo-card-width);
-    min-height: 170px;
+    min-height: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -459,6 +459,38 @@ a.boldlink:hover {
     gap: 14px;
     text-align: center;
     text-decoration: none;
+}
+
+@media (max-width: 520px) {
+    .sponsor-logo-grid {
+        --sponsor-logo-gap: 12px;
+        --sponsor-logo-card-width: min(180px, calc((100% - var(--sponsor-logo-gap)) / 2));
+    }
+
+    .sponsor-logo-card {
+        min-height: 120px;
+        padding-inline: 8px;
+    }
+
+    .sponsor-logo {
+        width: min(100%, 140px);
+        max-height: 60px;
+    }
+}
+
+@media (max-width: 350px) {
+    .sponsor-logo-grid {
+        --sponsor-logo-card-width: 100%;
+    }
+
+    .sponsor-logo-card {
+        width: 100%;
+        flex-basis: 100%;
+    }
+
+    .sponsor-logo {
+        width: min(100%, 180px);
+    }
 }
 
 .home-sponsor-panel.home-sponsor-animate .sponsor-fly-in,

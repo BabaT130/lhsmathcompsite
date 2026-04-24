@@ -78,13 +78,18 @@
     }
 
     function getSponsorCardWidth(target, cards) {
+        const firstCard = cards[0];
+        const measuredWidth = firstCard?.getBoundingClientRect().width;
+        if (Number.isFinite(measuredWidth) && measuredWidth > 0) {
+            return measuredWidth;
+        }
+
         const styles = getComputedStyle(target);
         const configuredWidth = Number.parseFloat(styles.getPropertyValue('--sponsor-logo-card-width'));
         if (Number.isFinite(configuredWidth) && configuredWidth > 0) {
             return configuredWidth;
         }
 
-        const firstCard = cards[0];
         return firstCard ? firstCard.getBoundingClientRect().width : 170;
     }
 
@@ -102,7 +107,10 @@
         const styles = getComputedStyle(target);
         const gap = Number.parseFloat(styles.columnGap || styles.gap) || 18;
         const cardWidth = getSponsorCardWidth(target, cards);
-        const maxPerRow = Math.max(1, Math.floor((targetWidth + gap) / (cardWidth + gap)));
+        const wantsTwoColumns =
+            window.matchMedia('(min-width: 351px) and (max-width: 520px)').matches && cards.length > 1;
+        const minPerRow = wantsTwoColumns ? 2 : 1;
+        const maxPerRow = Math.max(minPerRow, Math.floor((targetWidth + gap) / (cardWidth + gap)));
         const rowSizes = getBalancedRowSizes(cards.length, maxPerRow);
         const fragment = document.createDocumentFragment();
 
