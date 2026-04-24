@@ -169,7 +169,6 @@ function createImageStack(member) {
     stack.appendChild(secondaryImage);
 
     if (images.length > 1) {
-        stack.title = 'Click to cycle through photos';
         var currentIndex = 0;
         var activeLayer = primaryImage;
         var inactiveLayer = secondaryImage;

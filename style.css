@@ -1,6 +1,6 @@
 :root {
     --page-width: 1130px;
-    --page-shell-width: 1045px;
+    --page-shell-width: 900px;
     --nav-height: 78px;
     --body-copy-color: rgba(28, 31, 68, 0.84);
     --body-copy-size: 0.98rem;
@@ -254,7 +254,7 @@ a.boldlink:hover {
 }
 
 .dev-banner {
-    width: min(var(--page-width), calc(100% - 44px));
+    width: min(calc(var(--page-width) * 2 / 3 + var(--page-shell-width) / 3), calc(100% - 44px));
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -428,8 +428,9 @@ a.boldlink:hover {
 }
 
 .sponsor-logo-grid {
-    --sponsor-logo-card-width: 180px;
-    --sponsor-logo-gap: 18px;
+    --sponsor-logo-card-width: 200px;
+    --sponsor-logo-layout-card-width: 200px;
+    --sponsor-logo-gap: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -464,6 +465,7 @@ a.boldlink:hover {
 @media (max-width: 520px) {
     .sponsor-logo-grid {
         --sponsor-logo-gap: 12px;
+        --sponsor-logo-layout-card-width: 180px;
         --sponsor-logo-card-width: min(180px, calc((100% - var(--sponsor-logo-gap)) / 2));
     }
 
@@ -478,8 +480,9 @@ a.boldlink:hover {
     }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 360px) {
     .sponsor-logo-grid {
+        --sponsor-logo-layout-card-width: 100%;
         --sponsor-logo-card-width: 100%;
     }
 

@@ -1,5 +1,6 @@
 (() => {
     let balanceFrame = 0;
+    const sponsorMinTwoColumnViewportWidth = 361;
 
     function notifySponsorLayoutUpdated() {
         document.dispatchEvent(new CustomEvent('sponsors:updated'));
@@ -77,20 +78,22 @@
         });
     }
 
-    function getSponsorCardWidth(target, cards) {
-        const firstCard = cards[0];
-        const measuredWidth = firstCard?.getBoundingClientRect().width;
-        if (Number.isFinite(measuredWidth) && measuredWidth > 0) {
-            return measuredWidth;
+    function getSponsorLayoutCardWidth(target, targetWidth) {
+        const styles = getComputedStyle(target);
+        const configuredWidthValue = styles.getPropertyValue('--sponsor-logo-layout-card-width').trim();
+        if (configuredWidthValue.endsWith('%')) {
+            const configuredPercent = Number.parseFloat(configuredWidthValue);
+            if (Number.isFinite(configuredPercent) && configuredPercent > 0) {
+                return targetWidth * (configuredPercent / 100);
+            }
         }
 
-        const styles = getComputedStyle(target);
-        const configuredWidth = Number.parseFloat(styles.getPropertyValue('--sponsor-logo-card-width'));
+        const configuredWidth = Number.parseFloat(configuredWidthValue);
         if (Number.isFinite(configuredWidth) && configuredWidth > 0) {
             return configuredWidth;
         }
 
-        return firstCard ? firstCard.getBoundingClientRect().width : 170;
+        return 180;
     }
 
     function balanceLogoGrid(target) {
@@ -106,10 +109,9 @@
         const targetWidth = target.clientWidth || target.getBoundingClientRect().width;
         const styles = getComputedStyle(target);
         const gap = Number.parseFloat(styles.columnGap || styles.gap) || 18;
-        const cardWidth = getSponsorCardWidth(target, cards);
-        const wantsTwoColumns =
-            window.matchMedia('(min-width: 351px) and (max-width: 520px)').matches && cards.length > 1;
-        const minPerRow = wantsTwoColumns ? 2 : 1;
+        const viewportWidth = window.innerWidth || document.documentElement.clientWidth || 0;
+        const cardWidth = getSponsorLayoutCardWidth(target, targetWidth);
+        const minPerRow = viewportWidth >= sponsorMinTwoColumnViewportWidth && cards.length > 1 ? 2 : 1;
         const maxPerRow = Math.max(minPerRow, Math.floor((targetWidth + gap) / (cardWidth + gap)));
         const rowSizes = getBalancedRowSizes(cards.length, maxPerRow);
         const fragment = document.createDocumentFragment();
