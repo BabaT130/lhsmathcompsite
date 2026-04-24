@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "banners": [
+    {
+      "enabled": true,
+      "animationMs": 550,
+      "hideAfterMs": 0,
+      "hideAfterDate": "2026-04-25T08:45:00-07:00",
+      "color": "#d9272e",
+      "messageHtml": "<strong>Update:</strong> The starting time of the event has been changed from 8:00 AM to 8:30 AM.",
+      "messageText": ""
+    },
+    {
+      "enabled": true,
+      "animationMs": 550,
+      "hideAfterMs": 200000,
+      "hideAfterDate": 0,
+      "color": "#d99927",
+      "messageHtml": "<strong>Notice:</strong> Website in progress, some pages may be incomplete, and information is subject to change."
+    }
+  ]
+}

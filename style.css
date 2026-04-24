@@ -261,18 +261,20 @@ a.boldlink:hover {
     flex-wrap: nowrap;
     gap: 10px;
     padding: 8px 18px 14px;
-    color: rgba(143, 24, 30, 0.92);
     font-size: 0.86rem;
+}
+
+.dev-banner-stack .dev-banner {
+    padding-top: 2px;
+    padding-bottom: 4px;
 }
 
 .dev-banner-text {
     min-width: 0;
     flex: 1 1 auto;
     padding: 11px 14px;
-    border: 1px solid rgba(217, 39, 46, 0.24);
+    border: 1px solid;
     border-radius: 16px;
-    background: linear-gradient(180deg, rgba(255, 240, 240, 0.95), rgba(255, 248, 248, 0.95));
-    box-shadow: inset 2px 0 0 rgba(217, 39, 46, 0.38);
     font-weight: 600;
     font-size: clamp(0.68rem, 0.76rem + 0.14vw, 0.86rem);
     white-space: normal;
