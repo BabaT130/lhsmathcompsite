@@ -315,19 +315,26 @@
         const bannerConfigs = getBannerConfigs(config);
         stack.innerHTML = "";
 
+        let renderedBannerCount = 0;
+
         bannerConfigs.forEach(function (bannerConfig) {
             if (bannerConfig.enabled === false) {
+                return;
+            }
+
+            const hideAfterDateMs = parseOptionalDateMs(bannerConfig.hideAfterDate);
+            if (hideAfterDateMs > 0 && hideAfterDateMs <= Date.now()) {
                 return;
             }
 
             const banner = template.cloneNode(true);
             const durationMs = parsePositiveNumber(bannerConfig.animationMs) || DEFAULT_CONFIG.animationMs;
             const hideAfterMs = parsePositiveNumber(bannerConfig.hideAfterMs);
-            const hideAfterDateMs = parseOptionalDateMs(bannerConfig.hideAfterDate);
 
             applyConfigToBanner(banner, bannerConfig);
             banner.setAttribute("data-animation-ms", String(durationMs));
             stack.appendChild(banner);
+            renderedBannerCount += 1;
 
             if (hideAfterMs > 0) {
                 setTimeout(function () {
@@ -339,6 +346,10 @@
                 scheduleHideAtDate(banner, hideAfterDateMs, durationMs);
             }
         });
+
+        if (renderedBannerCount === 0) {
+            stack.style.display = "none";
+        }
 
         function dismissFromCloseEl(closeEl) {
             const banner = closeEl.closest(".dev-banner");
