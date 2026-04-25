@@ -104,18 +104,26 @@ function getHighestRoleGroup(member, groupMap) {
     return bestGroup;
 }
 
+function hasMemberImages(member) {
+    return Array.isArray(member.images) && member.images.some(Boolean);
+}
+
 function sortMembers(members, groupMap) {
     return members
         .map(function (member, index) {
             return {
                 member: member,
                 originalIndex: index,
-                highestGroup: getHighestRoleGroup(member, groupMap)
+                highestGroup: getHighestRoleGroup(member, groupMap),
+                hasImages: hasMemberImages(member)
             };
         })
         .sort(function (a, b) {
             if (a.highestGroup !== b.highestGroup) {
                 return a.highestGroup - b.highestGroup;
+            }
+            if (a.hasImages !== b.hasImages) {
+                return a.hasImages ? -1 : 1;
             }
             return a.originalIndex - b.originalIndex;
         })
