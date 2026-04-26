@@ -108,6 +108,13 @@ function hasMemberImages(member) {
     return Array.isArray(member.images) && member.images.some(Boolean);
 }
 
+function getMemberBioLength(member) {
+    if (typeof member.bio !== 'string') {
+        return 0;
+    }
+    return member.bio.trim().length;
+}
+
 function sortMembers(members, groupMap) {
     return members
         .map(function (member, index) {
@@ -115,7 +122,8 @@ function sortMembers(members, groupMap) {
                 member: member,
                 originalIndex: index,
                 highestGroup: getHighestRoleGroup(member, groupMap),
-                hasImages: hasMemberImages(member)
+                hasImages: hasMemberImages(member),
+                bioLength: getMemberBioLength(member)
             };
         })
         .sort(function (a, b) {
@@ -124,6 +132,9 @@ function sortMembers(members, groupMap) {
             }
             if (a.hasImages !== b.hasImages) {
                 return a.hasImages ? -1 : 1;
+            }
+            if (a.bioLength !== b.bioLength) {
+                return b.bioLength - a.bioLength;
             }
             return a.originalIndex - b.originalIndex;
         })
