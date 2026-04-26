@@ -2,9 +2,10 @@
     const links = [
         { href: '/', label: 'Home' },
         { href: '/about_us/', label: 'About' },
-        { href: '/resources/', label: 'Resources' },
+        { href: '/logistics/', label: 'Logistics' },
         { href: '/sponsors/', label: 'Sponsors' },
         { href: '/our_team/', label: 'Team' },
+        { href: '/resources/', label: 'Resources' },
         { href: '/faq/', label: 'FAQ' },
         { href: '/signup/', label: 'Sign Up', className: 'signup' }
     ];

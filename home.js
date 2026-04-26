@@ -1,5 +1,5 @@
 (() => {
-    const sponsorRevealIntroSelector = '.home-sponsor-heading, .home-sponsor-copy';
+    const sponsorRevealIntroSelector = '.sponsor-heading, .sponsor-copy';
     const sponsorRevealVisibleViewportRatio = 0.5;
     const sponsorRevealBottomTolerance = 2;
     const sponsorCardSelector = '.sponsor-logo-card';
@@ -84,10 +84,12 @@
     function setSponsorsVisible(section, isVisible) {
         const nextState = isVisible ? 'true' : 'false';
         if (section.dataset.sponsorVisible === nextState) {
+            document.body.classList.toggle('sponsor-mode', isVisible);
             return;
         }
 
         section.dataset.sponsorVisible = nextState;
+        document.body.classList.toggle('sponsor-mode', isVisible);
         applySponsorVisibility(section);
     }
 
@@ -122,7 +124,7 @@
             return;
         }
 
-        sponsorsSection.classList.add('home-sponsor-animate');
+        sponsorsSection.classList.add('sponsor-animate');
         sponsorsSection.dataset.sponsorVisible = 'false';
         syncSponsorReveal(sponsorsSection);
         document.addEventListener('sponsors:updated', () => {
@@ -138,17 +140,6 @@
         });
 
         scheduleSponsorRevealUpdate(sponsorsSection);
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                const isActive = entry.isIntersecting && entry.intersectionRatio >= 0.18;
-                document.body.classList.toggle('home-sponsor-mode', isActive);
-            });
-        }, {
-            threshold: [0, 0.18, 0.45]
-        });
-
-        observer.observe(sponsorsSection);
     }
 
     if (document.readyState === 'loading') {

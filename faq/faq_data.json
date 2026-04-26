@@ -22,7 +22,7 @@
     },
     {
       "question": "What are the event locations?",
-      "answerHtml": "Check-in is in the theater lobby or reception area, the opening ceremony and awards are in the Theater, and testing rooms or classrooms will be assigned on the day of the event. For the full layout, use the <a class=\"boldlink\" href=\"/map/\">map page</a> or the <a class=\"boldlink\" href=\"/resources/\">resources page</a>."
+      "answerHtml": "Check-in is in the theater lobby or reception area, the opening ceremony and awards are in the Theater, and testing rooms or classrooms will be assigned on the day of the event. For the full layout, use the <a class=\"boldlink\" href=\"/map/\">map page</a> or the <a class=\"boldlink\" href=\"/logistics/\">logistics page</a>."
     }
   ]
 }
