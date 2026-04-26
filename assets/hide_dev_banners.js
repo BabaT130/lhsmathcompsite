@@ -5,17 +5,17 @@
         animationMs: 550,
         hideAfterMs: 0,
         hideAfterDate: 0,
-        color: "#d9272e"
+        color: "#2e9ad9"
     };
 
     const DEFAULT_BANNER = {
         enabled: true,
-        messageHtml: "<strong>Notice:</strong> Website in progress, some pages may be incomplete, and information is subject to change.",
         messageText: "",
         color: DEFAULT_CONFIG.color,
         animationMs: DEFAULT_CONFIG.animationMs,
         hideAfterMs: DEFAULT_CONFIG.hideAfterMs,
-        hideAfterDate: DEFAULT_CONFIG.hideAfterDate
+        hideAfterDate: DEFAULT_CONFIG.hideAfterDate,
+        pages: null
     };
 
     function parsePositiveNumber(value) {
@@ -44,11 +44,48 @@
         return ms;
     }
 
+    function normalizePath(path) {
+        if (typeof path !== "string") {
+            return "";
+        }
+
+        const trimmed = path.trim();
+        if (!trimmed) {
+            return "";
+        }
+
+        const withoutQuery = trimmed.split(/[?#]/, 1)[0] || "";
+        if (!withoutQuery) {
+            return "";
+        }
+
+        const withLeadingSlash = withoutQuery.startsWith("/") ? withoutQuery : "/" + withoutQuery;
+        if (withLeadingSlash === "/") {
+            return "/";
+        }
+
+        return withLeadingSlash.replace(/\/+$/, "");
+    }
+
+    function matchesCurrentPage(pages) {
+        if (pages === null || pages === undefined || pages === "") {
+            return true;
+        }
+
+        const currentPath = normalizePath(window.location.pathname);
+        const pageList = Array.isArray(pages) ? pages : [pages];
+
+        return pageList.some(function (page) {
+            return normalizePath(page) === currentPath;
+        });
+    }
+
     function hideBanner(el, durationMs) {
         if (getComputedStyle(el).display === "none") return;
 
         const cs = getComputedStyle(el);
         const h = el.offsetHeight;
+        const easing = "cubic-bezier(0.22, 1, 0.36, 1)";
         el.style.overflow = "hidden";
         el.style.maxHeight = h + "px";
         el.style.paddingTop = cs.paddingTop;
@@ -56,14 +93,25 @@
         el.style.borderBottomWidth = cs.borderBottomWidth;
         el.style.borderBottomStyle = cs.borderBottomStyle;
         el.style.borderBottomColor = cs.borderBottomColor;
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0)";
+        el.style.filter = "blur(0)";
+        el.style.transformOrigin = "center top";
+        el.style.willChange = "max-height, padding-top, padding-bottom, border-bottom-width, opacity, transform, filter";
         el.style.transition =
-            "max-height " + durationMs / 1000 + "s ease, padding-top " +
+            "max-height " + durationMs / 1000 + "s " + easing + ", padding-top " +
             durationMs / 1000 +
-            "s ease, padding-bottom " +
+            "s " + easing + ", padding-bottom " +
             durationMs / 1000 +
-            "s ease, border-bottom-width " +
+            "s " + easing + ", border-bottom-width " +
             durationMs / 1000 +
-            "s ease";
+            "s " + easing + ", opacity " +
+            durationMs / 1000 +
+            "s ease-out, transform " +
+            durationMs / 1000 +
+            "s " + easing + ", filter " +
+            durationMs / 1000 +
+            "s ease-out";
 
         void el.offsetHeight;
 
@@ -73,6 +121,9 @@
                 el.style.paddingTop = "0";
                 el.style.paddingBottom = "0";
                 el.style.borderBottomWidth = "0";
+                el.style.opacity = "0";
+                el.style.transform = "translateY(-20px)";
+                el.style.filter = "blur(3px)";
             });
         });
 
@@ -92,6 +143,11 @@
             el.style.borderBottomWidth = "";
             el.style.borderBottomStyle = "";
             el.style.borderBottomColor = "";
+            el.style.opacity = "";
+            el.style.transform = "";
+            el.style.filter = "";
+            el.style.transformOrigin = "";
+            el.style.willChange = "";
         }
 
         function onEnd(e) {
@@ -319,6 +375,10 @@
 
         bannerConfigs.forEach(function (bannerConfig) {
             if (bannerConfig.enabled === false) {
+                return;
+            }
+
+            if (!matchesCurrentPage(bannerConfig.pages)) {
                 return;
             }
 

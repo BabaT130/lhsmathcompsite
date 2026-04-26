@@ -2,21 +2,26 @@
   "enabled": true,
   "banners": [
     {
-      "enabled": true,
-      "animationMs": 550,
-      "hideAfterMs": 0,
       "hideAfterDate": "2026-04-25T08:45:00-07:00",
       "color": "#d9272e",
-      "messageHtml": "<strong>Update:</strong> The starting time of the event has been changed from 8:00 AM to 8:30 AM.",
-      "messageText": ""
+      "messageHtml": "<strong>Update:</strong> The starting time of the event has been changed from 8:00 AM to 8:30 AM."
     },
     {
-      "enabled": true,
-      "animationMs": 550,
       "hideAfterMs": 200000,
-      "hideAfterDate": 0,
       "color": "#d99927",
       "messageHtml": "<strong>Notice:</strong> Website in progress, some pages may be incomplete, and information is subject to change."
+    },
+    {
+      "animationMs": 550,
+      "messageText": "Thank you to everyone who participated in the event!"
+    },
+    {
+      "hideAfterMs": 200000,
+      "color": "#d9272e",
+      "pages": [
+        "/signup"
+      ],
+      "messageHtml": "<strong>Notice:</strong> Registration for the 2026 LMO is now closed."
     }
   ]
 }
