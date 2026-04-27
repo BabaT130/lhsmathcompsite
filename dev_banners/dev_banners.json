@@ -7,11 +7,9 @@
       "messageHtml": "<strong>Update:</strong> The starting time of the event has been changed from 8:00 AM to 8:30 AM."
     },
     {
-      "animationMs": 550,
       "messageText": "Thank you to everyone who participated in the event!"
     },
     {
-      "hideAfterMs": 200000,
       "color": "#d9272e",
       "messageHtml": "<strong>Notice:</strong> Registration for the 2026 LMO is now closed."
     },

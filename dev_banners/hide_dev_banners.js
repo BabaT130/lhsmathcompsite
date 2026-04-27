@@ -1,5 +1,5 @@
 (() => {
-    const CONFIG_URL = "/assets/dev_banners.json";
+    const CONFIG_URL = "/dev_banners/dev_banners.json";
     const DEFAULT_CONFIG = {
         enabled: true,
         animationMs: 550,

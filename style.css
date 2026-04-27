@@ -932,7 +932,7 @@ a.boldlink:hover {
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 780px) {
     body {
         background:
             radial-gradient(circle at 10% 0%, rgba(217, 39, 46, 0.08), transparent 24%),
