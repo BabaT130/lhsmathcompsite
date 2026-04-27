@@ -86,6 +86,8 @@
         const cs = getComputedStyle(el);
         const h = el.offsetHeight;
         const easing = "cubic-bezier(0.22, 1, 0.36, 1)";
+        const fadeMs = Math.max(180, Math.round(durationMs * 0.58));
+        const collapseMs = Math.max(180, durationMs - fadeMs);
         el.style.overflow = "hidden";
         el.style.maxHeight = h + "px";
         el.style.paddingTop = cs.paddingTop;
@@ -99,41 +101,29 @@
         el.style.transformOrigin = "center top";
         el.style.willChange = "max-height, padding-top, padding-bottom, border-bottom-width, opacity, transform, filter";
         el.style.transition =
-            "max-height " + durationMs / 1000 + "s " + easing + ", padding-top " +
-            durationMs / 1000 +
-            "s " + easing + ", padding-bottom " +
-            durationMs / 1000 +
-            "s " + easing + ", border-bottom-width " +
-            durationMs / 1000 +
-            "s " + easing + ", opacity " +
-            durationMs / 1000 +
-            "s ease-out, transform " +
-            durationMs / 1000 +
+            "opacity " + fadeMs / 1000 + "s ease-out, transform " +
+            fadeMs / 1000 +
             "s " + easing + ", filter " +
-            durationMs / 1000 +
+            fadeMs / 1000 +
             "s ease-out";
 
         void el.offsetHeight;
 
         requestAnimationFrame(function () {
-            requestAnimationFrame(function () {
-                el.style.maxHeight = "0";
-                el.style.paddingTop = "0";
-                el.style.paddingBottom = "0";
-                el.style.borderBottomWidth = "0";
-                el.style.opacity = "0";
-                el.style.transform = "translateY(-20px)";
-                el.style.filter = "blur(3px)";
-            });
+            el.style.opacity = "0";
+            el.style.transform = "translateY(-14px)";
+            el.style.filter = "blur(2px)";
         });
 
         let finished = false;
         let fallback = null;
+        let collapseTimer = null;
         function cleanup() {
             if (finished) return;
             finished = true;
             el.removeEventListener("transitionend", onEnd);
             if (fallback !== null) clearTimeout(fallback);
+            if (collapseTimer !== null) clearTimeout(collapseTimer);
             el.style.display = "none";
             el.style.transition = "";
             el.style.maxHeight = "";
@@ -150,6 +140,27 @@
             el.style.willChange = "";
         }
 
+        function collapseBanner() {
+            if (finished) return;
+            el.style.transition =
+                "max-height " + collapseMs / 1000 + "s " + easing + ", padding-top " +
+                collapseMs / 1000 +
+                "s " + easing + ", padding-bottom " +
+                collapseMs / 1000 +
+                "s " + easing + ", border-bottom-width " +
+                collapseMs / 1000 +
+                "s " + easing;
+
+            void el.offsetHeight;
+
+            requestAnimationFrame(function () {
+                el.style.maxHeight = "0";
+                el.style.paddingTop = "0";
+                el.style.paddingBottom = "0";
+                el.style.borderBottomWidth = "0";
+            });
+        }
+
         function onEnd(e) {
             if (e.target !== el) return;
             if (e.propertyName !== "max-height") return;
@@ -157,7 +168,8 @@
         }
 
         el.addEventListener("transitionend", onEnd);
-        fallback = setTimeout(cleanup, durationMs + 80);
+        collapseTimer = setTimeout(collapseBanner, fadeMs);
+        fallback = setTimeout(cleanup, fadeMs + collapseMs + 120);
     }
 
     function clamp(value, min, max) {

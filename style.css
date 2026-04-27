@@ -29,6 +29,7 @@ body {
 
 html {
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
 }
 
 body {
@@ -332,10 +333,13 @@ a.boldlink:hover {
 .navbar {
     position: fixed;
     top: 16px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 12px;
+    right: 12px;
     z-index: 9999;
-    width: min(var(--page-width), calc(100% - 24px));
+    width: auto;
+    max-width: var(--page-width);
+    margin-left: auto;
+    margin-right: auto;
     min-height: var(--nav-height);
     padding: 14px 18px;
     display: flex;
@@ -402,10 +406,13 @@ a.boldlink:hover {
 
 .nav-links li {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
 }
 
-.nav-links a {
+.nav-links a,
+.nav-folder-toggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -416,12 +423,19 @@ a.boldlink:hover {
     color: rgba(33, 38, 93, 0.88);
     font-size: 0.95rem;
     font-weight: 600;
+    font-family: inherit;
     border-radius: 999px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
     transition: background-color 0.22s ease, color 0.22s ease, transform 0.22s ease;
 }
 
 .nav-links a:hover,
-.nav-links a.current {
+.nav-links a.current,
+.nav-folder-toggle:hover,
+.nav-folder-toggle.current,
+.nav-folder.is-open > .nav-folder-toggle {
     background: rgba(49, 55, 140, 0.08);
     color: var(--accent-red);
 }
@@ -439,9 +453,74 @@ a.boldlink:hover {
     color: #ffffff;
 }
 
+.nav-folder-toggle {
+    gap: 8px;
+}
+
+.nav-folder-arrow {
+    width: 9px;
+    height: 9px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-1px) rotate(45deg);
+    transition: transform 0.22s ease;
+}
+
+.nav-folder.is-open > .nav-folder-toggle .nav-folder-arrow {
+    transform: translateY(1px) rotate(225deg);
+}
+
+.nav-submenu {
+    list-style: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    min-width: 220px;
+    padding: 10px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-radius: 22px;
+    border: 1px solid rgba(49, 55, 140, 0.08);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 18px 36px rgba(31, 36, 86, 0.14);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0.22s;
+}
+
+.nav-folder.is-open > .nav-submenu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.nav-submenu li,
+.nav-submenu a,
+.nav-submenu .nav-folder-toggle {
+    width: 100%;
+}
+
+.nav-submenu a,
+.nav-submenu .nav-folder-toggle {
+    justify-content: flex-start;
+    border-radius: 16px;
+}
+
+.nav-submenu .nav-submenu {
+    top: 0;
+    left: calc(100% + 10px);
+}
+
 .main-text {
     flex: 1;
-    width: min(var(--page-shell-width), calc(100% - 56px));
+    width: 100%;
+    max-width: var(--page-shell-width);
     margin: 0 auto;
     padding: 22px 0 72px;
 }
@@ -767,7 +846,7 @@ a.boldlink:hover {
         visibility: hidden;
         max-height: 0;
         overflow-x: hidden;
-        overflow-y: auto;
+        overflow-y: hidden;
         overscroll-behavior: contain;
         transform: translateY(-8px);
         transition: opacity 0.22s ease, transform 0.22s ease, max-height 0.28s ease, visibility 0s linear 0.28s;
@@ -781,15 +860,68 @@ a.boldlink:hover {
         transition: opacity 0.22s ease, transform 0.22s ease, max-height 0.28s ease;
     }
 
+    .nav-links.is-open.scroll-ready {
+        overflow-y: auto;
+    }
+
     .nav-links li,
-    .nav-links a {
+    .nav-links a,
+    .nav-folder-toggle {
         width: 100%;
     }
 
-    .nav-links a {
+    .nav-links a,
+    .nav-folder-toggle {
         justify-content: flex-start;
         padding-left: 16px;
         padding-right: 16px;
+    }
+
+    .nav-folder-toggle {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .nav-submenu {
+        position: static;
+        min-width: 0;
+        padding: 4px 0 0;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        height: 0;
+        overflow: hidden;
+        transform: none;
+    }
+
+    .nav-submenu .nav-submenu {
+        left: auto;
+        top: auto;
+    }
+
+    .nav-submenu a,
+    .nav-submenu .nav-folder-toggle {
+        border-radius: 14px;
+    }
+
+    .nav-submenu li[data-nav-level="1"] > a,
+    .nav-submenu li[data-nav-level="1"] > .nav-folder-toggle {
+        padding-left: 30px;
+    }
+
+    .nav-submenu li[data-nav-level="2"] > a,
+    .nav-submenu li[data-nav-level="2"] > .nav-folder-toggle {
+        padding-left: 44px;
+    }
+
+    .nav-submenu li[data-nav-level="3"] > a,
+    .nav-submenu li[data-nav-level="3"] > .nav-folder-toggle {
+        padding-left: 58px;
     }
 }
 
@@ -810,7 +942,7 @@ a.boldlink:hover {
     .main-text,
     .page-title-header,
     .dev-banner {
-        width: min(100%, calc(100% - 34px));
+        width: calc(100% - 34px);
     }
 
     .hover-card,
@@ -854,7 +986,9 @@ a.boldlink:hover {
 
     .navbar {
         top: 12px;
-        width: calc(100% - 16px);
+        left: 8px;
+        right: 8px;
+        width: auto;
         padding: 12px 14px;
     }
 
@@ -890,9 +1024,8 @@ a.boldlink:hover {
     }
 }
 
-/* Flatten older page-title headers so signup/team match the newer pages. */
 .page-title-header {
-    width: min(var(--page-shell-width), calc(100vw - 56px));
+    width: min(var(--page-shell-width), calc(100% - 56px));
     margin: 28px auto 0;
     padding: 4px 0 10px;
     background: transparent;
@@ -926,7 +1059,7 @@ a.boldlink:hover {
 
 @media (max-width: 700px) {
     .page-title-header {
-        width: min(var(--page-shell-width), calc(100vw - 40px));
+        width: min(var(--page-shell-width), calc(100% - 40px));
         margin-top: 22px;
     }
 
