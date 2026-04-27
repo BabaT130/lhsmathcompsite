@@ -30,6 +30,8 @@ body {
 html {
     scroll-behavior: smooth;
     scrollbar-gutter: stable;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {
@@ -519,8 +521,7 @@ a.boldlink:hover {
 
 .main-text {
     flex: 1;
-    width: 100%;
-    max-width: var(--page-shell-width);
+    width: min(var(--page-shell-width), calc(100% - 56px));
     margin: 0 auto;
     padding: 22px 0 72px;
 }
@@ -957,10 +958,6 @@ a.boldlink:hover {
 
     .page-title-header {
         padding: 28px 24px;
-    }
-
-    .logo img {
-        height: 44px;
     }
 
     .page-title-text {
